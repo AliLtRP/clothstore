@@ -8,7 +8,7 @@ const SearchIcon = (props) => (
         {...props}
     >
         <path
-            stroke="#000"
+            stroke={props.color || "#000"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}

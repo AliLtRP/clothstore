@@ -1,0 +1,24 @@
+import hot_summer_sale from "../../assets/hot_summer_sale.png";
+import NextSvg from "./NextSvg";
+
+const NewArrival = () => {
+    return (
+        <div className="w-full h-[270px] bg-white px-2">
+            <img src={hot_summer_sale} alt="" className=" rounded-t-lg h-[204px]" />
+
+            <div className="w-full flex justify-between pt-4">
+                <div>
+                    <p className=" text-xl font-medium leading-[22px]">New Arrivals </p>
+                    <p className=" text-base font-normal leading-5 pt-2">Summer’ 25 Collections</p>
+                </div>
+
+                <div className="flex flex-col justify-end">
+                    <button className="bg-[#F83758] py-[6px] px-[10px] rounded-[4px] text-xs font-semibold flex gap-1 items-center text-[#fff]">View all <NextSvg /></button>
+                </div>
+            </div>
+
+        </div>
+    )
+}
+
+export default NewArrival
