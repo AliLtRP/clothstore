@@ -1,0 +1,93 @@
+.splash-screen {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  padding: 50px;
+  box-sizing: border-box;
+  height: 100vh; 
+}
+
+.splash-content {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.splash-content img {
+  width: 300px;
+  height: 200px;
+}
+
+.splash-content h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.splash-content p {
+  font-size: 16px;
+  color: #555;
+}
+
+.splash-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 350px;
+  position: fixed; 
+  bottom: 20px; 
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 10px 20px;
+} 
+
+.dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #bbb;
+  margin: 0 5px;
+  transition: width 0.3s ease, background-color 0.3s ease, border-radius 0.3s ease, height 0.3s ease;
+}
+
+.dot.active {
+  background-color: #333;
+  width: 50px;
+  border-radius: 5px;
+  height: 10px;
+}
+
+.splash-navigate {
+  font-size: 18px;
+  color: #F83758;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.start-btn {
+  font-size: 18px;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  background-color: transparent;
+}
+
+.start-btn {
+  background-color: #F83758;
+  border-radius: 4px;
+}
+
+.splash-navigation button.splash-navigation-disable {
+  color: #bbb;
+  cursor: not-allowed;
+  background-color: transparent;
+}

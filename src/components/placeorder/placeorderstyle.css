@@ -1,0 +1,149 @@
+.checkout-navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+}
+
+.checkout-title {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.left-arrow {
+    width: 12px;
+}
+
+.location-icon {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.delivery-address {
+    display: flex;
+    align-items: center;
+    margin: 10px 8%;
+}
+
+.delivery-text {
+    font-weight: bold;
+}
+
+.address-container {
+    width: 80%;
+    height: auto;
+    border: solid #F0F0F0;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin: 20px auto;
+}
+
+.address-info p {
+    margin: 5px 0;
+}
+
+.edit-icon {
+    width: 20px;
+    cursor: pointer;
+    margin-top: -50px;
+}
+
+.odred-container {
+    width: 80%;
+    height: auto;
+    border: solid #F0F0F0;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin: 20px auto;
+}
+
+.order-img {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-title {
+    font-weight: bold;
+}
+
+.order-info p {
+    margin: 5px 0;
+    text-wrap: nowrap;
+}
+
+.size-qty-container {
+    display: flex;
+    gap: 10px;
+}
+
+.order-payment-details, .order-total, .complete-payment {
+    width: 90%;
+    margin: 20px auto;
+}
+
+.payment-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+
+.payment-details a {
+    /* display: flex; */
+    margin: 15px 0;
+
+    /* justify-content: space-between; */
+    margin-left: 10px;
+    font-size: 14px;
+    color: #F83758;
+    cursor: pointer;
+    text-wrap: nowrap;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.complete-payment {
+    display: flex;
+    background-color: #F8F8F8;
+    justify-content: space-between;
+    align-items: center;
+    border: solid #F0F0F0;
+    border-radius: 20px 20px 0px 0px;
+    padding: 20px 20px 30px ;
+}
+
+.complete-payment .rupee {
+    width: 15px;
+    margin-right: 5px;
+}
+
+.complete-payment button {
+    background-color: #F83758;
+    color: white;
+    font-weight: bold;
+    border: none;
+    font-size: 14px;
+    border-radius: 5px;
+    padding: 15px 20px;
+    text-wrap: nowrap;
+    margin-top: 5%;
+    cursor: pointer;
+    font-family:'Montserrat',sans-serif;
+
+}
+.size-qty-container p{
+    background-color: #F2F2F2;
+    padding: 5px;
+    border-radius: 4px;
+
+}

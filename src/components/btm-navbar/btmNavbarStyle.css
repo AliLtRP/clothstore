@@ -1,0 +1,52 @@
+   .btm-navbar-container {
+    width: 100%;
+    background-color: white;
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0px;
+    box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .icon-nav-btns {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  .icon-nav-btns img {
+    width: 24px;
+    height: 24px;
+  }
+  
+  .icon-nav-btns a {
+    text-decoration: none;
+    color: black;
+    margin-top: 5px;
+    font-size: 12px;
+  }
+  
+  .selected {
+    color: #F83758;
+  }
+  
+  .cart-icon-wrapper {
+    position: relative;
+  }
+  
+  .red-circle {
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 50px;
+    background-color: #EB3030;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: -1; 
+  }

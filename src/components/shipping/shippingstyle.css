@@ -1,0 +1,109 @@
+.shipping-screen-body {
+    background-color: #F5F5F5;
+    font-family: 'Montserrat', sans-serif;
+  }
+   
+   .shipping-container {
+    position: relative;
+    min-height: 100vh;
+    padding-bottom: 100px; 
+  }
+  
+  .checkout-navbar {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    position: relative;
+  }
+  
+  .left-arrow {
+    cursor: pointer;
+    position: absolute;
+    left: 10px;
+  }
+  
+  .checkout-title {
+    width: 100%;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .final-order-total {
+    margin: 20px 0;
+  }
+  
+  .final-payment-details {
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    color: #A8A8A9;
+    margin: 0px 0;
+  }
+  
+  .final-total-details {
+    padding: 0 30px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0px 0;
+    font-weight: bold;
+    color: #000;
+  }
+  
+  .divider {
+    opacity: 0.3;
+    margin-top: -10px;
+  }
+
+  .divider-2{
+    opacity: 0.3;
+    margin-top: -10px;
+    width: 90%;
+  }
+  
+  .final-address-details {
+    font-weight: bold;
+    font-size: 18px;
+    margin-left: 30px;
+  }
+  
+  .final-address-info {
+    padding-left: 30px;
+  }
+  
+  .final-address-input,
+  .final-city-input,
+  .final-country-input {
+    font-family: 'Montserrat', sans-serif;
+    width: 80%;
+    padding: 15px 17px;
+    font-size: 16px;
+    font-weight: bold;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    margin-top: 10px;
+  }
+  
+  .continue-payment {
+    font-family: 'Montserrat', sans-serif;
+    display: block;
+    margin: 20px auto;
+    background-color: #F83758;
+    font-size: 20px;
+    font-weight: 650;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 15px 120px;
+    cursor: pointer;
+    position: absolute;
+    /* bottom: 100px;  */
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .shipping-screen-body ::placeholder {
+    color: #000;
+  }
+  .final-address-titles{
+    margin-bottom: 10px;
+  }

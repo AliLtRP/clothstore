@@ -1,0 +1,93 @@
+.welcomtitle {
+  font-size: 45px;
+  color: #333;
+  margin-left: 7%;
+  margin-top: 50px;
+}
+
+.data-input {
+  margin: 20px;
+  display: block;
+  width: 90%;
+}
+
+.userinput,
+.passwordinput {
+  display: block;
+  margin: 0 auto;
+  font-size: 18px;
+  background-color: #F3F3F3;
+  width: 80%;
+  padding: 20px 10px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.Login-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #F83758;
+  font-size: 20px;
+  font-weight: 650;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 15px 160px;
+  cursor: pointer;
+}
+
+.signup-link{
+  color: #F83758;
+  text-decoration:underline;
+  font-weight: bolder;
+}
+
+.signup-link:hover {
+  text-decoration: underline;
+}
+.userinput{
+  background-image: url("../../assets/User.png");
+  background-position: 10px 18px; 
+  background-repeat: no-repeat;
+  padding: 20px 8px 20px 40px;
+}
+
+.passwordinput-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+.passwordinput {
+  width: 80%;
+  padding: 20px 8px 20px 40px;
+  background-color: #F3F3F3;
+  background-image: url("../../assets/pass.png");
+  background-position: 13px 18px;
+  background-repeat: no-repeat;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+.eye-icon {
+  position: absolute;
+  right: 10%;
+  top: 40%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+.forgetpass{
+  position: absolute;
+  right: 12%;
+  color:#F83758;
+  margin-top: -15px;
+  text-wrap: nowrap;
+}
+.create-acc{
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+}
