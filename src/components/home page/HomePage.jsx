@@ -1,8 +1,7 @@
-
 import Footer from "./Footer"
 import ProductCard from "./ProductCard"
-import { RightArrowSVG } from "./icons"
-import { NavBar, SearchSvg, MicSvg, Categories, Card, Deal } from "./index"
+import { MicSVG, RightArrowSVG, SearchSVG } from "./icons"
+import { NavBar, Categories, Card, Deal } from "./index"
 import product_image from "../../assets/product_image.png";
 import shoeproduct from "../../assets/shoeproduct.png"
 import NewArrival from "./NewArrival";
@@ -18,9 +17,9 @@ const HomePage = () => {
                 <NavBar />
 
                 <div className="w-full flex justify-center relative mt-16">
-                    <SearchSvg className=" absolute top-2/4 left-6 translate-x-[-50%] translate-y-[-50%]" />
+                    <SearchSVG className=" absolute top-2/4 left-6 translate-x-[-50%] translate-y-[-50%]" />
                     <input type="text" placeholder="Search any Product.." className="bg-white w-full p-2 pl-10 rounded-md shadow-sm text-sm text-[#BBBBBB]" />
-                    <MicSvg className=" absolute top-2/4 right-1 translate-x-[-50%] translate-y-[-50%]" />
+                    <MicSVG className=" absolute top-2/4 right-1 translate-x-[-50%] translate-y-[-50%]" />
                 </div>
 
                 <div className="w-full h-auto flex gap-2">
@@ -48,7 +47,7 @@ const HomePage = () => {
                 <div className="h-[330px] w-[110vw] sm:w-full flex flex-col gap-3 px-2 mt-6 mb-10">
                     <div className="w-full flex justify-between">
                         <p className=" font-semibold text-sm relative">Top Discounts</p>
-                        <RightArrowSVG className=" absolute right-8" />
+                        <RightArrowSVG className=" absolute right-8 sm:relative sm:right-0" />
                     </div>
 
                     <div className="w-full h-full flex gap-3 overflow-x-auto no-scrollbar">

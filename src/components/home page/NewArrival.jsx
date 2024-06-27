@@ -1,5 +1,6 @@
 import hot_summer_sale from "../../assets/hot_summer_sale.png";
-import NextSvg from "./NextSvg";
+import { NextSVG } from "./icons";
+
 
 const NewArrival = () => {
     return (
@@ -13,7 +14,7 @@ const NewArrival = () => {
                 </div>
 
                 <div className="flex flex-col justify-end">
-                    <button className="bg-[#F83758] py-[6px] px-[10px] rounded-[4px] text-xs font-semibold flex gap-1 items-center text-[#fff]">View all <NextSvg /></button>
+                    <button className="bg-[#F83758] py-[6px] px-[10px] rounded-[4px] text-xs font-semibold flex gap-1 items-center text-[#fff]">View all <NextSVG /></button>
                 </div>
             </div>
 

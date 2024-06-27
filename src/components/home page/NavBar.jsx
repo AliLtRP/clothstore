@@ -1,6 +1,7 @@
-import HumMenu from "./HumMenu"
+
 import Logo from "../../assets/Logo.png";
 import Avatar from "../../assets/Avatar.png";
+import { HumMenu } from "./icons";
 
 
 const NavBar = () => {

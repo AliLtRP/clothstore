@@ -1,9 +1,8 @@
-import CartIcon from "./CartIcon"
-import HomeSVG from "./HomeSVG"
-import SearchIcon from "./SearchIcon"
-import Settings from "./Settings"
-import Wishlist from "./Wishlist"
+
 import style from "./homepage.module.css"
+import { CartIcon, HomeSVG, SearchIcon } from "./icons"
+import Settings from "./icons/Settings"
+import Wishlist from "./icons/Wishlist"
 
 const Footer = ({ handleClick, path }) => {
     return (
