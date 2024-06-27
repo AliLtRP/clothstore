@@ -1,3 +1,5 @@
 import HomePage from "./HomePage";
+import NavBar from "./NavBar";
+import HumMenu from "./HumMenu";
 
-export { HomePage }
+export { HomePage, NavBar, HumMenu }
