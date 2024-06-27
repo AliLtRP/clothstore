@@ -1,8 +1,10 @@
 .signup-welcome-title {
     font-size: 45px;
     color: #333;
-    margin-top: 30px;
+    margin-top:10%;
+    margin-bottom:5%;
     margin-left: 5%;
+    font-weight: bold;
   }
   
   .signup-data-input {
@@ -16,7 +18,7 @@
     margin: 0 auto;
     font-size: 18px;
     background-color: #F3F3F3;
-    width: 70%;
+    width: 90%;
     border: 1px solid #ccc;
     border-radius: 10px;
     margin-bottom:20px;
@@ -33,7 +35,8 @@
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 15px 110px;
+    width: 90%;
+    padding: 15px;
     cursor: pointer;
     white-space: nowrap;
 
@@ -51,7 +54,7 @@
   
   .signup-user-input {
     background-image: url("../../assets/User.png");
-    background-position: 10px 18px; 
+    background-position: 15px 20px; 
     background-repeat: no-repeat;
     padding: 20px 8px 20px 40px;
   }
@@ -63,11 +66,11 @@
   }
   
   .signup-password-input {
-    width: 70%;
+    width: 90%;
     padding: 20px 8px 20px 40px;
     background-color: #F3F3F3;
     background-image: url("../../assets/pass.png");
-    background-position: 13px 18px;
+    background-position: 18px 22px; 
     background-repeat: no-repeat;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -75,18 +78,20 @@
   
   .signup-eye-icon {
     position: absolute;
-    right: 15%;
-    top: 35%;
+    right: 10%;
+    top: 40%;
     transform: translateY(-50%);
     cursor: pointer;
   }
   
   .signup-info{
-    margin-left: 10%;
+    margin-left: 5%;
+    margin-top: -5%;
+
   }
   .signup-create-acc {
     position: absolute;
-    bottom: 60px;
+    bottom: 100px;
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;

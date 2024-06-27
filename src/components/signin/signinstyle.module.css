@@ -1,14 +1,15 @@
 .welcomtitle {
   font-size: 45px;
   color: #333;
-  margin-left: 7%;
+  margin-left: 5%;
   margin-top: 50px;
+  font-weight: 650;
 }
 
-.data-input {
-  margin: 20px;
+.datainput {
+  margin-top: 10%;
   display: block;
-  width: 90%;
+  width: 100%;
 }
 
 .userinput,
@@ -16,15 +17,15 @@
   display: block;
   margin: 0 auto;
   font-size: 18px;
+  width: 90%;
   background-color: #F3F3F3;
-  width: 80%;
   padding: 20px 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
   margin-bottom: 20px;
 }
 
-.Login-btn {
+.Loginbtn {
   position: absolute;
   bottom: 10px;
   left: 50%;
@@ -35,42 +36,39 @@
   color: #fff;
   border: none;
   border-radius: 5px;
-  padding: 15px 160px;
+  width: 90%;
+  padding: 15px;
   cursor: pointer;
 }
 
-.signup-link{
+.signuplink{
   color: #F83758;
   text-decoration:underline;
   font-weight: bolder;
 }
 
-.signup-link:hover {
-  text-decoration: underline;
-}
 .userinput{
   background-image: url("../../assets/User.png");
-  background-position: 10px 18px; 
+  background-position: 15px 20px; 
   background-repeat: no-repeat;
   padding: 20px 8px 20px 40px;
 }
 
-.passwordinput-container {
+.passwordinputcontainer {
   position: relative;
   display: flex;
   justify-content: center;
 }
 .passwordinput {
-  width: 80%;
   padding: 20px 8px 20px 40px;
   background-color: #F3F3F3;
   background-image: url("../../assets/pass.png");
-  background-position: 13px 18px;
+  background-position: 18px 22px; 
   background-repeat: no-repeat;
   border: 1px solid #ccc;
   border-radius: 10px;
 }
-.eye-icon {
+.eyeicon {
   position: absolute;
   right: 10%;
   top: 40%;
@@ -79,14 +77,14 @@
 }
 .forgetpass{
   position: absolute;
-  right: 12%;
+  right: 5%;
   color:#F83758;
   margin-top: -15px;
   text-wrap: nowrap;
 }
-.create-acc{
+.createacc{
   position: absolute;
-  bottom: 60px;
+  bottom: 100px;
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;

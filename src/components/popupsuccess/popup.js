@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from 'react';
 import successIcon from '../../assets/success.svg'; 
-import './popupstyle.css';
+import popupStyle from './popupstyle.module.css';
 
 const Popup = ({ message, open, onClose }) => {
   const dialogRef = useRef(null);
@@ -19,10 +19,10 @@ const Popup = ({ message, open, onClose }) => {
 
   return (
     <>
-      {open && <div className="overlay" onClick={onClose}></div>}
-      <dialog ref={dialogRef} className="popup-dialog">
-        <div className="popup-content">
-          <img src={successIcon} alt="Success" className="success-icon" />
+      {open && <div className={popupStyle.overlay} onClick={onClose}></div>}
+      <dialog ref={dialogRef} className={popupStyle['popup-dialog']}>
+        <div className={popupStyle['popup-content']}>
+          <img src={successIcon} alt="Success" className={popupStyle['success-icon']} />
           <p>{message}</p>
         </div>
       </dialog>
@@ -31,6 +31,3 @@ const Popup = ({ message, open, onClose }) => {
 };
 
 export default Popup;
-
-
-

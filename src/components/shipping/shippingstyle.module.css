@@ -16,88 +16,89 @@
     position: relative;
   }
   
-  .left-arrow {
-    cursor: pointer;
-    position: absolute;
-    left: 10px;
-  }
-  
   .checkout-title {
-    width: 100%;
+    flex-grow: 1;
     text-align: center;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
-  }
-  
-  .final-order-total {
-    margin: 20px 0;
-  }
-  
+    margin-left: -5%;
+
+
+}
+
+.left-arrow {
+    width: 12px;
+    margin-left: 5%;
+}
   .final-payment-details {
-    padding: 0 30px;
+    padding: 0% 5%;
     display: flex;
     justify-content: space-between;
     color: #A8A8A9;
-    margin: 0px 0;
+    margin: 5% 0;
   }
   
   .final-total-details {
-    padding: 0 30px;
+    margin-top: -5%;
+    padding: 5% 5%;
     display: flex;
     justify-content: space-between;
-    margin: 0px 0;
     font-weight: bold;
     color: #000;
   }
   
   .divider {
-    opacity: 0.3;
-    margin-top: -10px;
+    opacity: 0.5;
+    margin-top: 1%;
   }
 
   .divider-2{
-    opacity: 0.3;
+    opacity: 1;
     margin-top: -10px;
     width: 90%;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
   }
   
   .final-address-details {
     font-weight: bold;
     font-size: 18px;
-    margin-left: 30px;
+    margin-left: 5%;
   }
-  
   .final-address-info {
-    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
   }
   
   .final-address-input,
   .final-city-input,
   .final-country-input {
     font-family: 'Montserrat', sans-serif;
-    width: 80%;
+    width: 90%;
     padding: 15px 17px;
     font-size: 16px;
     font-weight: bold;
     border: 1px solid #ccc;
     border-radius: 10px;
-    margin-top: 10px;
+    margin-top: 1%;
   }
   
   .continue-payment {
     font-family: 'Montserrat', sans-serif;
     display: block;
-    margin: 20px auto;
+    margin: 30px auto;
     background-color: #F83758;
     font-size: 20px;
     font-weight: 650;
     color: #fff;
     border: none;
     border-radius: 5px;
-    padding: 15px 120px;
+    padding: 15px;
+    width: 90%;
     cursor: pointer;
     position: absolute;
-    /* bottom: 100px;  */
     left: 50%;
     transform: translateX(-50%);
   }
@@ -105,5 +106,8 @@
     color: #000;
   }
   .final-address-titles{
-    margin-bottom: 10px;
+    margin-top: 2%;
+    align-self: flex-start;
+    margin-left: 5%;
+
   }

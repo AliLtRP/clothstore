@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import splashimg1 from '../../assets/splash1.svg';
 import splashimg2 from '../../assets/splash2.svg';
 import splashimg3 from '../../assets/splash3.svg';
-import './splashscreenstyle.css';
+import splashStyle from './splashscreenstyle.module.css';
 
 const splashCollection = [
   {
@@ -42,27 +42,27 @@ const SplashScreen = () => {
   };
 
   return (
-    <div className="splash-screen">
-      <div className="splash-content">
+    <div className={splashStyle['splash-screen']}>
+      <div className={splashStyle['splash-content']}>
         <img src={splashCollection[currentIndex].img} alt={splashCollection[currentIndex].label} />
         <h2>{splashCollection[currentIndex].label}</h2>
         <p>{splashCollection[currentIndex].description}</p>
       </div>
-      <div className="splash-navigation">
+      <div className={splashStyle['splash-navigation']}>
         <button
-          className={`splash-navigate ${currentIndex === 0 ? 'splash-navigation-disable' : ''}`}
+          className={`${splashStyle['splash-navigate']} ${currentIndex === 0 ? splashStyle['splash-navigation-disable'] : ''}`}
           onClick={prevScreen}
           disabled={currentIndex === 0}
         >
           Prev
         </button>
-        <div className="dots">
+        <div className={splashStyle['dots']}>
           {splashCollection.map((_, index) => (
-            <span key={index} className={`dot ${index === currentIndex ? 'active' : ''}`}></span>
+            <span key={index} className={`${splashStyle['dot']} ${index === currentIndex ? splashStyle['active'] : ''}`}></span>
           ))}
         </div>
         <button
-          className={`splash-navigate ${currentIndex === splashCollection.length - 1 ? 'start-btn' : ''}`}
+          className={`${splashStyle['splash-navigate']} ${currentIndex === splashCollection.length - 1 ? splashStyle['start-btn'] : ''}`}
           onClick={nextScreen}
         >
           {currentIndex === splashCollection.length - 1 ? 'Get Started' : 'Next'}

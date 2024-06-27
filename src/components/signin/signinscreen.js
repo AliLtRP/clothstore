@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
-import './signinstyle.css'; 
+import signinStyle from './signinstyle.module.css'; 
 import eye from '../../assets/eye.svg'
 
 const Signinscreen = () => {
@@ -14,32 +14,32 @@ const Signinscreen = () => {
     event.preventDefault();
     navigate('/signup'); 
   };
-  const eyeicon = <img src={eye} className='eye-icon' alt="eye icon" />
+  const eyeicon = <img src={eye} className={signinStyle.eyeicon} alt="eye icon" />
   
   return (
     <div>
-      <h1 className='welcomtitle'>Welcome<br />Back!</h1>
-      <div className='data-input'>
+      <h1 className={signinStyle.welcomtitle}>Welcome<br />Back!</h1>
+      <div className={signinStyle.datainput}>
         <div>
           <input
             placeholder='Username or email'
-            className='userinput'
+            className={signinStyle.userinput}
           />
         </div>
-        <div className='passwordinput-container'>
+        <div className={signinStyle.passwordinputcontainer}>
           <input
             type="password"
             placeholder='Password'
-            className='passwordinput'
+            className={signinStyle.passwordinput}
           />
           {eyeicon}
         </div>
-        <p className='forgetpass'>Forgot password?</p>
+        <p className={signinStyle.forgetpass}>Forgot password?</p>
       </div>
-      <div className='more-options'>
-        <p className='create-acc'>Create an account <a onClick={handleSignUpClick} className='signup-link'>Sign Up</a></p>
+      <div>
+        <p className={signinStyle.createacc}>Create an account <a onClick={handleSignUpClick} className={signinStyle.signuplink}>Sign Up</a></p>
       </div>
-      <button className='Login-btn'onClick={handleLoginClick}>Login</button>
+      <button className={signinStyle.Loginbtn}onClick={handleLoginClick}>Login</button>
     </div>
   );
 };
