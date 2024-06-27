@@ -1,9 +1,10 @@
+import Card from "./Card"
 import { NavBar, SearchSvg, MicSvg, Categories } from "./index"
 
 const HomePage = () => {
     return (
-        <div className="w-full  flex flex-col items-center mx-auto bg-[#FDFDFD]">
-            <div className="min-w-[384px] max-w-[383px] p-4 flex flex-col gap-4">
+        <div className="w-full montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+            <div className="min-w-[384px] max-w-[383px] p-4 flex flex-col gap-6">
                 <NavBar />
 
                 <div className="w-full flex justify-center relative">
@@ -15,6 +16,8 @@ const HomePage = () => {
                 <div className="w-full flex gap-2">
                     <Categories />
                 </div>
+
+                <Card />
             </div>
         </div>
     )
