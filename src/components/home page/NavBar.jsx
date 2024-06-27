@@ -5,7 +5,7 @@ import Avatar from "../../assets/Avatar.png";
 
 const NavBar = () => {
     return (
-        <div className="w-full flex justify-between p-4 items-center">
+        <div className="w-full flex justify-between items-center">
             <HumMenu />
             <img src={Logo} alt="logo" className="w-[113px] h-[32px]" />
             <img src={Avatar} alt="user avatar" className="w-10 h-10" />
