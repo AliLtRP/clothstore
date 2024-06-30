@@ -80,11 +80,9 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-
-                <div className=" min-w-[383px] max-w-[383px]">
-                    <Footer path="cart" />
-                </div>
-
+            </div>
+            <div className="max-w-sm flex justify-center">
+                <Footer path="home" />
             </div>
         </div>
     )
