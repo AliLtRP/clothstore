@@ -1,5 +1,5 @@
 import RightArrowSVG from './RightArrowSVG'
-import Ratting from "./Rating"
+import Rating from "./Rating"
 import CartIcon from './CartIcon'
 import CardsIndexSvg from './CardsIndexSvg'
 import ClockSvg from './ClockSvg.jsx'
@@ -14,4 +14,4 @@ import settings from "./Settings.jsx"
 
 
 
-export { settings, wishlist, SearchIcon, SearchSVG, RightArrowSVG, Ratting, CartIcon, CardsIndexSvg, ClockSvg, HomeSVG, HumMenu, MicSVG, NextSVG }
+export { settings, wishlist, SearchIcon, SearchSVG, RightArrowSVG, Rating, CartIcon, CardsIndexSvg, ClockSvg, HomeSVG, HumMenu, MicSVG, NextSVG }

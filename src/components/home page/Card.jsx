@@ -4,7 +4,7 @@ import { CardsIndexSvg, NextSVG } from "./icons";
 const Card = () => {
     return (
         <div className="h-[225px]">
-            <div className="w-full h-[200px] bg-black relative">
+            <div className="w-full h-[200px] relative">
                 <img src={cardImage} alt="" className="h-full object-cover rounded-xl" />
 
                 <div className="absolute w-[40%] text-[#fff] top-10 left-5 font-bold">

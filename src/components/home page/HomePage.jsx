@@ -21,7 +21,7 @@ const HomePage = () => {
 
     return (
         <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-            <div className="min-w-[384px] max-w-[383px] p-4 flex flex-col gap-6">
+            <div className="min-w-[24rem] max-w-sm p-4 flex flex-col gap-6">
                 <NavBar />
 
                 <div className="w-full flex justify-center relative mt-16">
