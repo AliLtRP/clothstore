@@ -1,9 +1,10 @@
-import * as React from "react"
+import * as React from "react";
+
 const RightArrowSVG = (props) => (
     <svg
         xmlns="http://www.w3.org/2000/svg"
-        width={9}
-        height={12}
+        width={props.width || 9}
+        height={props.height || 12}
         fill="none"
         {...props}
     >
@@ -12,5 +13,6 @@ const RightArrowSVG = (props) => (
             d="M2.02 0 .61 1.41 5.19 6 .61 10.59 2.02 12l6-6-6-6Z"
         />
     </svg>
-)
-export default RightArrowSVG
+);
+
+export default RightArrowSVG;

@@ -8,12 +8,20 @@ import NewArrival from "./NewArrival";
 import watch_product from "../../assets/watch_product.png";
 import whiteshoeproduct from "../../assets/whiteshoeproduct.png";
 import bagproduct from "../../assets/bagproduct.png";
+import { useNavigate } from "react-router-dom";
 
 
 const HomePage = () => {
+
+    const navigator = useNavigate();
+
+    const navigateTo = (path) => {
+        navigator(path)
+    }
+
     return (
         <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-            <div className="min-w-[384px] max-w-[383px] p-4 flex flex-col gap-6">
+            <div className="min-w-[24rem] max-w-sm p-4 flex flex-col gap-6">
                 <NavBar />
 
                 <div className="w-full flex justify-center relative mt-16">
@@ -31,9 +39,11 @@ const HomePage = () => {
                 <Deal />
 
                 <div className="h-[330px] flex flex-col gap-3 px-2">
-                    <div className="w-full flex justify-between">
-                        <p className=" font-semibold text-sm">Top Rate</p>
-                        <RightArrowSVG />
+                    <div className="w-full flex justify-between items-center">
+                        <p className=" font-semibold text-sm hover:cursor-pointer" onClick={() => navigateTo('/trending/product')}>Top Rate</p>
+                        <div onClick={() => navigateTo('/trending/product')} className=" hover:cursor-pointer">
+                            <RightArrowSVG />
+                        </div>
                     </div>
 
                     <div className="w-full flex gap-3">
@@ -80,11 +90,9 @@ const HomePage = () => {
                         </div>
                     </div>
                 </div>
-
-                <div className=" min-w-[383px] max-w-[383px]">
-                    <Footer/>
-                </div>
-
+            </div>
+            <div className="max-w-sm flex justify-center">
+                <Footer path="home" />
             </div>
         </div>
     )

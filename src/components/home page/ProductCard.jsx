@@ -1,4 +1,4 @@
-import { Ratting } from "./icons"
+import { Rating } from "./icons"
 
 const ProductCard = (props) => {
     return (
@@ -17,7 +17,7 @@ const ProductCard = (props) => {
                 {
                     props.ratting &&
                     <>
-                        <Ratting />
+                        <Rating />
                         <p className="pt-0.5 text-[10px] text-[#A4A9B3] text-center">
                             {props.rating || "56890"}
                         </p>
