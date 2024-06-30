@@ -9,8 +9,10 @@ import Shipping from './components/shipping/shipping.js';
 import { HomePage } from "./components/home page/index";
 import { TrendingProducts } from './components/trending products';
 import Shop from './components/shop page/Shop.jsx';
-
 import Cartpage from './components/cartpage/cart.js';
+import Search from './components/additional/search.js';
+import Settings from './components/additional/settings.js';
+import Wsishlistpage from './components/additional/wsishlist.js';
 
 
 
@@ -25,11 +27,15 @@ function App() {
         <Route path="/placeorder" element={<Placeorder />} />
         <Route path="/shipping" element={<Shipping />} />
         <Route path='/home' element={<HomePage />} />
-        <Route path='/wishlist' element={<HomePage />} />
+        <Route path='/wishlist' element={<Wsishlistpage />} />
         <Route path='/trending/product' element={<TrendingProducts />} />
         <Route path='/shop/:id' element={<Shop />} />
         <Route path='/homepage' element={<HomePage />} />
         <Route path='/cart' element={<Cartpage />} />
+        <Route path='/settings' element={<Settings />} />
+        <Route path='/search' element={<Search />} />
+
+
       </Routes>
     </Router>
   );

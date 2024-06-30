@@ -1,9 +1,13 @@
 import React from 'react'
+import Footer from '../home page/Footer'
 
-const search = () => {
+
+const Search = () => {
   return (
-    <div>search</div>
+    <div>search
+        <Footer path={'search'}></Footer>
+    </div>
   )
 }
 
-export default search
+export default Search

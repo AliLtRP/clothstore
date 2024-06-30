@@ -1,9 +1,13 @@
 import React from 'react'
+import Footer from '../home page/Footer'
 
-const wsishlist = () => {
+const Wsishlistpage = () => {
   return (
-    <div>wsishlist</div>
+    <div>
+        wsishlist
+        <Footer path={'wishlist'}></Footer>
+        </div>
   )
 }
 
-export default wsishlist
+export default Wsishlistpage

@@ -71,7 +71,7 @@ const Shipping = () => {
           </div>
           <button className={shippingStyle['continue-payment']} onClick={handleContinue}>Continue</button>
           <Footer
-           path={'home'} 
+           path={'cart'} 
            ></Footer>
         </div>
       </div>
