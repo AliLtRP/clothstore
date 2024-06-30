@@ -13,7 +13,7 @@ const Cartpage = () => {
   const navigate = useNavigate();
 
   const handleCheckOutClick = () => {
-    navigate('/placeorder'); 
+    navigate('/placeorder');
   };
 
   const cityCountryMap = {
@@ -49,7 +49,7 @@ const Cartpage = () => {
     container: (provided) => ({
       ...provided,
       width: '90%',
-      margin: '0 auto', 
+      margin: '0 auto',
     }),
     valueContainer: (provided) => ({
       ...provided,
@@ -149,8 +149,9 @@ const Cartpage = () => {
           </div>
           <button className={cartStyle['continue-checkout']} onClick={handleCheckOutClick}>Checkout</button>
         </div>
-        <Footer path="cart" />
+
       </div>
+      <Footer path="cart" />
     </div>
   );
 }

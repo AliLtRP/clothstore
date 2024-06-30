@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import style from "./homepage.module.css"
 import { CartIcon, HomeSVG, SearchIcon } from "./icons"
 import Settings from "./icons/Settings"
@@ -19,7 +18,7 @@ const Footer = ({ path }) => {
                 <Wishlist color={path === "wishlist" ? `#EB3030` : "#000"} />
                 <p className={`text-xs text-center ${style.roboto_regular} ${path === "wishlist" ? "text-[#EB3030]" : "text-black"}`}>Wishlist</p>
             </div>
-            <div className=" relative">
+            <div className="relative">
                 <div className={`absolute top-[-45px] left-[-25.5px] ${path === "cart" ? "bg-[#EB3030]" : "bg-white"} rounded-full p-4 drop-shadow-md`} onClick={() => navigate('/cart')}>
                     <CartIcon color={path === "cart" ? "#fff" : "#000"} />
                 </div>

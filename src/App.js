@@ -30,12 +30,9 @@ function App() {
         <Route path='/wishlist' element={<Wsishlistpage />} />
         <Route path='/trending/product' element={<TrendingProducts />} />
         <Route path='/shop/:id' element={<Shop />} />
-        <Route path='/homepage' element={<HomePage />} />
         <Route path='/cart' element={<Cartpage />} />
         <Route path='/settings' element={<Settings />} />
         <Route path='/search' element={<Search />} />
-
-
       </Routes>
     </Router>
   );

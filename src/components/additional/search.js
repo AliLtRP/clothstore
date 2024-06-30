@@ -4,8 +4,9 @@ import Footer from '../home page/Footer'
 
 const Search = () => {
   return (
-    <div>search
-        <Footer path={'search'}></Footer>
+    <div className='w-full flex flex-col items-center'>
+      search
+      <Footer path={'search'}></Footer>
     </div>
   )
 }

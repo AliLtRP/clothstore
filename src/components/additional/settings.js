@@ -4,8 +4,9 @@ import Footer from '../home page/Footer'
 
 const Settings = () => {
   return (
-    <div>Settings
-        <Footer path={'settings'}></Footer>
+    <div className='w-full flex flex-col items-center'>
+      Settings
+      <Footer path={'settings'}></Footer>
     </div>
   )
 }
