@@ -42,7 +42,9 @@ const SplashScreen = () => {
   };
 
   return (
-    <div className={splashStyle['splash-screen']}>
+    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
+      <div className={splashStyle['splash-screen']}>
       <div className={splashStyle['splash-content']}>
         <img src={splashCollection[currentIndex].img} alt={splashCollection[currentIndex].label} />
         <h2>{splashCollection[currentIndex].label}</h2>
@@ -69,6 +71,10 @@ const SplashScreen = () => {
         </button>
       </div>
     </div>
+    </div>
+    </div>
+    
+    
   );
 };
 

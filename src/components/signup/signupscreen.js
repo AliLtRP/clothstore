@@ -14,7 +14,8 @@ const Signupscreen = () => {
   const eyeicon = <img src={eye} className={signupStyle['signup-eye-icon']} alt="eye icon" />;
 
   return (
-    <div>
+    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
       <h1 className={signupStyle['signup-welcome-title']}>Create an account</h1>
       <div className={signupStyle['signup-data-input']}>
         <div>
@@ -50,6 +51,8 @@ const Signupscreen = () => {
       </div>
       <button className={signupStyle['signup-login-btn']} onClick={handleSignUpClick}>Create Account</button>
     </div>
+    </div>
+   
   );
 };
 

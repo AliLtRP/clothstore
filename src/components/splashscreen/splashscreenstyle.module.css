@@ -1,3 +1,4 @@
+
 .splash-screen {
   display: flex;
   flex-direction: column;
@@ -6,7 +7,10 @@
   background-color: white;
   padding: 50px;
   box-sizing: border-box;
-  height: 100vh; 
+  min-width: 384px; 
+  max-width: 480px; 
+  margin: auto; 
+  height: 100vh;
 }
 
 .splash-content {
@@ -16,17 +20,15 @@
 
 .splash-content img {
   display: block;
-  margin-left: auto;
-  margin-right: auto;
-  width: 400px;
-  height: 300px;
+  margin: 0 auto; 
+  max-width: 100%; 
+  height: auto;
 }
 
 .splash-content h2 {
   font-size: 24px;
   margin-bottom: 10px;
   font-weight: 800;
-
 }
 
 .splash-content p {
@@ -39,12 +41,15 @@
   justify-content: space-between;
   align-items: center;
   width: 90%;
-  position: fixed; 
-  bottom: 20px; 
+  position: fixed;
+  bottom: 20px;
   left: 50%;
   transform: translateX(-50%);
   padding: 10px 20px;
-} 
+  min-width: 384px; 
+  max-width: 480px;
+  background-color: white;
+}
 
 .dots {
   display: flex;
@@ -71,7 +76,7 @@
 .splash-navigate {
   font-size: 18px;
   font-weight: 600;
-  color: #F83758;
+  color: #f83758;
   border: none;
   padding: 8px 16px;
   cursor: pointer;
@@ -80,13 +85,12 @@
 
 .start-btn {
   font-size: 18px;
-  color: #F83758;
+  color: #f83758;
   border: none;
   padding: 8px 10px;
   cursor: pointer;
   background-color: transparent;
 }
-
 
 .splash-navigation button.splash-navigation-disable {
   color: #bbb;

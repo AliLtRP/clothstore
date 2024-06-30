@@ -13,13 +13,18 @@ const Placeorder = () => {
   const handleCheckOut = () => {
     navigate('/shipping')
   }
+  const handleBackArrow = () => {
+    navigate('/cart');
+  };
+
 
   const currency = <img src={rupee} style={{width: '10px', marginTop: '-20%'}} alt="currency" />;
 
   return (
-    <div>
+    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
       <div className={placeorderStyle['checkout-navbar']}>
-        <img src={back} className={placeorderStyle['left-arrow']} alt="Back" />
+        <img src={back} className={placeorderStyle['left-arrow']} alt="Back" onClick={handleBackArrow}/>
         <p className={placeorderStyle['checkout-title']}>Checkout</p>
       </div>
       <hr style={{opacity: '30%', width: '100%', marginTop: '-5px'}} />
@@ -98,6 +103,8 @@ const Placeorder = () => {
         </div>
       </div>
     </div>
+    </div>
+   
   );
 }
 

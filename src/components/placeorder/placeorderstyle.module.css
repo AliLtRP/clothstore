@@ -49,6 +49,7 @@
 
 .address-info p {
     margin: 5px 0;
+    text-wrap: nowrap;
 }
 
 .edit-icon {
@@ -68,15 +69,22 @@
     margin: 10px auto;
 }
 
-.order-img {
+/* .order-img {
     width: 100px;
     height: auto;
     margin-right: 10px;
-}
+} */
+
+.order-img {
+    width: 100px;
+    height: auto;
+    margin-left: -1%;
+  }
 
 .order-info {
     display: flex;
     flex-direction: column;
+    padding: 0px 1%;
 }
 
 .order-title {
@@ -90,8 +98,9 @@
 
 .size-qty-container {
     display: flex;
-    gap: 10px;
-}
+    gap: 10%;
+    padding: 5px;
+  }
 
 .order-payment-details, .order-total, .complete-payment {
     width: 90%;
@@ -119,12 +128,12 @@
 
 .complete-payment {
     display: flex;
-    background-color: #F8F8F8;
+    /* background-color: #F8F8F8; */
     justify-content: space-between;
     align-items: center;
-    border: solid #F0F0F0;
-    border-radius: 20px 20px 0px 0px;
-    padding: 20px 20px 30px ;
+    /* border: solid #F0F0F0; */
+    /* border-radius: 20px 20px 0px 0px; */
+    padding: 20px 5px 30px 5px ;
 }
 
 .complete-payment .rupee {

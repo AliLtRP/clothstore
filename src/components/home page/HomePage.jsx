@@ -82,7 +82,7 @@ const HomePage = () => {
                 </div>
 
                 <div className=" min-w-[383px] max-w-[383px]">
-                    <Footer path="cart" />
+                    <Footer/>
                 </div>
 
             </div>

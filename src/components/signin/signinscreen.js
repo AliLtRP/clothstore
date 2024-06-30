@@ -17,7 +17,8 @@ const Signinscreen = () => {
   const eyeicon = <img src={eye} className={signinStyle.eyeicon} alt="eye icon" />
   
   return (
-    <div>
+    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
       <h1 className={signinStyle.welcomtitle}>Welcome<br />Back!</h1>
       <div className={signinStyle.datainput}>
         <div>
@@ -41,6 +42,8 @@ const Signinscreen = () => {
       </div>
       <button className={signinStyle.Loginbtn}onClick={handleLoginClick}>Login</button>
     </div>
+    </div>
+   
   );
 };
 

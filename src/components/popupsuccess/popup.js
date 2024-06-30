@@ -18,7 +18,8 @@ const Popup = ({ message, open, onClose }) => {
   }, [open, onClose]);
 
   return (
-    <>
+    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
       {open && <div className={popupStyle.overlay} onClick={onClose}></div>}
       <dialog ref={dialogRef} className={popupStyle['popup-dialog']}>
         <div className={popupStyle['popup-content']}>
@@ -26,7 +27,9 @@ const Popup = ({ message, open, onClose }) => {
           <p>{message}</p>
         </div>
       </dialog>
-    </>
+    </div>
+    </div>
+    
   );
 };
 

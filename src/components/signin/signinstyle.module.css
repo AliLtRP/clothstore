@@ -17,8 +17,9 @@
   display: block;
   margin: 0 auto;
   font-size: 18px;
-  width: 90%;
-  background-color: #F3F3F3;
+  width: 100%;
+  max-width: 380px; 
+  background-color: #f3f3f3;
   padding: 20px 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -30,24 +31,25 @@
   bottom: 10px;
   left: 50%;
   transform: translateX(-50%);
-  background-color: #F83758;
+  background-color: #f83758;
   font-size: 20px;
   font-weight: 650;
   color: #fff;
   border: none;
   border-radius: 5px;
-  width: 90%;
+  width: 100%;
+  max-width: 380px; 
   padding: 15px;
   cursor: pointer;
 }
 
-.signuplink{
-  color: #F83758;
-  text-decoration:underline;
-  font-weight: bolder;
+.signuplink {
+  color: #f83758;
+  text-decoration: underline;
+  font-weight: bold;
 }
 
-.userinput{
+.userinput {
   background-image: url("../../assets/User.png");
   background-position: 15px 20px; 
   background-repeat: no-repeat;
@@ -59,15 +61,19 @@
   display: flex;
   justify-content: center;
 }
+
 .passwordinput {
   padding: 20px 8px 20px 40px;
-  background-color: #F3F3F3;
+  background-color: #f3f3f3;
   background-image: url("../../assets/pass.png");
   background-position: 18px 22px; 
   background-repeat: no-repeat;
   border: 1px solid #ccc;
   border-radius: 10px;
+  width: 100%;
+  max-width: 380px; 
 }
+
 .eyeicon {
   position: absolute;
   right: 10%;
@@ -75,14 +81,15 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
-.forgetpass{
-  position: absolute;
-  right: 5%;
-  color:#F83758;
+
+.forgetpass {
+  margin-left: 200px;
+  color: #f83758;
   margin-top: -15px;
-  text-wrap: nowrap;
+  white-space: nowrap;
 }
-.createacc{
+
+.createacc {
   position: absolute;
   bottom: 100px;
   left: 50%;

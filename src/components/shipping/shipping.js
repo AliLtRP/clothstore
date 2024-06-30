@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import rupee from '../../assets/currency_rupee.svg';
 import BottomNavBar from '../btm-navbar/btmNavbar';
 import Popup from '../popupsuccess/popup';
+import Footer from '../home page/Footer';
 
 const Shipping = () => {
   const navigate = useNavigate();
@@ -26,7 +27,10 @@ const Shipping = () => {
   const currencyDarker = <img src={rupee} style={{ width: '10px', marginRight: '5px' }} alt="Rupee" />;
 
   return (
-    <div className={shippingStyle['shipping-screen-body']}>
+    
+    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
+      <div className={shippingStyle['shipping-screen-body']}>
       <div className={shippingStyle['shipping-container']}>
         <div className={shippingStyle['checkout-navbar']}>
           <img src={back} className={shippingStyle['left-arrow']} alt="Back" onClick={handleBackArrow} />
@@ -66,11 +70,16 @@ const Shipping = () => {
             <input className={shippingStyle['final-country-input']} placeholder='United Kingdom' />
           </div>
           <button className={shippingStyle['continue-payment']} onClick={handleContinue}>Continue</button>
-          <BottomNavBar />
+          <Footer
+           path={'home'} 
+           ></Footer>
         </div>
       </div>
       <Popup message="Payment done successfully." open={showPopup} onClose={closePopup} />
     </div>
+    </div>
+    </div>
+    
   );
 }
 
