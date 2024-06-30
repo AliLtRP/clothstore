@@ -7,6 +7,8 @@ import Getstarted from './components/getstarted/getstarted.js'
 import Placeorder from './components/placeorder/placeorder.js';
 import Shipping from './components/shipping/shipping.js';
 import { HomePage } from "./components/home page/index";
+import { TrendingProducts } from './components/trending products';
+
 
 
 
@@ -21,6 +23,7 @@ function App() {
         <Route path="/placeorder" element={<Placeorder />} />
         <Route path="/shipping" element={<Shipping />} />
         <Route path='/homepage' element={<HomePage />} />
+        <Route path='/trending/product' element={<TrendingProducts />} />
       </Routes>
     </Router>
   );
