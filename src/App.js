@@ -23,7 +23,8 @@ function App() {
         <Route path="/getstarted" element={<Getstarted />} />
         <Route path="/placeorder" element={<Placeorder />} />
         <Route path="/shipping" element={<Shipping />} />
-        <Route path='/homepage' element={<HomePage />} />
+        <Route path='/home' element={<HomePage />} />
+        <Route path='/wishlist' element={<HomePage />} />
         <Route path='/trending/product' element={<TrendingProducts />} />
         <Route path='/shop/:id' element={<Shop />} />
       </Routes>
