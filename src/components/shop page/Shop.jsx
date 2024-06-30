@@ -48,32 +48,34 @@ const Shop = () => {
                         <p className=' font-bold text-xl'>NIke Sneakers</p>
                         <p className=' font-normal text-sm'>Vision Alta Men’s Shoes Size (All Colours)</p>
 
-                        <div className='w-full flex items-center'>
+                        <div className='w-full flex gap-1.5 items-center'>
                             <Rating />
                             <p className=' text-[#828282] font-medium text-sm'>56,890</p>
                         </div>
 
-                        <div>
-                            <p>₹2,999</p>
-                            <p>₹1,500</p>
-                            <p>50% Off</p>
+                        <div className='w-full flex gap-2 text-sm'>
+                            <p className=' line-through text-[#808488] font-normal'>₹2,999</p>
+                            <p className=' font-medium'>₹1,500</p>
+                            <p className=' text-[#FA7189] font-semibold'>50% Off</p>
                         </div>
 
-                        <p>Product Details</p>
+                        <p className=' text-sm font-medium'>Product Details</p>
 
-                        <p>
+                        <p className=' text-xs font-normal'>
                             Perhaps the most iconic sneaker of all-time, this original "Chicago"? colorway is the cornerstone to any sneaker collection. Made famous in 1985 by Michael Jordan, the shoe has stood the test of time, becoming the most famous colorway of the Air Jordan 1. This 2015 release saw the ...More
                         </p>
 
-                        <div>
-                            <div>
-                                <p>Select Quantity</p>
-                                <button>-</button>
-                                <p>0</p>
-                                <button>+</button>
+                        <div className='w-full flex'>
+                            <div className='w-full'>
+                                <p className=' font-medium text-sm'>Select Quantity</p>
+                                <div className='w-[50%] flex justify-between bg-[#EAEAEA]'>
+                                    <button className='text-2xl'>-</button>
+                                    <p className=' text-2xl bg-white rounded-md font-medium'>01</p>
+                                    <button className='text-2xl'>+</button>
+                                </div>
                             </div>
 
-                            <button>Checkout</button>
+                            <button >Checkout</button>
                         </div>
                     </div>
                 </div>
