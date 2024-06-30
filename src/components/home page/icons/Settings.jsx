@@ -8,14 +8,14 @@ const Settings = (props) => (
         {...props}
     >
         <path
-            stroke="#000"
+            stroke={props.color || "#000"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}
             d="M11.73 15c1.594 0 2.885-1.343 2.885-3s-1.291-3-2.884-3-2.885 1.343-2.885 3 1.292 3 2.885 3Z"
         />
         <path
-            stroke="#000"
+            stroke={props.color || "#000"}
             strokeLinecap="round"
             strokeLinejoin="round"
             strokeWidth={2}

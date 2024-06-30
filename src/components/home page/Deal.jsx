@@ -1,5 +1,4 @@
-import ClockSvg from "./ClockSvg"
-import NextSvg from "./NextSvg"
+import { ClockSvg, NextSVG } from "./icons"
 
 
 const Deal = () => {
@@ -14,7 +13,7 @@ const Deal = () => {
                 </div>
             </div>
 
-            <button className="border-[1px] border-white rounded-[4px] font-semibold text-white text-xs flex gap-1 items-center px-[10px] py-[15px] h-[28px]">View all <NextSvg /></button>
+            <button className="border-[1px] border-white rounded-[4px] font-semibold text-white text-xs flex gap-1 items-center px-[10px] py-[15px] h-[28px]">View all <NextSVG /></button>
         </div>
     )
 }
