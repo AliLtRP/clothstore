@@ -1,22 +1,10 @@
-.shipping-screen-body {
-    background-color: #F5F5F5;
-    font-family: 'Montserrat', sans-serif;
-  }
-   
-   .shipping-container {
-    position: relative;
-    min-height: 100vh;
-    padding-bottom: 100px; 
-  }
-  
-  .checkout-navbar {
+.cart-navbar {
     display: flex;
     align-items: center;
     padding: 10px;
     position: relative;
   }
-  
-  .checkout-title {
+  .cart-title {
     flex-grow: 1;
     text-align: center;
     font-size: 20px;
@@ -24,33 +12,71 @@
     margin-left: -5%;
 }
 
-.left-arrow {
-    width: 12px;
-    margin-left: 5%;
+.blackcart-icon {
+    margin-right: 1%;
+    margin-left:-5% ;
 }
-  .final-payment-details {
-    padding: 0% 5%;
-    display: flex;
-    justify-content: space-between;
-    color: #A8A8A9;
-    margin: 5% 0;
-  }
-  
-  .final-total-details {
-    margin-top: -5%;
-    padding: 5% 5%;
-    display: flex;
-    justify-content: space-between;
-    font-weight: bold;
-    color: #000;
-  }
-  
-  .divider {
-    opacity: 0.5;
-    margin-top: 1%;
-  }
 
-  .divider-2{
+.cart-items {
+    display: flex;
+    align-items: center;
+    margin: 3% 10%;
+}
+
+.cart-text {
+    font-weight: bold;
+    margin-top: 1%;
+}
+.odred-container {
+    width: 90%;
+    height: auto;
+    border: solid #F0F0F0;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    margin: 10px auto;
+}
+.order-img {
+    width: 100px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.order-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.order-title {
+    font-weight: bold;
+}
+
+.order-info p {
+    margin-top: -1%;
+    text-wrap: nowrap;
+}
+
+.size-qty-container {
+    display: flex;
+    gap: 10%;
+}
+.payment-details {
+    display: flex;
+    justify-content: space-between;
+    margin: 20px 0;
+    padding: 1% 5%;
+}
+.address-items {
+    display: flex;
+    align-items: center;
+    margin: 5%;
+}
+
+.address-text {
+    font-weight: bold;
+}
+.divider-2{
     opacity: 1;
     margin-top: -10px;
     width: 90%;
@@ -83,7 +109,7 @@
     margin-top: 1%;
   }
   
-  .continue-payment {
+  .continue-checkout {
     font-family: 'Montserrat', sans-serif;
     display: block;
     margin: 30px auto;
@@ -100,12 +126,24 @@
     left: 50%;
     transform: translateX(-50%);
   }
-  .shipping-screen-body ::placeholder {
-    color: #000;
-  }
   .final-address-titles{
     margin-top: 2%;
     align-self: flex-start;
     margin-left: 5%;
 
+  }
+  .qty-btn{
+    padding: 0 10px ;
+    margin-left: 5px;
+    margin-right: 5px;
+    background-color: #F83758;
+    border-radius: 4px;
+  }
+  .size-qty-container p{
+    background-color: #F2F2F2;
+    padding: 4px;
+    border-radius: 4px;
+}
+.checkout-screen-body ::placeholder {
+    color: #000;
   }
