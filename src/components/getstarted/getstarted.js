@@ -6,14 +6,14 @@ const Getstarted = () => {
   const navigate = useNavigate();
 
   const handleGetStartedClick = () => {
-    navigate('/home'); 
+    navigate('/home');
   };
 
   return (
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
       <div className={`${getstartedStyle['getstarted-body']} min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6`}>
         <h1 className={getstartedStyle['getstarted-title']}>
-          You want<br/> Authentic, here<br/> you go!
+          You want<br /> Authentic, here<br /> you go!
         </h1>
         <p className={getstartedStyle['getstarted-subtitle']}>
           Find it here, buy it now!
