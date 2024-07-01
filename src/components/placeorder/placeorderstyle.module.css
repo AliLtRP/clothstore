@@ -50,6 +50,7 @@
 .address-info p {
     margin: 5px 0;
     text-wrap: nowrap;
+    font-size: 14px;
 }
 
 .edit-icon {
@@ -94,6 +95,7 @@
 .order-info p {
     margin-top: -1%;
     text-wrap: nowrap;
+    font-size: 14px;
 }
 
 .size-qty-container {
