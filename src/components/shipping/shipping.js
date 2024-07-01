@@ -3,7 +3,6 @@ import back from './../../assets/back.svg';
 import shippingStyle from './shippingstyle.module.css';
 import { useNavigate } from 'react-router-dom';
 import rupee from '../../assets/currency_rupee.svg';
-import BottomNavBar from '../btm-navbar/btmNavbar';
 import Popup from '../popupsuccess/popup';
 import Footer from '../home page/Footer';
 

@@ -1,5 +1,4 @@
 .shipping-screen-body {
-    background-color: #F5F5F5;
     font-family: 'Montserrat', sans-serif;
   }
    
@@ -14,7 +13,7 @@
     align-items: center;
     padding: 10px;
     position: relative;
-  }
+}
   
   .checkout-title {
     flex-grow: 1;
@@ -25,8 +24,11 @@
 }
 
 .left-arrow {
-    width: 12px;
-    margin-left: 5%;
+  width: 12px;
+  margin-left: 5%;
+  cursor: pointer;
+  z-index: 3;
+  position: relative;
 }
   .final-payment-details {
     padding: 0% 5%;

@@ -2,6 +2,7 @@
     display: flex;
     align-items: center;
     padding: 10px;
+    position: relative;
 }
 
 .checkout-title {
@@ -10,13 +11,14 @@
     font-size: 20px;
     font-weight: bold;
     margin-left: -5%;
-
-
 }
 
 .left-arrow {
     width: 12px;
     margin-left: 5%;
+    cursor: pointer;
+    z-index: 3;
+    position: relative;
 }
 
 .location-icon {
