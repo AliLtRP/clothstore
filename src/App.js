@@ -13,6 +13,7 @@ import Cartpage from './components/cartpage/cart.js';
 import Search from './components/additional/search.js';
 import Settings from './components/additional/settings.js';
 import Wsishlistpage from './components/additional/wsishlist.js';
+import CategoryProducts from './components/CategoryProducts.jsx';
 
 
 
@@ -20,7 +21,7 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route path='/' element={<SplashScreen />}></Route>
+        <Route path='/' element={<SplashScreen />} />
         <Route path="/signin" element={<Signinscreen />} />
         <Route path="/signup" element={<Signupscreen />} />
         <Route path="/getstarted" element={<Getstarted />} />
@@ -29,6 +30,7 @@ function App() {
         <Route path='/home' element={<HomePage />} />
         <Route path='/wishlist' element={<Wsishlistpage />} />
         <Route path='/trending/product' element={<TrendingProducts />} />
+        <Route path='/category/product/:id/:name' element={<CategoryProducts />} />
         <Route path='/shop/:id' element={<Shop />} />
         <Route path='/cart' element={<Cartpage />} />
         <Route path='/settings' element={<Settings />} />

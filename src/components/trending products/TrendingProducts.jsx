@@ -1,62 +1,39 @@
 import { Link, useNavigate } from "react-router-dom"
 import Container from "./Container"
 import { BackArrow } from "./icons"
-import sweater from "./assets/sweater.png";
-import shirt from "./assets/shirt.png";
-import dress from "./assets/dress.png";
-import Embroide from "./assets/Embroide.png";
-import flaredress from "./assets/flaredress.png";
-import denimdress from "./assets/denimdress.png";
 import { Rating } from "../home page/icons";
+import { useEffect, useState } from "react";
+import client from "../../api/axios";
 
 const TrendingProducts = () => {
     const navigator = useNavigate();
+    const [data, setData] = useState([]);
 
-    const product = [{
-        image: sweater,
-        name: "Black Winter...",
-        desc: "Autumn And Winter Casual cotton-padded jacket...",
-        price: "₹499",
-        rating: "6,890"
-    }, {
-        image: shirt,
-        name: "Mens Starry",
-        desc: "Mens Starry Sky Printed Shirt 100% Cotton Fabric",
-        price: "₹399",
-        rating: "1,52,344"
-    }, {
-        image: dress,
-        name: "Black Dress",
-        desc: "Solid Black Dress for Women, Sexy Chain Shorts Ladi...",
-        price: "₹2,000",
-        rating: "5,23,456"
+    const fetchData = async () => {
+        await client.get('/product/top/rate')
+            .then(res => setData(res.data.data))
+            .catch(e => console.log(e));
+    }
 
-    }, {
-        image: Embroide,
-        name: "Pink Embroide...",
-        desc: "EARTHEN Rose Pink Embroidered Tiered Max...",
-        price: "₹1,900",
-        rating: "45,678"
-    }, {
-        image: flaredress,
-        name: "Flare Dress",
-        desc: "Antheaa Black & Rust Orange Floral Print Tiered Midi F...",
-        price: "₹1,990",
-        rating: "3,35,566"
-    }, {
-        image: denimdress,
-        name: "denim dress",
-        desc: "Blue cotton denim dress Look 2 Printed cotton dr...",
-        price: "₹999",
-        rating: "27,344"
-    },]
+    useEffect(() => {
+        fetchData();
+    }, []);
 
-    const len = product.length
+    const preprocessData = (data) => {
+        const leftAlign = [];
+        const rightAlign = [];
+        data.forEach((item, index) => {
+            if (index % 5 === 0 || index % 5 === 3 || index % 5 === 4) {
+                leftAlign.push(item);
+            } else {
+                rightAlign.push(item);
+            }
+        });
+        return { leftAlign, rightAlign };
+    };
 
-    const leftAlign = product.filter((_, i) => i % len === 0 || i % len === 3 || i % len === 4)
-    const rightAlign = product.filter((_, i) => !(i % len === 0 || i % len === 3 || i % len === 4))
+    const { leftAlign, rightAlign } = preprocessData(data);
 
-    console.log(leftAlign);
     return (
         <div className="w-full flex flex-col mx-auto">
             <Container>
@@ -76,15 +53,15 @@ const TrendingProducts = () => {
                             leftAlign && leftAlign.map((v, i) => {
                                 return (
                                     <Link to={`/shop/${v.id}`}>
-                                        <div className="w-full h-[245px] rounded-lg mb-3 shadow-md">
-                                            <img src={v.image} alt="" className="w-full h-[136px] rounded-lg object-cover" />
+                                        <div className="w-full min-h-[245px] h-auto rounded-lg mb-3 shadow-md">
+                                            <img src={v.img[0].src} alt="" className="w-full h-[136px] rounded-lg object-cover" />
                                             <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
                                                 <p className="font-medium text-base text-[10px]">{v.name}</p>
-                                                <p className=" font-normal text-[10px]">{v.desc}</p>
+                                                <p className=" font-normal text-[10px]">{v.description}</p>
                                                 <p className=" font-medium text-xs pt-0.5">{v.price}</p>
-                                                <div className="w-full flex items-center gap-2">
+                                                <div className="w-full flex items-center gap-2 mb-1.5">
                                                     <Rating />
-                                                    <p className=" font-normal text-[10px]">{v.rating}</p>
+                                                    <p className=" font-normal text-[10px]">{Math.floor(v.average_rating)}</p>
                                                 </div>
                                             </div>
                                         </div>
@@ -98,15 +75,15 @@ const TrendingProducts = () => {
                             rightAlign && rightAlign.map((v, i) => {
                                 return (
                                     <Link to={`/shop/${v.id}`}>
-                                        <div className="w-full h-[305px] rounded-lg mb-3 shadow-md">
-                                            <img src={v.image} alt="" className="w-full h-[196px] rounded-lg object-cover" />
+                                        <div className="w-full min-h-[305px] h-auto rounded-lg mb-3 shadow-md">
+                                            <img src={v.img[0].src} alt="" className="w-full h-[196px] rounded-lg object-cover" />
                                             <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
                                                 <p className="font-medium text-base text-[10px]">{v.name}</p>
-                                                <p className=" font-normal text-[10px]">{v.desc}</p>
+                                                <p className=" font-normal text-[10px]">{v.description}</p>
                                                 <p className=" font-medium text-xs pt-0.5">{v.price}</p>
-                                                <div className="w-full flex items-center gap-2">
+                                                <div className="w-full flex items-center gap-2 mb-1.5">
                                                     <Rating />
-                                                    <p className=" font-normal text-[10px]">{v.rating}</p>
+                                                    <p className=" font-normal text-[10px]">{Math.floor(v.average_rating)}</p>
                                                 </div>
                                             </div>
                                         </div>
