@@ -20,8 +20,8 @@ const HomePage = () => {
     }
 
     const fetchData = async () => {
-        await client.get(`/banner?id=${2}`)
-            .then(res => setData(res.data))
+        await client.get(`/banner/all`)
+            .then(res => setData(res.data.data))
             .catch(e => console.log(e));
     }
 
@@ -29,7 +29,14 @@ const HomePage = () => {
         fetchData();
     }, []);
 
-    console.log(data);
+    console.log(data.data);
+
+    const firstListItem = data.find(v => v.type === "list");
+    const arrivalBanner = data.find(v => v.type === "arrival");
+
+    const filteredList = data.filter((v, i) => v.type == "list");
+
+    console.log(filteredList);
 
     return (
         <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
@@ -46,13 +53,26 @@ const HomePage = () => {
                     <Categories />
                 </div>
 
-                {data.type == "slider" ? <Card banners={data.banners} /> : <div></div>}
+                {
+                    data && data.map((v, i) => {
+                        return (
+                            v.type == "slider" ? <Card banners={v.banners} /> : <div></div>
+                        );
+                    })
+                }
 
-                <Deal />
+                {
+                    data && data.map((v, i) => {
+                        return (
+                            v.type == "deal" ? <Deal /> : <div></div>
+                        );
+                    })
+                }
+
 
                 <div className="h-[330px] flex flex-col gap-3 px-2">
                     <div className="w-full flex justify-between items-center">
-                        <p className=" font-semibold text-sm hover:cursor-pointer" onClick={() => navigateTo('/trending/product')}>Top Rate</p>
+                        <p className=" font-semibold text-sm hover:cursor-pointer" onClick={() => navigateTo('/trending/product')}>{firstListItem && firstListItem.title}</p>
                         <div onClick={() => navigateTo('/trending/product')} className=" hover:cursor-pointer">
                             <RightArrowSVG />
                         </div>
@@ -64,33 +84,26 @@ const HomePage = () => {
                     </div>
                 </div>
 
-                <NewArrival />
 
-                <div className="h-[330px] w-[110vw] sm:w-full flex flex-col gap-3 px-2 mt-6 mb-10">
-                    <div className="w-full flex justify-between">
-                        <p className=" font-semibold text-sm relative">Top Discounts</p>
-                        <div className="h-full relative hover:cursor-pointer" onClick={() => navigateTo(`/discounted/product`)}>
-                            <RightArrowSVG className=" absolute top-1 right-8 sm:relative sm:right-0" />
-                        </div>
-                    </div>
+                {arrivalBanner && <NewArrival title={arrivalBanner.title} description={arrivalBanner.description} />}
 
-                    {/* <div className="w-full h-full flex gap-3 overflow-x-auto no-scrollbar">
-                        {
-                            data && data.map((v, i) => {
-                                return (
-                                    <div className="min-w-[144px] h-[127px]">
-                                        <img src={v.img[0].src} alt="product" className="h-[165px] w-full object-cover rounded-[4px]" />
-                                        <p className=" text-xs font-medium pt-2">{v.name}</p>
-                                        <div className="py-2">
-                                            <p className=" text-xs font-medium">₹{v.discounted_price}</p>
-                                            <p className="text-[#FE735C] text-[10px]"> <span className="text-[#BBBBBB] text-xs font-normal line-through pr-1">₹{v.price}</span> {v.value} Off</p>
+                {
+                    filteredList && filteredList.map((v, i) => {
+                        if (i > 0) {
+                            return (
+                                <div className="h-[330px] w-[110vw] sm:w-full flex flex-col gap-3 px-2 mt-6 mb-10">
+                                    <div className="w-full flex justify-between">
+                                        <p className=" font-semibold text-sm relative">Top Discounts</p>
+                                        <div className="h-full relative hover:cursor-pointer" onClick={() => navigateTo(`/discounted/product`)}>
+                                            <RightArrowSVG className=" absolute top-1 right-8 sm:relative sm:right-0" />
                                         </div>
                                     </div>
-                                );
-                            })
+                                </div>
+                            );
                         }
-                    </div> */}
-                </div>
+                    })
+                }
+
             </div>
             <div className="max-w-sm flex justify-center">
                 <Footer path="home" />
