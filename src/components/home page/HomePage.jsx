@@ -6,18 +6,28 @@ import product_image from "../../assets/product_image.png";
 import shoeproduct from "../../assets/shoeproduct.png"
 import NewArrival from "./NewArrival";
 import watch_product from "../../assets/watch_product.png";
-import whiteshoeproduct from "../../assets/whiteshoeproduct.png";
-import bagproduct from "../../assets/bagproduct.png";
 import { useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+import client from "../../api/axios";
 
 
 const HomePage = () => {
-
+    const [data, setData] = useState([]);
     const navigator = useNavigate();
 
     const navigateTo = (path) => {
         navigator(path)
     }
+
+    const fetchData = async () => {
+        await client.get('/product/discount')
+            .then(res => setData(res.data.data))
+            .catch(e => console.log(e));
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
 
     return (
         <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
@@ -57,37 +67,26 @@ const HomePage = () => {
                 <div className="h-[330px] w-[110vw] sm:w-full flex flex-col gap-3 px-2 mt-6 mb-10">
                     <div className="w-full flex justify-between">
                         <p className=" font-semibold text-sm relative">Top Discounts</p>
-                        <RightArrowSVG className=" absolute right-8 sm:relative sm:right-0" />
+                        <div className="h-full relative hover:cursor-pointer" onClick={() => navigateTo(`/discounted/product`)}>
+                            <RightArrowSVG className=" absolute top-1 right-8 sm:relative sm:right-0" />
+                        </div>
                     </div>
 
                     <div className="w-full h-full flex gap-3 overflow-x-auto no-scrollbar">
-                        <div className="min-w-[144px] h-[127px]">
-                            <img src={watch_product} alt="product" className="h-[165px] w-full object-cover rounded-[4px]" />
-                            <p className=" text-xs font-medium pt-2">IWC Schaffhausen 2021 Pilot's Watch 'SIHH 2019' 44mm</p>
-                            <div className="py-2">
-                                <p className=" text-xs font-medium">₹650</p>
-                                <p className="text-[#FE735C] text-[10px]"> <span className="text-[#BBBBBB] text-xs font-normal line-through pr-1">₹1599</span> 60% Off</p>
-                            </div>
-                        </div>
-
-                        <div className="min-w-[144px] h-[127px]">
-                            <img src={whiteshoeproduct} alt="product" className="h-[165px] w-full object-cover rounded-[4px]" />
-                            <p className=" text-xs font-medium pt-2">IWC Schaffhausen 2021 Pilot's Watch 'SIHH 2019' 44mm</p>
-                            <div className="py-2">
-                                <p className=" text-xs font-medium">₹650</p>
-                                <p className="text-[#FE735C] text-[10px]"> <span className="text-[#BBBBBB] text-xs font-normal line-through pr-1">₹1250</span> 70% Off</p>
-                            </div>
-                        </div>
-
-
-                        <div className="min-w-[144px] h-[127px]">
-                            <img src={bagproduct} alt="product" className="h-[165px] w-full object-cover rounded-[4px]" />
-                            <p className=" text-xs font-medium pt-2">IWC Schaffhausen 2021 Pilot's Watch 'SIHH 2019' 44mm</p>
-                            <div className="py-2">
-                                <p className=" text-xs font-medium">₹750</p>
-                                <p className="text-[#FE735C] text-[10px]"> <span className="text-[#BBBBBB] text-xs font-normal line-through pr-1">₹1999</span> 60% Off</p>
-                            </div>
-                        </div>
+                        {
+                            data && data.map((v, i) => {
+                                return (
+                                    <div className="min-w-[144px] h-[127px]">
+                                        <img src={watch_product} alt="product" className="h-[165px] w-full object-cover rounded-[4px]" />
+                                        <p className=" text-xs font-medium pt-2">{v.name}</p>
+                                        <div className="py-2">
+                                            <p className=" text-xs font-medium">₹{v.discounted_price}</p>
+                                            <p className="text-[#FE735C] text-[10px]"> <span className="text-[#BBBBBB] text-xs font-normal line-through pr-1">₹{v.price}</span> {v.value} Off</p>
+                                        </div>
+                                    </div>
+                                );
+                            })
+                        }
                     </div>
                 </div>
             </div>
