@@ -20,14 +20,16 @@ const HomePage = () => {
     }
 
     const fetchData = async () => {
-        await client.get('/product/discount')
-            .then(res => setData(res.data.data))
+        await client.get(`/banner?id=${2}`)
+            .then(res => setData(res.data))
             .catch(e => console.log(e));
     }
 
     useEffect(() => {
         fetchData();
     }, []);
+
+    console.log(data);
 
     return (
         <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
@@ -44,7 +46,7 @@ const HomePage = () => {
                     <Categories />
                 </div>
 
-                <Card />
+                {data.type == "slider" ? <Card banners={data.banners} /> : <div></div>}
 
                 <Deal />
 
@@ -72,12 +74,12 @@ const HomePage = () => {
                         </div>
                     </div>
 
-                    <div className="w-full h-full flex gap-3 overflow-x-auto no-scrollbar">
+                    {/* <div className="w-full h-full flex gap-3 overflow-x-auto no-scrollbar">
                         {
                             data && data.map((v, i) => {
                                 return (
                                     <div className="min-w-[144px] h-[127px]">
-                                        <img src={watch_product} alt="product" className="h-[165px] w-full object-cover rounded-[4px]" />
+                                        <img src={v.img[0].src} alt="product" className="h-[165px] w-full object-cover rounded-[4px]" />
                                         <p className=" text-xs font-medium pt-2">{v.name}</p>
                                         <div className="py-2">
                                             <p className=" text-xs font-medium">₹{v.discounted_price}</p>
@@ -87,7 +89,7 @@ const HomePage = () => {
                                 );
                             })
                         }
-                    </div>
+                    </div> */}
                 </div>
             </div>
             <div className="max-w-sm flex justify-center">
