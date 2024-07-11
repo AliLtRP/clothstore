@@ -8,4 +8,4 @@ const useCartStore = create((set) => ({
   })),
 }));
 
-export default useCartStore ;
+export default useCartStore;

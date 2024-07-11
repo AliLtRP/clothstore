@@ -16,6 +16,9 @@ const Cartpage = () => {
   const [statusCode, setStatusCode] = useState('pending');
   const [error, setError] = useState(null);
   const navigate = useNavigate();
+  const { state } = useLocation()
+
+  console.log(state);
 
   const cartItems = useCartStore((state) => state.cart);
   const removeFromCart = useCartStore((state) => state.removeFromCart);
@@ -160,7 +163,7 @@ const Cartpage = () => {
                 <button onClick={() => removeFromCart(item.id)}>Remove</button>
               </div>
             </div>
-          ))}
+          ))} */}
 
           <div className={cartStyle['payment-details']}>
             <p>Order Total</p>
