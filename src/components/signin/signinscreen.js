@@ -1,13 +1,44 @@
 import { useNavigate } from 'react-router-dom';
 import React from 'react';
+import { useState } from 'react';
 import signinStyle from './signinstyle.module.css'; 
 import eye from '../../assets/eye.svg'
+import axios from 'axios';
 
 const Signinscreen = () => {
+  const [username_or_email , setUsername_or_password] = useState('');
+  const [password , setPassword] = useState('');
+  const [active , setActive] = useState('');
+  const [error , setError] = useState(null);
+
+
   const navigate = useNavigate();
 
-  const handleLoginClick = () => {
-    navigate('/getstarted'); 
+  const handleLoginClick = async (event) => {
+    event.preventDefault();
+
+    const requestBody = {
+      username_or_email: username_or_email,
+      password: password
+    };
+
+    try{
+      const response = await axios.post('http://localhost:3000/login',requestBody);
+      const { success, token } = response.data;
+
+      if (!success) {
+        setError('User is not active or other error occurred');
+        return;
+      }
+
+      localStorage.setItem('token', token);
+      navigate('/getstarted'); 
+
+    }catch(error){
+      setError(error.response ? error.response.data : error.message);
+
+    }
+
   };
 
   const handleSignUpClick = (event) => {
@@ -25,6 +56,8 @@ const Signinscreen = () => {
           <input
             placeholder='Username or email'
             className={signinStyle.userinput}
+            value={username_or_email}
+            onChange={(e)=>setUsername_or_password(e.target.value)}
           />
         </div>
         <div className={signinStyle.passwordinputcontainer}>
@@ -32,6 +65,8 @@ const Signinscreen = () => {
             type="password"
             placeholder='Password'
             className={signinStyle.passwordinput}
+            value={password}
+            onChange={(e)=>setPassword(e.target.value)}
           />
           {eyeicon}
         </div>

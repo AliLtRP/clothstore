@@ -1,10 +1,12 @@
 .signup-welcome-title {
-    font-size: 45px;
+    font-size: 30px;
     color: #333;
     margin-top:10%;
     margin-bottom:5%;
     margin-left: 5%;
     font-weight: bold;
+    text-wrap: nowrap;
+
   }
   
   .signup-data-input {
@@ -89,6 +91,8 @@
   .signup-info{
     margin-left: 5%;
     margin-top: -10%;
+    text-wrap: nowrap;
+
 
   }
   .signup-create-acc {

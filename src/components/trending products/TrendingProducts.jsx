@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import Container from "./Container"
 import { BackArrow } from "./icons"
 import { Rating } from "../home page/icons";
@@ -7,17 +7,22 @@ import client from "../../api/axios";
 
 const TrendingProducts = () => {
     const navigator = useNavigate();
+    const { state } = useLocation();
     const [data, setData] = useState([]);
 
+    console.log(state.id);
+
     const fetchData = async () => {
-        await client.get('/product/top/rate')
+        await client.post('/product/specificproductids', {
+            id: state.id
+        })
             .then(res => setData(res.data.data))
             .catch(e => console.log(e));
     }
 
     useEffect(() => {
         fetchData();
-    }, []);
+    }, [state]);
 
     const preprocessData = (data) => {
         const leftAlign = [];
