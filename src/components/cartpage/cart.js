@@ -1,73 +1,69 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import Select from 'react-select';
+import axios from 'axios';
+import useCartStore from '../../provider/zustand'; // Adjust the path as necessary
 import blackcart from '../../assets/blackshippingcart.svg';
 import cartStyle from './cartstyle.module.css';
-import orderimg from '../../assets/orderimg.png';
-import Select from 'react-select';
 import Footer from '../home page/Footer';
-import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
-
 
 const Cartpage = () => {
-  const [quantities, setQuantities] = useState([1, 1]);
-  const [selectedCity, setSelectedCity] = useState(null); 
+  const [quantities, setQuantities] = useState([]);
+  const [selectedCity, setSelectedCity] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState('');
-  const [items,setItems]=([]);
-  const [address , setAdress] = ('');
+  const [address, setAddress] = useState('');
   const [totalPrice, setTotalPrice] = useState(0);
-  const [statusCode,setStatusCode]=('pending');
-  const [city , setCity] = ('');
-  const [country , setCounrty] = ('');
+  const [statusCode, setStatusCode] = useState('pending');
   const [error, setError] = useState(null);
-
-
   const navigate = useNavigate();
 
-  const handleCheckOutClick = async(event) => {
+  const cartItems = useCartStore((state) => state.cart);
+  const removeFromCart = useCartStore((state) => state.removeFromCart);
+
+  useEffect(() => {
+    calculateTotalPrice();
+  }, [cartItems, quantities]);
+
+  const handleCheckOutClick = async (event) => {
     event.preventDefault();
 
     const requestBody = {
-      items,
+      items: cartItems,
       address,
       total_price: totalPrice,
       statuscode: statusCode,
-      city,
-      country
+      city: selectedCity?.value || '',
+      country: selectedCountry,
     };
 
-    try{
-
-      const response = await axios.post('http://localhost:3000/order',requestBody);
+    try {
+      const response = await axios.post('http://localhost:3000/order', requestBody);
       console.log(response.data);
       navigate('/placeorder');
-
-
-    }catch (error) {
+    } catch (error) {
       setError(error.message);
     }
-
   };
 
   const cityCountryMap = {
     'New York': 'USA',
     'London': 'UK',
-    'Tokyo': 'Japan'
+    'Tokyo': 'Japan',
   };
 
-  const cityOptions = Object.keys(cityCountryMap).map(city => ({
+  const cityOptions = Object.keys(cityCountryMap).map((city) => ({
     value: city,
-    label: city
+    label: city,
   }));
 
   const handleAddressChange = (event) => {
-    setAdress(event.target.value);
-  }
+    setAddress(event.target.value);
+  };
 
   const handleCityChange = (selectedOption) => {
     if (selectedOption) {
-      const city = selectedOption.value;
       setSelectedCity(selectedOption);
-      setSelectedCountry(cityCountryMap[city] || '');
+      setSelectedCountry(cityCountryMap[selectedOption.value] || '');
     } else {
       setSelectedCity(null);
       setSelectedCountry('');
@@ -109,7 +105,7 @@ const Cartpage = () => {
     placeholder: (provided) => ({
       ...provided,
       color: '#000',
-    })
+    }),
   };
 
   const handleIncrement = (index) => {
@@ -128,8 +124,8 @@ const Cartpage = () => {
 
   const calculateTotalPrice = () => {
     let total = 0;
-    items.forEach((item, index) => {
-      total += item.price * quantities[index];
+    cartItems.forEach((item, index) => {
+      total += item.price * (quantities[index] || 1);
     });
     setTotalPrice(total);
   };
@@ -147,7 +143,7 @@ const Cartpage = () => {
             <p className={cartStyle['cart-text']}>Cart Items</p>
           </div>
 
-          {items.map((item,index) => (
+          {cartItems.map((item, index) => (
             <div key={index} className={cartStyle['order-container']}>
               <img src={item.img} className={cartStyle['order-img']} alt="Order" />
               <div className={cartStyle['order-info']}>
@@ -157,10 +153,11 @@ const Cartpage = () => {
                   <p>Size <b>{item.option}</b></p>
                   <p>
                     <button className={cartStyle['qty-btn']} onClick={() => handleDecrement(index)}>-</button>
-                    <b>{quantities[index]}</b>
+                    <b>{quantities[index] || 1}</b>
                     <button className={cartStyle['qty-btn']} onClick={() => handleIncrement(index)}>+</button>
                   </p>
                 </div>
+                <button onClick={() => removeFromCart(item.id)}>Remove</button>
               </div>
             </div>
           ))}
@@ -173,7 +170,7 @@ const Cartpage = () => {
           <p className={cartStyle['final-address-details']}>Address Details</p>
           <div className={cartStyle['final-address-info']}>
             <p className={cartStyle['final-address-titles']}>Address</p>
-            <input className={cartStyle['final-address-input']} placeholder='Write your address here' value={address} />
+            <input className={cartStyle['final-address-input']} placeholder='Write your address here' value={address} onChange={handleAddressChange} />
             <p className={cartStyle['final-address-titles']}>City</p>
             <Select
               className={cartStyle['final-city-input']}
@@ -193,7 +190,6 @@ const Cartpage = () => {
           </div>
           <button className={cartStyle['continue-checkout']} onClick={handleCheckOutClick}>Checkout</button>
         </div>
-
       </div>
       <Footer path="cart" />
     </div>
@@ -201,3 +197,4 @@ const Cartpage = () => {
 }
 
 export default Cartpage;
+
