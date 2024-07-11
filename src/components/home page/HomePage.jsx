@@ -21,7 +21,10 @@ const HomePage = () => {
 
     const fetchData = async () => {
         await client.get(`/banner/all`)
-            .then(res => setData(res.data.data))
+            .then(res => {
+                console.log(res.data.data);
+                setData(res.data.data)
+            })
             .catch(e => console.log(e));
     }
 
@@ -29,17 +32,17 @@ const HomePage = () => {
         fetchData();
     }, []);
 
-    console.log(data.data);
+    useEffect(() => {
+        if (data) {
+            const sortedByPriority = data.sort((a, b) => a.priority < b.priority);
+            setData(sortedByPriority);
+        }
+    }, [data]);
 
-    const firstListItem = data.find(v => v.type === "list");
-    const arrivalBanner = data.find(v => v.type === "arrival");
-
-    const filteredList = data.filter((v, i) => v.type == "list");
-
-    console.log(filteredList);
+    console.log(data);
 
     return (
-        <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+        <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] mb-20">
             <div className="min-w-[24rem] max-w-sm p-4 flex flex-col gap-6">
                 <NavBar />
 
@@ -53,57 +56,41 @@ const HomePage = () => {
                     <Categories />
                 </div>
 
-                {
-                    data && data.map((v, i) => {
-                        return (
-                            v.type == "slider" ? <Card banners={v.banners} /> : <div></div>
-                        );
-                    })
-                }
+                <div className="h-full flex flex-col gap-12 my-4">
+                    {
+                        data && data.map((v, i) => {
+                            if (v.type == 'slider') {
+                                return (
+                                    <Card banners={v.banners} />
+                                )
+                            } else if (v.type == 'banner') {
+                                return (
+                                    <NewArrival title={v.title} description={v.description} />
+                                );
+                            } else if (v.type == 'deal') {
+                                return (
+                                    <Deal endTime={v.end_date} />
+                                )
+                            } else if (v.type == 'list') {
+                                return (
+                                    <div className="h-auto flex flex-col gap-3 px-0">
+                                        <div className="w-full flex justify-between items-center">
+                                            <p className=" font-semibold text-sm hover:cursor-pointer" onClick={() => navigateTo('/trending/product')}>{v.title}</p>
+                                            <div onClick={() => navigateTo('/trending/product')} className=" hover:cursor-pointer">
+                                                <RightArrowSVG />
+                                            </div>
+                                        </div>
 
-                {
-                    data && data.map((v, i) => {
-                        return (
-                            v.type == "deal" ? <Deal /> : <div></div>
-                        );
-                    })
-                }
-
-
-                <div className="h-[330px] flex flex-col gap-3 px-2">
-                    <div className="w-full flex justify-between items-center">
-                        <p className=" font-semibold text-sm hover:cursor-pointer" onClick={() => navigateTo('/trending/product')}>{firstListItem && firstListItem.title}</p>
-                        <div onClick={() => navigateTo('/trending/product')} className=" hover:cursor-pointer">
-                            <RightArrowSVG />
-                        </div>
-                    </div>
-
-                    <div className="w-full flex gap-3">
-                        <ProductCard image={product_image} title="Women Printed Kurta" desc="Neque porro quisquam est qui dolorem ipsum quia" price="₹1500" off="₹2499" percent="40%" />
-                        <ProductCard image={shoeproduct} title="HRX by Hrithik Roshan" desc="Neque porro quisquam est qui dolorem ipsum quia" price="₹2499" off="₹4999" percent="50%" />
-                    </div>
-                </div>
-
-
-                {arrivalBanner && <NewArrival title={arrivalBanner.title} description={arrivalBanner.description} />}
-
-                {
-                    filteredList && filteredList.map((v, i) => {
-                        if (i > 0) {
-                            return (
-                                <div className="h-[330px] w-[110vw] sm:w-full flex flex-col gap-3 px-2 mt-6 mb-10">
-                                    <div className="w-full flex justify-between">
-                                        <p className=" font-semibold text-sm relative">Top Discounts</p>
-                                        <div className="h-full relative hover:cursor-pointer" onClick={() => navigateTo(`/discounted/product`)}>
-                                            <RightArrowSVG className=" absolute top-1 right-8 sm:relative sm:right-0" />
+                                        <div className="w-full flex justify-start gap-3">
+                                            <ProductCard image={v.img} title="Women Printed Kurta" desc="Neque porro quisquam est qui dolorem ipsum quia" price="₹1500" off="₹2499" percent="40%" />
+                                            <ProductCard image={v.img} title="HRX by Hrithik Roshan" desc="Neque porro quisquam est qui dolorem ipsum quia" price="₹2499" off="₹4999" percent="50%" />
                                         </div>
                                     </div>
-                                </div>
-                            );
-                        }
-                    })
-                }
-
+                                );
+                            }
+                        })
+                    }
+                </div>
             </div>
             <div className="max-w-sm flex justify-center">
                 <Footer path="home" />

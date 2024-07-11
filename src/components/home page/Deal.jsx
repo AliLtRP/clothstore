@@ -1,7 +1,8 @@
 import { ClockSvg, NextSVG } from "./icons"
 
 
-const Deal = () => {
+const Deal = ({ end_time }) => {
+    console.log(end_time);
     return (
         <div className="w-full h-16 bg-[#4392F9] rounded-lg flex justify-between px-3 items-center">
             <div className="text-white flex flex-col gap-1">
@@ -9,7 +10,7 @@ const Deal = () => {
 
                 <div className="w-full flex items-center gap-1.5">
                     <ClockSvg />
-                    <p className=" text-xs">22h 55m 20s remaining </p>
+                    <p className=" text-xs">{end_time}</p>
                 </div>
             </div>
 
