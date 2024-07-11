@@ -7,12 +7,14 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import related from "./assets/related.png";
 import related2 from "./assets/related2.png";
 import client from '../../api/axios';
+import useCartStore from '../../provider/zustand';
 
 
 const Shop = () => {
     const [data, setData] = useState([]);
     const navigate = useNavigate()
     const { id } = useParams();
+    const { cart, addToCart } = useCartStore();
 
     const fetchData = async () => {
         await client.get(`/product?id=${id}`)
@@ -24,7 +26,14 @@ const Shop = () => {
         fetchData();
     }, []);
 
-    console.log(id);
+    const handleItem = () => {
+        const existsInCart = cart.some(item => item.id === data.id);
+        if (!existsInCart) {
+            addToCart(data);
+        }
+    }
+
+    console.log(cart, 'cart');
 
     return (
         <div className='w-full flex flex-col'>
@@ -102,7 +111,7 @@ const Shop = () => {
                                     <button className='text-2xl'>+</button>
                                 </div>
                             </div>
-                            <button className=' bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full' onClick={() => navigate('/placeorder', { state: { data } })}>Add to Cart</button>
+                            <button className=' bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full' onClick={handleItem}>Add to Cart</button>
                         </div>
                     </div>
 

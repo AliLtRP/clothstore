@@ -1,29 +1,32 @@
-import React, { useState , useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import blackcart from '../../assets/blackshippingcart.svg';
 import cartStyle from './cartstyle.module.css';
 import orderimg from '../../assets/orderimg.png';
 import Select from 'react-select';
 import Footer from '../home page/Footer';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 
 const Cartpage = () => {
   const [quantities, setQuantities] = useState([1, 1]);
-  const [selectedCity, setSelectedCity] = useState(null); 
+  const [selectedCity, setSelectedCity] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState('');
-  const [items,setItems]=([]);
-  const [address , setAdress] = ('');
+  const [items, setItems] = ([]);
+  const [address, setAdress] = ('');
   const [totalPrice, setTotalPrice] = useState(0);
-  const [statusCode,setStatusCode]=('pending');
-  const [city , setCity] = ('');
-  const [country , setCounrty] = ('');
+  const [statusCode, setStatusCode] = ('pending');
+  const [city, setCity] = ('');
+  const [country, setCounrty] = ('');
   const [error, setError] = useState(null);
 
 
   const navigate = useNavigate();
+  const { state } = useLocation()
 
-  const handleCheckOutClick = async(event) => {
+  console.log(state);
+
+  const handleCheckOutClick = async (event) => {
     event.preventDefault();
 
     const requestBody = {
@@ -35,14 +38,14 @@ const Cartpage = () => {
       country
     };
 
-    try{
+    try {
 
-      const response = await axios.post('http://localhost:3000/order',requestBody);
+      const response = await axios.post('http://localhost:3000/order', requestBody);
       console.log(response.data);
       navigate('/placeorder');
 
 
-    }catch (error) {
+    } catch (error) {
       setError(error.message);
     }
 
@@ -147,7 +150,7 @@ const Cartpage = () => {
             <p className={cartStyle['cart-text']}>Cart Items</p>
           </div>
 
-          {items.map((item,index) => (
+          {/* {items.map((item, index) => (
             <div key={index} className={cartStyle['order-container']}>
               <img src={item.img} className={cartStyle['order-img']} alt="Order" />
               <div className={cartStyle['order-info']}>
@@ -163,7 +166,7 @@ const Cartpage = () => {
                 </div>
               </div>
             </div>
-          ))}
+          ))} */}
 
           <div className={cartStyle['payment-details']}>
             <p>Order Total</p>
