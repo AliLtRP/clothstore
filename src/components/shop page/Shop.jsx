@@ -102,7 +102,7 @@ const Shop = () => {
                                     <button className='text-2xl'>+</button>
                                 </div>
                             </div>
-                            <button className=' bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full' onClick={() => navigate('/placeorder')}>Checkout</button>
+                            <button className=' bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full' onClick={() => navigate('/placeorder', { state: { data } })}>Add to Cart</button>
                         </div>
                     </div>
 
