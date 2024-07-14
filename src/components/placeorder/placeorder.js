@@ -5,20 +5,24 @@ import location from '../../assets/location.svg';
 import edit from '../../assets/edit.svg';
 import orderimg from '../../assets/orderimg.png';
 import rupee from '../../assets/currency_rupee.svg';
+import useCartStore from '../../provider/zustand';
 import { useNavigate } from 'react-router-dom';
 
 const Placeorder = () => {
-
   const navigate = useNavigate();
+  const orderDetails = useCartStore((state) => state.orderDetails);
 
+  if (!orderDetails) {
+    return <div>Loading...</div>; 
+  }
 
   const handleCheckOut = () => {
-    navigate('/shipping')
-  }
+    navigate('/shipping');
+  };
+
   const handleBackArrow = () => {
     navigate('/cart');
   };
-
 
   const currency = <img src={rupee} style={{ width: '10px', marginTop: '-20%' }} alt="currency" />;
 
@@ -38,39 +42,32 @@ const Placeorder = () => {
           <div className={placeorderStyle['address-container']}>
             <div className={placeorderStyle['address-info']}>
               <p className={placeorderStyle['address-title']} style={{ fontSize: '16px' }}>Address:</p>
-              <p className={placeorderStyle['address']}>216 St Paul's Rd, London N1 2LL, UK</p>
-              <p className={placeorderStyle['contact']}>Contact: +44-784232</p>
+              <p className={placeorderStyle['address']}>
+              {orderDetails.address}, {orderDetails.selectedCity}, {orderDetails.selectedCountry}
+              </p>
+              <p className={placeorderStyle['contact']}>Contact: </p>
             </div>
             <img src={edit} className={placeorderStyle['edit-icon']} alt="Edit" />
           </div>
-          <div className={placeorderStyle['odred-container']}>
-            <img src={orderimg} className={placeorderStyle['order-img']} alt="Order" />
-            <div className={placeorderStyle['order-info']}>
-              <p className={placeorderStyle['order-title']}>Women’s Casual Wear</p>
-              <p className={placeorderStyle['order-info']}>Checked Single-Breasted<br />Blazer</p>
-              <div className={placeorderStyle['size-qty-container']}>
-                <p>Size <b>42</b></p>
-                <p>Qty <b>1</b></p>
+          {orderDetails.cart.map((item, index) => (
+            <div key={item.id} className={placeorderStyle['order-container']}>
+              <img src={item.img} className={placeorderStyle['order-img']} alt="Order" />
+              <div className={placeorderStyle['order-info']}>
+                <p className={placeorderStyle['order-title']}>{item.name}</p>
+                <p className={placeorderStyle['order-info']}>{item.description}</p>
+                <div className={placeorderStyle['size-qty-container']}>
+                  <p>Size <b>{item.size}</b></p>
+                  <p>Qty <b>{orderDetails.quantities[index]}</b></p>
+                </div>
               </div>
             </div>
-          </div>
-          <div className={placeorderStyle['odred-container']}>
-            <img src={orderimg} className={placeorderStyle['order-img']} alt="Order" />
-            <div className={placeorderStyle['order-info']}>
-              <p className={placeorderStyle['order-title']}>Women’s Casual Wear</p>
-              <p className={placeorderStyle['order-info']}>Checked Single-Breasted<br />Blazer</p>
-              <div className={placeorderStyle['size-qty-container']}>
-                <p>Size <b>42</b></p>
-                <p>Qty <b>1</b></p>
-              </div>
-            </div>
-          </div>
+          ))}
           <hr style={{ opacity: '30%', width: '80%' }} />
           <div className={placeorderStyle['order-payment-details']}>
             <p>Order Payment Details</p>
             <div className={placeorderStyle['payment-details']}>
               <p>Order Amounts</p>
-              <p style={{ fontWeight: 'bold' }}>7,000.00</p>
+              <p style={{ fontWeight: 'bold' }}>{orderDetails.totalPrice}</p>
             </div>
             <div className={placeorderStyle['payment-details']}>
               <p>Convenience</p>
@@ -86,7 +83,7 @@ const Placeorder = () => {
           <div className={placeorderStyle['order-total']}>
             <div className={placeorderStyle['payment-details']}>
               <p>Order Total</p>
-              <p style={{ fontWeight: 'bold' }}>7,000.00</p>
+              <p style={{ fontWeight: 'bold' }}>{orderDetails.totalPrice}</p>
             </div>
             <div className={placeorderStyle['payment-details']}>
               <p>EMI Available</p>
@@ -97,7 +94,7 @@ const Placeorder = () => {
             <div style={{ display: 'flex', alignItems: 'center' }}>
               {currency}
               <div>
-                <p style={{ fontWeight: 'bold' }}>7,000.00</p>
+                <p style={{ fontWeight: 'bold' }}>{orderDetails.totalPrice}</p>
                 <a href="#" style={{ whiteSpace: 'nowrap', fontSize: '14px', color: '#F83758', textDecoration: 'none', fontWeight: 'bold', marginLeft: '-10%' }}>View Details</a>
               </div>
             </div>
@@ -106,8 +103,7 @@ const Placeorder = () => {
         </div>
       </div>
     </div>
-
   );
-}
+};
 
 export default Placeorder;
