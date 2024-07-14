@@ -99,14 +99,6 @@ const Shop = () => {
                             data.options &&
                             <p className=' font-bold text-base'>{Object.keys(data.options[0])} : {data.options[0].color}</p>
                         }
-                        {/* 
-                        <div className='w-full h-auto flex gap-3'>
-                            <div className='w-[50px] h-[32px] border-[1.5px] border-[#FA7189] text-[#FA7189] flex justify-center items-center bg-white rounded text-sm font-semibold'> 6 UK</div>
-                            <div className='w-[50px] h-[32px] border-[1.5px] border-[#FA7189] text-[#FFF] flex justify-center items-center bg-[#FA7189] rounded text-sm font-semibold'> 7 UK</div>
-                            <div className='w-[50px] h-[32px] border-[1.5px] border-[#FA7189] text-[#FA7189] flex justify-center items-center bg-white rounded text-sm font-semibold'> 8 UK</div>
-                            <div className='w-[50px] h-[32px] border-[1.5px] border-[#FA7189] text-[#FA7189] flex justify-center items-center bg-white rounded text-sm font-semibold'> 9 UK</div>
-                            <div className='w-[50px] h-[32px] border-[1.5px] border-[#FA7189] text-[#FA7189] flex justify-center items-center bg-white rounded text-sm font-semibold'> 10 UK</div>
-                        </div> */}
 
                         <div className='mt-1.5 flex flex-col gap-2'>
                             <p className=' font-bold text-xl'>{data.name}</p>
@@ -148,16 +140,16 @@ const Shop = () => {
                             {
                                 items && items.map((v, i) => {
                                     return (
-                                        <Link to={`/`}>
-                                            <div className="w-full h-[245px] rounded-lg mb-3 shadow-md container ">
-                                                <img src={v.img[0].src} alt="" className="w-full h-[136px] rounded-lg object-cover" />
+                                        <Link to={`/shop/${v.id}`}>
+                                            <div className=" w-40 min-h-[245px] h-auto pb-0.5 rounded-lg mb-3 shadow-md container ">
+                                                <img src={v.img[0].src} alt="" className="w-full h-[140px] rounded-lg object-cover" />
                                                 <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
-                                                    <p className="font-medium text-base text-[10px]">v.title</p>
-                                                    <p className=" font-normal text-[10px]">Nike Air Jordan Retro 1 Low Mystic Black</p>
-                                                    <p className=" font-medium text-xs pt-0.5">₹1,900</p>
+                                                    <p className="font-medium text-base text-[10px]">{v.name}</p>
+                                                    <p className=" font-normal text-[10px]">{v.description}</p>
+                                                    <p className=" font-medium text-xs pt-0.5">₹{v.price}</p>
                                                     <div className="w-full flex items-center gap-2">
                                                         <Rating />
-                                                        <p className=" font-normal text-[10px] pt-0.5">46,890</p>
+                                                        <p className=" font-normal text-[10px] pt-0.5">{v.rating}</p>
                                                     </div>
                                                 </div>
                                             </div>
