@@ -1,12 +1,7 @@
 import Footer from "./Footer"
-import ProductCard from "./ProductCard"
 import { MicSVG, RightArrowSVG, SearchSVG } from "./icons"
 import { NavBar, Categories, Card, Deal } from "./index"
-import product_image from "../../assets/product_image.png";
-import shoeproduct from "../../assets/shoeproduct.png"
 import NewArrival from "./NewArrival";
-import watch_product from "../../assets/watch_product.png";
-import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import client from "../../api/axios";
 import Skeleton from 'react-loading-skeleton'
@@ -21,13 +16,15 @@ const HomePage = () => {
         await client.get(`/banner/all`)
             .then(res => {
                 setData(res.data.data);
-                setLoading(false);
             })
             .catch(e => console.log(e));
+
+        setLoading(false);
     }
 
 
     useEffect(() => {
+        setLoading(true);
         fetchData();
     }, []);
 
@@ -51,21 +48,19 @@ const HomePage = () => {
                         data && data.map((v, i) => {
                             if (v.type == 'slider') {
                                 return (
-                                    <Card banners={v.banners} />
+                                    loading ? <Skeleton /> : <Card banners={v.banners} />
                                 )
                             } else if (v.type == 'banner') {
                                 return (
-                                    <NewArrival title={v.title} description={v.description} />
+                                    loading ? <Skeleton height={100} /> : <NewArrival title={v.title} description={v.description} />
                                 );
                             } else if (v.type == 'deal') {
-                                return (loading ? (
-                                    <Skeleton height={80} />
-                                ) :
-                                    <Deal endTime={v.end_date} />
+                                return (
+                                    loading ? <Skeleton height={80} /> : <Deal endTime={v.end_date} />
                                 )
                             } else if (v.type == 'list') {
                                 return (
-                                    <List v={v} />
+                                    loading ? <Skeleton height={100} /> : <List v={v} />
                                 )
                             }
                         })}
