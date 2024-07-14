@@ -106,6 +106,7 @@ const Cartpage = () => {
     navigate('/placeorder');
   };
 
+
   return (
     <div className="max-w-md h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
       <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
@@ -119,9 +120,9 @@ const Cartpage = () => {
             <p className={cartStyle['cart-text']}>Cart Items</p>
           </div>
 
-          {cart.map((item, index) => (
+          {cart.map((item, index) =>  (
             <div key={item.id} className={cartStyle['order-container']}>
-              <img src={item.img} className={cartStyle['order-img']} alt="Order" />
+              <img src={item.img[0].src} className={cartStyle['order-img']} alt="Order" />
               <div className={cartStyle['order-info']}>
                 <p className={cartStyle['order-title']}>{item.name}</p>
                 <p className={cartStyle['order-desc']}>{item.description}</p>

@@ -3,7 +3,6 @@ import placeorderStyle from './placeorderstyle.module.css';
 import back from './../../assets/back.svg';
 import location from '../../assets/location.svg';
 import edit from '../../assets/edit.svg';
-import orderimg from '../../assets/orderimg.png';
 import rupee from '../../assets/currency_rupee.svg';
 import useCartStore from '../../provider/zustand';
 import { useNavigate } from 'react-router-dom';
@@ -43,7 +42,7 @@ const Placeorder = () => {
             <div className={placeorderStyle['address-info']}>
               <p className={placeorderStyle['address-title']} style={{ fontSize: '16px' }}>Address:</p>
               <p className={placeorderStyle['address']}>
-              {orderDetails.address}, {orderDetails.selectedCity}, {orderDetails.selectedCountry}
+                {orderDetails.address}, {orderDetails.selectedCity}, {orderDetails.selectedCountry}
               </p>
               <p className={placeorderStyle['contact']}>Contact: </p>
             </div>
@@ -51,10 +50,10 @@ const Placeorder = () => {
           </div>
           {orderDetails.cart.map((item, index) => (
             <div key={item.id} className={placeorderStyle['order-container']}>
-              <img src={item.img} className={placeorderStyle['order-img']} alt="Order" />
+              <img src={item.img[0].src} className={placeorderStyle['order-img']} alt="Order" />
               <div className={placeorderStyle['order-info']}>
                 <p className={placeorderStyle['order-title']}>{item.name}</p>
-                <p className={placeorderStyle['order-info']}>{item.description}</p>
+                <p className={placeorderStyle['order-description']}>{item.description}</p>
                 <div className={placeorderStyle['size-qty-container']}>
                   <p>Size <b>{item.size}</b></p>
                   <p>Qty <b>{orderDetails.quantities[index]}</b></p>
