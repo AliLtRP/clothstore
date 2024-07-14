@@ -41,7 +41,7 @@
 }
 
 .order-img {
-  width: 100px;
+  width: auto;
   height: auto;
   margin-left: -1%;
 }
@@ -58,7 +58,7 @@
 }
 
 .order-desc {
-  white-space: nowrap; 
+  
 }
 
 .size-qty-container {
