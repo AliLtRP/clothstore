@@ -32,6 +32,7 @@ const Signinscreen = () => {
       }
 
       localStorage.setItem('token', token);
+
       navigate('/getstarted'); 
 
     }catch(error){
