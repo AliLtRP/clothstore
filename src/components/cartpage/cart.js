@@ -21,6 +21,7 @@ const Cartpage = () => {
     setOrderDetails,
   } = useCartStore();
 
+  console.log(cart);
   const navigate = useNavigate();
 
   const handleAddressChange = (event) => {
