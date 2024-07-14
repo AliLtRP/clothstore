@@ -3,17 +3,19 @@ import { RightArrowSVG } from './icons'
 import Skeleton from 'react-loading-skeleton'
 import { Link, useNavigate } from 'react-router-dom'
 import ProductCard from './ProductCard'
+import { useRelated } from '../../provider/zustand'
 
 const List = ({ v }) => {
     const [loading, setLoading] = useState(true);
     const navigate = useNavigate();
-
+    const { setItems } = useRelated();
     const navigateToTrendingProduct = (bannerID) => {
         navigate('/trending/product', { state: { id: bannerID } });
     };
 
     useEffect(() => {
         if (v) {
+            setItems(v.products_ids);
             setLoading(false);
         }
     }, [v]);
@@ -40,7 +42,7 @@ const List = ({ v }) => {
                         {
                             v.products_ids.map((v, i) => {
                                 return (
-                                    <Link to={`/shop/${v.id}`}>
+                                    <Link to={`/shop/${v.id}`} key={i}>
                                         {
                                             <ProductCard image={v.img[0].src} title="Women Printed Kurta" desc="Neque porro quisquam est qui dolorem ipsum quia" price="₹1500" off="₹2499" percent="40%" />
                                         }
