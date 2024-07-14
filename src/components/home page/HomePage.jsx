@@ -11,15 +11,11 @@ import { useEffect, useState } from "react";
 import client from "../../api/axios";
 import Skeleton from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
+import List from "./List";
 
 const HomePage = () => {
     const [data, setData] = useState([]);
     const [loading, setLoading] = useState(true);
-    const navigate = useNavigate();
-
-    const navigateToTrendingProduct = (bannerID) => {
-        navigate('/trending/product', { state: { id: bannerID } });
-    };
 
     const fetchData = async () => {
         await client.get(`/banner/all`)
@@ -69,33 +65,8 @@ const HomePage = () => {
                                 )
                             } else if (v.type == 'list') {
                                 return (
-                                    <div className="h-auto flex flex-col gap-3 px-0">
-                                        <div className="w-full flex justify-between items-center">
-                                            <p className=" font-semibold text-sm hover:cursor-pointer" onClick={() => navigateToTrendingProduct(v.id)}>{v.title}</p>
-                                            <div onClick={() => navigateToTrendingProduct(v.id)} className=" hover:cursor-pointer">
-                                                <RightArrowSVG />
-                                            </div>
-                                        </div>
-
-                                        {loading ? (
-                                            <Skeleton count={1} height={150} width="100%" />
-                                        ) : (
-                                            <div className="w-full h-72 flex gap-3 flex-nowrap overflow-x-hidden">
-                                                {
-                                                    v.products_ids.map((v, i) => {
-                                                        return (
-                                                            <Link to={`/shop/${v.id}`}>
-                                                                {
-                                                                    v.img &&
-                                                                    <ProductCard image={v.img[0].src} title="Women Printed Kurta" desc="Neque porro quisquam est qui dolorem ipsum quia" price="₹1500" off="₹2499" percent="40%" />
-                                                                }
-                                                            </Link>
-                                                        )
-                                                    })
-                                                }
-                                            </div>
-                                        )}
-                                    </div>)
+                                    <List v={v} />
+                                )
                             }
                         })}
                 </div>

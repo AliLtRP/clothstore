@@ -33,8 +33,6 @@ const Shop = () => {
         }
     }
 
-    console.log(cart, 'cart');
-
     return (
         <div className='w-full flex flex-col'>
             <Container>
