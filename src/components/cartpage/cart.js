@@ -1,51 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import Select from 'react-select';
-import axios from 'axios';
-import useCartStore from '../../provider/zustand'; // Adjust the path as necessary
+import React, { useEffect } from 'react';
 import blackcart from '../../assets/blackshippingcart.svg';
 import cartStyle from './cartstyle.module.css';
+import Select from 'react-select';
 import Footer from '../home page/Footer';
+import useCartStore from '../../provider/zustand';
+import { useNavigate } from 'react-router-dom';
 
 const Cartpage = () => {
-  const [quantities, setQuantities] = useState([]);
-  const [selectedCity, setSelectedCity] = useState(null);
-  const [selectedCountry, setSelectedCountry] = useState('');
-  const [address, setAddress] = useState('');
-  const [totalPrice, setTotalPrice] = useState(0);
-  const [statusCode, setStatusCode] = useState('pending');
-  const [error, setError] = useState(null);
+  const {
+    cart,
+    quantities,
+    selectedCity,
+    selectedCountry,
+    address,
+    setAddress,
+    setCityAndCountry,
+    incrementQuantity,
+    decrementQuantity,
+    calculateTotalPrice,
+    setOrderDetails,
+  } = useCartStore();
+
   const navigate = useNavigate();
-  const { state } = useLocation()
 
-  console.log(state);
+  const handleAddressChange = (event) => {
+    setAddress(event.target.value);
+  };
 
-  const cartItems = useCartStore((state) => state.cart);
-  const removeFromCart = useCartStore((state) => state.removeFromCart);
-
-  useEffect(() => {
-    calculateTotalPrice();
-  }, [cartItems, quantities]);
-
-  const handleCheckOutClick = async (event) => {
-    event.preventDefault();
-
-    const requestBody = {
-      items: cartItems,
-      address,
-      total_price: totalPrice,
-      statuscode: statusCode,
-      city: selectedCity?.value || '',
-      country: selectedCountry,
-    };
-
-    try {
-      const response = await axios.post('http://localhost:3000/order', requestBody);
-      console.log(response.data);
-      navigate('/placeorder');
-    } catch (error) {
-      setError(error.message);
+  const handleCityChange = (selectedOption) => {
+    if (selectedOption) {
+      const city = selectedOption.value;
+      setCityAndCountry(city, cityCountryMap[city] || '');
+    } else {
+      setCityAndCountry(null, '');
     }
+  };
+
+  const handleIncrement = (index) => {
+    incrementQuantity(index);
+  };
+
+  const handleDecrement = (index) => {
+    decrementQuantity(index);
   };
 
   const cityCountryMap = {
@@ -58,20 +54,6 @@ const Cartpage = () => {
     value: city,
     label: city,
   }));
-
-  const handleAddressChange = (event) => {
-    setAddress(event.target.value);
-  };
-
-  const handleCityChange = (selectedOption) => {
-    if (selectedOption) {
-      setSelectedCity(selectedOption);
-      setSelectedCountry(cityCountryMap[selectedOption.value] || '');
-    } else {
-      setSelectedCity(null);
-      setSelectedCountry('');
-    }
-  };
 
   const customStyles = {
     control: (provided) => ({
@@ -111,26 +93,18 @@ const Cartpage = () => {
     }),
   };
 
-  const handleIncrement = (index) => {
-    const newQuantities = [...quantities];
-    newQuantities[index] += 1;
-    setQuantities(newQuantities);
-  };
-
-  const handleDecrement = (index) => {
-    const newQuantities = [...quantities];
-    if (newQuantities[index] > 0) {
-      newQuantities[index] -= 1;
-    }
-    setQuantities(newQuantities);
-  };
-
-  const calculateTotalPrice = () => {
-    let total = 0;
-    cartItems.forEach((item, index) => {
-      total += item.price * (quantities[index] || 1);
-    });
-    setTotalPrice(total);
+  const handleCheckOutClick = () => {
+    const checkoutData = {
+      cart,
+      quantities,
+      totalPrice: calculateTotalPrice(),
+      address,
+      selectedCity,
+      selectedCountry,
+    };
+    console.log('Checkout Data: ', checkoutData);
+    setOrderDetails(checkoutData);
+    navigate('/placeorder');
   };
 
   return (
@@ -146,58 +120,65 @@ const Cartpage = () => {
             <p className={cartStyle['cart-text']}>Cart Items</p>
           </div>
 
-          {cartItems.map((item, index) => (
-            <div key={index} className={cartStyle['order-container']}>
+          {cart.map((item, index) => (
+            <div key={item.id} className={cartStyle['order-container']}>
               <img src={item.img} className={cartStyle['order-img']} alt="Order" />
               <div className={cartStyle['order-info']}>
-                <p className={cartStyle['order-title']}>{item.title}</p>
+                <p className={cartStyle['order-title']}>{item.name}</p>
                 <p className={cartStyle['order-desc']}>{item.description}</p>
                 <div className={cartStyle['size-qty-container']}>
-                  <p>Size <b>{item.option}</b></p>
+                  <p>
+                    Size <b>{item.size}</b>
+                  </p>
                   <p>
                     <button className={cartStyle['qty-btn']} onClick={() => handleDecrement(index)}>-</button>
-                    <b>{quantities[index] || 1}</b>
+                    <b>{quantities[index]}</b>
                     <button className={cartStyle['qty-btn']} onClick={() => handleIncrement(index)}>+</button>
                   </p>
                 </div>
-                <button onClick={() => removeFromCart(item.id)}>Remove</button>
               </div>
             </div>
-          ))} */}
+          ))}
 
           <div className={cartStyle['payment-details']}>
             <p>Order Total</p>
-            <p style={{ fontWeight: 'bold' }}>{totalPrice}</p>
+            <p style={{ fontWeight: 'bold' }}>{calculateTotalPrice()}</p>
           </div>
           <hr className={cartStyle['divider-2']} />
           <p className={cartStyle['final-address-details']}>Address Details</p>
           <div className={cartStyle['final-address-info']}>
             <p className={cartStyle['final-address-titles']}>Address</p>
-            <input className={cartStyle['final-address-input']} placeholder='Write your address here' value={address} onChange={handleAddressChange} />
+            <input
+              className={cartStyle['final-address-input']}
+              placeholder="Write your address here"
+              value={address}
+              onChange={handleAddressChange}
+            />
             <p className={cartStyle['final-address-titles']}>City</p>
             <Select
               className={cartStyle['final-city-input']}
               value={selectedCity}
               onChange={handleCityChange}
               options={cityOptions}
-              placeholder='Choose your city here'
+              placeholder="Choose your city here"
               styles={customStyles}
             />
             <p className={cartStyle['final-address-titles']}>Country</p>
             <input
               className={cartStyle['final-country-input']}
               value={selectedCountry}
-              placeholder='Choose your country here'
+              placeholder="Choose your country here"
               readOnly
             />
           </div>
-          <button className={cartStyle['continue-checkout']} onClick={handleCheckOutClick}>Checkout</button>
+          <button className={cartStyle['continue-checkout']} onClick={handleCheckOutClick}>
+            Checkout
+          </button>
         </div>
       </div>
       <Footer path="cart" />
     </div>
   );
-}
+};
 
 export default Cartpage;
-

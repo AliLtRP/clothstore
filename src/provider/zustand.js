@@ -1,11 +1,43 @@
 import { create } from 'zustand';
 
-const useCartStore = create((set) => ({
+const useCartStore = create((set,get) => ({
   cart: [],
-  addToCart: (item) => set((state) => ({ cart: [...state.cart, item] })),
-  removeFromCart: (itemId) => set((state) => ({
-    cart: state.cart.filter((item) => item.id !== itemId),
+  quantities: [],
+  selectedCity: null,
+  selectedCountry: '',
+  address: '',
+  orderDetails: {
+    cart: [],
+    quantities: [],
+    totalPrice: 0,
+    address: '',
+    selectedCity: '',
+    selectedCountry: '',
+  },
+    addToCart: (item) => set((state) => ({ 
+    cart: [...state.cart, item], 
+    quantities: [...state.quantities, 1], 
   })),
+  setAddress: (address) => set(() => ({ address })),
+  setCityAndCountry: (city, country) => set(() => ({ selectedCity: city, selectedCountry: country })),
+  incrementQuantity: (index) => set((state) => {
+    const newQuantities = [...state.quantities];
+    newQuantities[index] += 1;
+    return { quantities: newQuantities };
+  }),
+  decrementQuantity: (index) => set((state) => {
+    const newQuantities = [...state.quantities];
+    if (newQuantities[index] > 0) {
+      newQuantities[index] -= 1;
+    }
+    return { quantities: newQuantities };
+  }),
+   calculateTotalPrice: () => {
+    const { cart, quantities } = get();
+    return cart.reduce((acc, item, index) => acc + item.price * quantities[index], 0);
+  },
+  setOrderDetails: (checkoutData) => set(() => ({ orderDetails: checkoutData })),
 }));
 
 export default useCartStore;
+
