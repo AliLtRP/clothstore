@@ -14,10 +14,11 @@ const useCartStore = create((set, get) => ({
     selectedCity: '',
     selectedCountry: '',
   },
-  addToCart: (item) => set((state) => ({
-    cart: [...state.cart, item],
-    quantities: [...state.quantities, 1],
-  })),
+  addToCart: (item) => set((state) => {
+    const cart = [...state.cart, item];
+    const quantities = cart.map(item => item.quantity);
+    return { cart, quantities };
+  }),
   setAddress: (address) => set(() => ({ address })),
   setCityAndCountry: (city, country) => set(() => ({ selectedCity: city, selectedCountry: country })),
   incrementQuantity: (index) => set((state) => {

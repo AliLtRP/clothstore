@@ -7,6 +7,7 @@ import Popup from '../popupsuccess/popup';
 import Footer from '../home page/Footer';
 import useCartStore from '../../provider/zustand';
 import axios from 'axios';
+import { jwtDecode } from 'jwt-decode';
 
 
 const Shipping = () => {
@@ -19,24 +20,42 @@ const Shipping = () => {
     navigate('/placeorder');
   };
 
+  const token = localStorage.getItem('token'); 
+  console.log("Token:", token);
+
+  let userId;
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      userId = decodedToken.id; 
+      console.log("Decoded User ID:", userId);
+    }
+
   const handleContinue = async () => {    
     const requestBody = {
       
       items:orderDetails.cart,
       address: orderDetails.address,
-      phone: orderDetails.contact,
+      phone: 1234,
       total_price: orderDetails.totalPrice,
       city: orderDetails.selectedCity,
       country: orderDetails.selectedCountry,
-      statuscode: 'pending',
-      user_id: orderDetails.userId,
+      statuscode: [{'status':'pending'}],
+      user_id:userId,
       voucher_id: orderDetails.voucherId,
     }
 
     console.log("req body",requestBody);
+
+    
+
+    
     
     try {
-      const response = await axios.post('http://localhost:3000/order', requestBody);
+      const response = await axios.post('http://localhost:3000/order', requestBody , {
+        headers: {
+          'Authorization': localStorage.getItem('token') 
+        }
+      });
 
       console.log(response.data);
 

@@ -4,8 +4,6 @@ import { BackArrow } from '../trending products/icons';
 import Cart from "./icons/Cart";
 import { Rating } from '../home page/icons';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import related from "./assets/related.png";
-import related2 from "./assets/related2.png";
 import client from '../../api/axios';
 import useCartStore, { useRelated } from '../../provider/zustand';
 import { motion } from "framer-motion";
@@ -16,7 +14,7 @@ const Shop = () => {
     const navigate = useNavigate()
     const { id } = useParams();
     const { cart, addToCart } = useCartStore();
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
     const { items } = useRelated();
 
     const fetchData = async () => {
@@ -32,8 +30,8 @@ const Shop = () => {
     const handleItem = () => {
         const existsInCart = cart.some(item => item.id === data.id);
         if (!existsInCart) {
-            data['quantity'] = quantity;
-            addToCart(data);
+            // data['quantity'] = quantity;
+            addToCart({ ...data, quantity });
         }
     }
 
