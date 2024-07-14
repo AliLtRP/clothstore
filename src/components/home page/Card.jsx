@@ -2,7 +2,6 @@ import { useNavigate } from "react-router-dom";
 import { CardsIndexSvg, NextSVG } from "./icons";
 import { useState } from "react";
 import { AnimatePresence, motion, MotionConfig } from "framer-motion";
-import { FaAngleRight, FaAngleLeft } from "react-icons/fa6";
 
 const Card = ({ banners }) => {
     const navigator = useNavigate();

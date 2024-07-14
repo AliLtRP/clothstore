@@ -15,7 +15,7 @@ const Shop = () => {
     const navigate = useNavigate()
     const { id } = useParams();
     const { cart, addToCart } = useCartStore();
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
 
     const fetchData = async () => {
         await client.get(`/product?id=${id}`)
@@ -30,8 +30,8 @@ const Shop = () => {
     const handleItem = () => {
         const existsInCart = cart.some(item => item.id === data.id);
         if (!existsInCart) {
-            data['quantity'] = quantity;
-            addToCart(data);
+            // data['quantity'] = quantity;
+            addToCart({...data,quantity});
         }
     }
 

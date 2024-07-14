@@ -21,7 +21,6 @@ const Cartpage = () => {
     setOrderDetails,
   } = useCartStore();
 
-  console.log(cart);
   const navigate = useNavigate();
 
   const handleAddressChange = (event) => {
@@ -103,7 +102,6 @@ const Cartpage = () => {
       selectedCity,
       selectedCountry,
     };
-    console.log('Checkout Data: ', checkoutData);
     setOrderDetails(checkoutData);
     navigate('/placeorder');
   };
