@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-const useCartStore = create((set,get) => ({
+const useCartStore = create((set, get) => ({
   cart: [],
   quantities: [],
   selectedCity: null,
@@ -14,9 +14,9 @@ const useCartStore = create((set,get) => ({
     selectedCity: '',
     selectedCountry: '',
   },
-    addToCart: (item) => set((state) => ({ 
-    cart: [...state.cart, item], 
-    quantities: [...state.quantities, 1], 
+  addToCart: (item) => set((state) => ({
+    cart: [...state.cart, item],
+    quantities: [...state.quantities, 1],
   })),
   setAddress: (address) => set(() => ({ address })),
   setCityAndCountry: (city, country) => set(() => ({ selectedCity: city, selectedCountry: country })),
@@ -32,11 +32,16 @@ const useCartStore = create((set,get) => ({
     }
     return { quantities: newQuantities };
   }),
-   calculateTotalPrice: () => {
+  calculateTotalPrice: () => {
     const { cart, quantities } = get();
     return cart.reduce((acc, item, index) => acc + item.price * quantities[index], 0);
   },
   setOrderDetails: (checkoutData) => set(() => ({ orderDetails: checkoutData })),
+}));
+
+export const useRelated = create((set) => ({
+  items: [],
+  setItems: (items) => set({ items }),
 }));
 
 export default useCartStore;

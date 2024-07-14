@@ -7,8 +7,9 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import related from "./assets/related.png";
 import related2 from "./assets/related2.png";
 import client from '../../api/axios';
-import useCartStore from '../../provider/zustand';
+import useCartStore, { useRelated } from '../../provider/zustand';
 import { motion } from "framer-motion";
+import "../../index.css";
 
 const Shop = () => {
     const [data, setData] = useState([]);
@@ -16,6 +17,7 @@ const Shop = () => {
     const { id } = useParams();
     const { cart, addToCart } = useCartStore();
     const [quantity, setQuantity] = useState(0);
+    const { items } = useRelated();
 
     const fetchData = async () => {
         await client.get(`/product?id=${id}`)
@@ -34,7 +36,6 @@ const Shop = () => {
             addToCart(data);
         }
     }
-
 
     const routeVariants = {
         initial: {
@@ -56,9 +57,12 @@ const Shop = () => {
         }
     }
 
+    console.log(data.options);
+
+    console.log(items, 'items');
     return (
-        <motion.div variants={routeVariants} initial="initial" animate="final" transition={transition}>
-            <div className='w-full flex flex-col'>
+        <div className='w-full flex flex-col'>
+            <motion.div variants={routeVariants} initial="initial" animate="final" transition={transition}>
                 <Container>
                     <div className='w-full h-20 flex justify-between items-center p-4'>
                         <div onClick={() => navigate(-1)}>
@@ -93,15 +97,18 @@ const Shop = () => {
 
                 <Container>
                     <div className='p-4 flex flex-col gap-3'>
-                        <p className=' font-bold text-base'>Size: 7UK</p>
-
+                        {
+                            data.options &&
+                            <p className=' font-bold text-base'>{Object.keys(data.options[0])} : {data.options[0].color}</p>
+                        }
+                        {/* 
                         <div className='w-full h-auto flex gap-3'>
                             <div className='w-[50px] h-[32px] border-[1.5px] border-[#FA7189] text-[#FA7189] flex justify-center items-center bg-white rounded text-sm font-semibold'> 6 UK</div>
                             <div className='w-[50px] h-[32px] border-[1.5px] border-[#FA7189] text-[#FFF] flex justify-center items-center bg-[#FA7189] rounded text-sm font-semibold'> 7 UK</div>
                             <div className='w-[50px] h-[32px] border-[1.5px] border-[#FA7189] text-[#FA7189] flex justify-center items-center bg-white rounded text-sm font-semibold'> 8 UK</div>
                             <div className='w-[50px] h-[32px] border-[1.5px] border-[#FA7189] text-[#FA7189] flex justify-center items-center bg-white rounded text-sm font-semibold'> 9 UK</div>
                             <div className='w-[50px] h-[32px] border-[1.5px] border-[#FA7189] text-[#FA7189] flex justify-center items-center bg-white rounded text-sm font-semibold'> 10 UK</div>
-                        </div>
+                        </div> */}
 
                         <div className='mt-1.5 flex flex-col gap-2'>
                             <p className=' font-bold text-xl'>{data.name}</p>
@@ -139,41 +146,32 @@ const Shop = () => {
 
                         <p className=' text-xl font-semibold mt-8'>Similar To</p>
 
-                        <div className='w-full flex gap-4'>
-                            <Link to={`/`}>
-                                <div className="w-full h-[245px] rounded-lg mb-3 shadow-md">
-                                    <img src={related} alt="" className="w-full h-[136px] rounded-lg object-cover" />
-                                    <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
-                                        <p className="font-medium text-base text-[10px]">NIke Sneakers</p>
-                                        <p className=" font-normal text-[10px]">Nike Air Jordan Retro 1 Low Mystic Black</p>
-                                        <p className=" font-medium text-xs pt-0.5">₹1,900</p>
-                                        <div className="w-full flex items-center gap-2">
-                                            <Rating />
-                                            <p className=" font-normal text-[10px] pt-0.5">46,890</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
-
-                            <Link to={`/`}>
-                                <div className="w-full h-[245px] rounded-lg mb-3 shadow-md">
-                                    <img src={related2} alt="" className="w-full h-[136px] rounded-lg object-cover" />
-                                    <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
-                                        <p className="font-medium text-base text-[10px]">NIke Sneakers</p>
-                                        <p className=" font-normal text-[10px]">Nike Air Jordan Retro 1 Low Mystic Black</p>
-                                        <p className=" font-medium text-xs pt-0.5">₹1,900</p>
-                                        <div className="w-full flex items-center gap-2">
-                                            <Rating />
-                                            <p className=" font-normal text-[10px] pt-0.5">46,890</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </Link>
+                        <div className='w-full flex gap-4 overflow-y-scroll no-scrollbar'>
+                            {
+                                items && items.map((v, i) => {
+                                    return (
+                                        <Link to={`/`}>
+                                            <div className="w-full h-[245px] rounded-lg mb-3 shadow-md container ">
+                                                <img src={v.img[0].src} alt="" className="w-full h-[136px] rounded-lg object-cover" />
+                                                <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
+                                                    <p className="font-medium text-base text-[10px]">v.title</p>
+                                                    <p className=" font-normal text-[10px]">Nike Air Jordan Retro 1 Low Mystic Black</p>
+                                                    <p className=" font-medium text-xs pt-0.5">₹1,900</p>
+                                                    <div className="w-full flex items-center gap-2">
+                                                        <Rating />
+                                                        <p className=" font-normal text-[10px] pt-0.5">46,890</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </Link>
+                                    )
+                                })
+                            }
                         </div>
                     </div>
                 </Container>
-            </div >
-        </motion.div>
+            </motion.div>
+        </div >
     )
 }
 

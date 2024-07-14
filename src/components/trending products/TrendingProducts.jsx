@@ -5,17 +5,21 @@ import { Rating } from "../home page/icons";
 import { useEffect, useState } from "react";
 import client from "../../api/axios";
 import { motion } from "framer-motion";
+import { useRelated } from "../../provider/zustand";
+
 
 const TrendingProducts = () => {
     const navigator = useNavigate();
     const { state } = useLocation();
     const [data, setData] = useState([]);
+    const { setItems } = useRelated();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await client.post('/product/specificproductids', { id: state.id });
                 setData(response.data.data);
+                setItems(response.data.data);
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -51,8 +55,8 @@ const TrendingProducts = () => {
     };
 
     const transition = {
-        duration: 1, // Adjust duration here (in seconds)
-        ease: [0.43, 0.3, 0.23, 0.96] // Optional: Specify custom easing
+        duration: 1,
+        ease: [0.43, 0.3, 0.23, 0.96]
     };
 
     return (
