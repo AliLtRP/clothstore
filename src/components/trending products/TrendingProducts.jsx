@@ -59,6 +59,7 @@ const TrendingProducts = () => {
         ease: [0.43, 0.3, 0.23, 0.96]
     };
 
+    console.log(data);
     return (
         <motion.div variants={routeVariants} initial="initial" animate="final" transition={transition}>
             <div className="w-full flex flex-col mx-auto">
