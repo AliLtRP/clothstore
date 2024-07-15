@@ -13,18 +13,17 @@ const Categories = () => {
                 const sortData = data.sort((a, b) => a.priority < b.priority);
                 setData(sortData);
             })
-            .catch(e => console.log(e));
+            .catch(e => console.log(e))
     }
 
     useEffect(() => {
         fetchData();
     }, []);
 
-
     return (
         <div className='w-full flex justify-between'>
             {
-                data && data.map((v, i) => {
+                data.map((v, i) => {
                     return (
                         <div className='flex flex-col w-14' key={i}>
                             <Link to={`/category/product/${v.id}/${v.name}`} >
