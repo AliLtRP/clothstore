@@ -4,16 +4,22 @@ import { BackArrow } from "./trending products/icons";
 import { Rating } from "./home page/icons";
 import client from "../api/axios";
 import { Container } from "./trending products";
+import { motion } from "framer-motion"
+import { useRelated } from "../provider/zustand";
+
+
 
 const CategoryProducts = () => {
     const navigator = useNavigate();
     const [data, setData] = useState([]);
     const { id, name } = useParams();
+    const { setItems } = useRelated();
 
     const fetchData = async () => {
         try {
             const res = await client.get(`/category/products?id=${id}`);
             setData(res.data.data);
+            setItems(res.data.data);
         } catch (e) {
             console.log(e);
         }
@@ -38,58 +44,75 @@ const CategoryProducts = () => {
 
     const { leftAlign, rightAlign } = preprocessData(data);
 
+    const routeVariants = {
+        initial: {
+            y: '1vh'
+        },
+        final: {
+            y: '0vh'
+        }
+    };
+
+    const transition = {
+        duration: 1,
+        ease: [0.43, 0.3, 0.23, 0.96]
+    };
+
+
     return (
         <div className="w-full flex flex-col mx-auto">
-            <Container>
-                <div className="flex items-center justify-between w-[65%] h-16 px-4">
-                    <div onClick={() => navigator(-1)}>
-                        <BackArrow className="h-5 w-[9.5px]" />
+            <motion.div variants={routeVariants} initial="initial" animate="final" transition={transition}>
+                <Container>
+                    <div className="flex items-center justify-between w-[65%] h-16 px-4">
+                        <div onClick={() => navigator(-1)}>
+                            <BackArrow className="h-5 w-[9.5px]" />
+                        </div>
+                        <p className="text-black font-semibold text-lg leading-4 h-5 pt-0.5 text-end">{name}</p>
                     </div>
-                    <p className="text-black font-semibold text-lg leading-4 h-5 pt-0.5 text-end">{name}</p>
-                </div>
-                <hr className="w-full" />
-            </Container>
+                    <hr className="w-full" />
+                </Container>
 
-            <Container>
-                <div className="w-full grid grid-cols-2 justify-between items-start gap-3 px-4 py-6">
-                    <div>
-                        {leftAlign.map((v, i) => (
-                            <Link to={`/shop/${v.id}`} key={v.id}>
-                                <div className="w-full min-h-[245px] h-auto rounded-lg mb-3 shadow-md">
-                                    <img src={v.img[0].src} alt="" className="w-full h-[136px] rounded-lg object-cover" />
-                                    <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
-                                        <p className="font-medium w-[90%] text-base text-[10px] text-wrap overflow-hidden">{v.name}</p>
-                                        <p className="font-normal text-[10px] w-[90%]">{v.description}</p>
-                                        <p className="font-medium text-xs pt-0.5">{v.price}</p>
-                                        <div className="w-full flex items-center gap-2 mb-1.5">
-                                            <Rating />
-                                            <p className="font-normal text-[10px]">{Math.floor(v.average_rating)}</p>
+                <Container>
+                    <div className="w-full grid grid-cols-2 justify-between items-start gap-3 px-4 py-6">
+                        <div>
+                            {leftAlign.map((v, i) => (
+                                <Link to={`/shop/${v.id}`} key={v.id}>
+                                    <div className="w-full min-h-[245px] h-auto rounded-lg mb-3 shadow-md">
+                                        <img src={v.img[0].src} alt="" className="w-full h-[136px] rounded-lg object-cover" />
+                                        <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
+                                            <p className="font-medium w-[90%] text-base text-[10px] text-wrap overflow-hidden">{v.name}</p>
+                                            <p className="font-normal text-[10px] w-[90%]">{v.description}</p>
+                                            <p className="font-medium text-xs pt-0.5">{v.price}</p>
+                                            <div className="w-full flex items-center gap-2 mb-1.5">
+                                                <Rating />
+                                                <p className="font-normal text-[10px]">{Math.floor(v.average_rating)}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                    <div>
-                        {rightAlign.map((v, i) => (
-                            <Link to={`/shop/${v.id}`} key={v.id}>
-                                <div className="w-full min-h-[305px] h-auto rounded-lg mb-3 shadow-md">
-                                    <img src={v.img[0].src} alt="" className="w-full h-[196px] rounded-lg object-cover" />
-                                    <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
-                                        <p className="font-medium w-[90%] text-base text-[10px] text-wrap overflow-hidden">{v.name}</p>
-                                        <p className="font-normal text-[10px] w-[90%]">{v.description}</p>
-                                        <p className="font-medium text-xs pt-0.5">{v.price}</p>
-                                        <div className="w-full flex items-center gap-2 mb-1.5">
-                                            <Rating />
-                                            <p className="font-normal text-[10px]">{Math.floor(v.average_rating)}</p>
+                                </Link>
+                            ))}
+                        </div>
+                        <div>
+                            {rightAlign.map((v, i) => (
+                                <Link to={`/shop/${v.id}`} key={v.id}>
+                                    <div className="w-full min-h-[305px] h-auto rounded-lg mb-3 shadow-md">
+                                        <img src={v.img[0].src} alt="" className="w-full h-[196px] rounded-lg object-cover" />
+                                        <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
+                                            <p className="font-medium w-[90%] text-base text-[10px] text-wrap overflow-hidden">{v.name}</p>
+                                            <p className="font-normal text-[10px] w-[90%]">{v.description}</p>
+                                            <p className="font-medium text-xs pt-0.5">{v.price}</p>
+                                            <div className="w-full flex items-center gap-2 mb-1.5">
+                                                <Rating />
+                                                <p className="font-normal text-[10px]">{Math.floor(v.average_rating)}</p>
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </Link>
-                        ))}
+                                </Link>
+                            ))}
+                        </div>
                     </div>
-                </div>
-            </Container>
+                </Container>
+            </motion.div>
         </div>
     );
 };
