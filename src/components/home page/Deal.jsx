@@ -1,8 +1,20 @@
+import { useNavigate, useNavigation } from "react-router-dom";
 import { ClockSvg, NextSVG } from "./icons";
 import { useEffect, useState } from "react";
 
-const Deal = ({ endTime }) => {
+const Deal = ({ products, endTime }) => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
+    const navigate =  useNavigate();
+    const [id, setID] = useState([]);
+
+    useEffect(() => {
+        const ids = products.map(product => product.id);
+        setID(ids);
+    }, [products]);
+
+    const handleNavigate = () => {
+        navigate(`/trending/product`, { state: { id: id } })
+    }
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -48,7 +60,7 @@ const Deal = ({ endTime }) => {
                             </div>
                         </div>
 
-                        <button className="border-[1px] border-white rounded-[4px] font-semibold text-white text-xs flex gap-1 items-center px-[10px] py-[15px] h-[28px]">View all <NextSVG /></button>
+                        <button className="border-[1px] border-white rounded-[4px] font-semibold text-white text-xs flex gap-1 items-center px-[10px] py-[15px] h-[28px]" onClick={() => handleNavigate()}>View all <NextSVG /></button>
                     </div>
             }
         </>

@@ -27,10 +27,9 @@ const HomePage = () => {
         fetchData();
     }, []);
 
-    console.log(data);
 
     return (
-        <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] mb-20">
+        <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
             <div className="min-w-[24rem] max-w-sm p-4 flex flex-col gap-6">
                 <NavBar />
                 <div className="w-full flex justify-center relative mt-16">
@@ -42,7 +41,7 @@ const HomePage = () => {
                     {loading ? <Skeleton height={60} /> : <Categories />}
                 </div>
 
-                <div className="h-full flex flex-col gap-12 my-4">
+                <div className="h-full flex flex-col gap-12 mt-2">
                     {loading
                         ? <>
                             <Skeleton height={140} />
@@ -55,8 +54,7 @@ const HomePage = () => {
                             } else if (v.type === 'banner') {
                                 return <NewArrival key={i} title={v.title} description={v.description} />;
                             } else if (v.type === 'deal') {
-                                console.log(v, 'deal');
-                                return <Deal key={i} endTime={v.end_date} />;
+                                return <Deal key={i} products={v.products_ids} endTime={v.end_date} />;
                             } else if (v.type === 'list') {
                                 return <List key={i} v={v} />;
                             } else {

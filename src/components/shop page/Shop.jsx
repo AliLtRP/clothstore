@@ -55,9 +55,8 @@ const Shop = () => {
         }
     }
 
-    console.log(data.options);
+    console.log(data);
 
-    console.log(items, 'items');
     return (
         <div className='w-full flex flex-col'>
             <motion.div variants={routeVariants} initial="initial" animate="final" transition={transition}>
@@ -111,8 +110,11 @@ const Shop = () => {
 
                             <div className='w-full flex gap-2 text-sm'>
                                 <p className=' line-through text-[#808488] font-normal'>₹{data.price}</p>
-                                <p className=' font-medium'>₹1,500</p>
-                                <p className=' text-[#FA7189] font-semibold'>50% Off</p>
+                                <p className=' font-medium'>₹{data.final_price}</p>
+                                {
+                                    data.discount && 
+                                <p className=' text-[#FA7189] font-semibold'>{data.discount.value} Off</p>
+                                }
                             </div>
 
                             <p className=' text-sm font-medium'>Product Details</p>
@@ -149,7 +151,7 @@ const Shop = () => {
                                                     <p className=" font-medium text-xs pt-0.5">₹{v.price}</p>
                                                     <div className="w-full flex items-center gap-2">
                                                         <Rating />
-                                                        <p className=" font-normal text-[10px] pt-0.5">{v.rating}</p>
+                                                        <p className=" font-normal text-[10px] pt-0.5">{v.rating || 0}</p>
                                                     </div>
                                                 </div>
                                             </div>

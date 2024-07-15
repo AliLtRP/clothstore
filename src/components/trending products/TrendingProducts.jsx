@@ -60,6 +60,7 @@ const TrendingProducts = () => {
     };
 
     console.log(data);
+    
     return (
         <motion.div variants={routeVariants} initial="initial" animate="final" transition={transition}>
             <div className="w-full flex flex-col mx-auto">
@@ -86,7 +87,7 @@ const TrendingProducts = () => {
                                             <p className="font-medium text-xs pt-0.5">{v.price}</p>
                                             <div className="w-full flex items-center gap-2 mb-1.5">
                                                 <Rating />
-                                                <p className="font-normal text-[10px]">{Math.floor(v.average_rating)}</p>
+                                                <p className="font-normal text-[10px]">{Math.floor(v.rating)}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -104,7 +105,7 @@ const TrendingProducts = () => {
                                             <p className="font-medium text-xs pt-0.5">{v.price}</p>
                                             <div className="w-full flex items-center gap-2 mb-1.5">
                                                 <Rating />
-                                                <p className="font-normal text-[10px]">{Math.floor(v.average_rating)}</p>
+                                                <p className="font-normal text-[10px]">{Math.floor(v.rating)}</p>
                                             </div>
                                         </div>
                                     </div>

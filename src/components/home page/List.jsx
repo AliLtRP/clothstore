@@ -20,8 +20,6 @@ const List = ({ v }) => {
         }
     }, [v]);
 
-    console.log(v, 'v');
-
     return (
         <div className="h-auto flex flex-col gap-3 px-0">
             <div className="w-full flex justify-between items-center">
