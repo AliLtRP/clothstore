@@ -62,6 +62,8 @@ const Cartpage = () => {
       boxShadow: 'none',
       minHeight: '20px',
       height: '20px',
+      // margin: '0px'
+      
     }),
     container: (provided) => ({
       ...provided,
@@ -90,6 +92,7 @@ const Cartpage = () => {
     placeholder: (provided) => ({
       ...provided,
       color: '#000',
+      lineHeight: '0px',
     }),
   };
 
@@ -144,7 +147,7 @@ const Cartpage = () => {
             <p>Order Total</p>
             <p style={{ fontWeight: 'bold' }}>{calculateTotalPrice()}</p>
           </div>
-          <hr className={cartStyle['divider-2']} />
+          <hr className={cartStyle['divider']} />
           <p className={cartStyle['final-address-details']}>Address Details</p>
           <div className={cartStyle['final-address-info']}>
             <p className={cartStyle['final-address-titles']}>Address</p>

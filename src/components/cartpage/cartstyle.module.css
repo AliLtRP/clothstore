@@ -78,6 +78,8 @@
   font-weight: bold;
   font-size: 18px;
   margin-left: 5%;
+  margin-top: 5%;
+
 }
 
 .final-address-info {
@@ -136,4 +138,9 @@
 
 .checkout-screen-body ::placeholder {
   color: #000;
+}
+.divider{
+  opacity: 30%;
+  width: 100%;
+  margin-top: -5px;
 }
