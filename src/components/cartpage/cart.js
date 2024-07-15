@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import blackcart from '../../assets/blackshippingcart.svg';
 import cartStyle from './cartstyle.module.css';
 import Select from 'react-select';
@@ -62,8 +62,6 @@ const Cartpage = () => {
       boxShadow: 'none',
       minHeight: '20px',
       height: '20px',
-      // margin: '0px'
-      
     }),
     container: (provided) => ({
       ...provided,
@@ -109,7 +107,6 @@ const Cartpage = () => {
     navigate('/placeorder');
   };
 
-
   return (
     <div className="max-w-md h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
       <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
@@ -123,21 +120,30 @@ const Cartpage = () => {
             <p className={cartStyle['cart-text']}>Cart Items</p>
           </div>
 
-          {cart.map((item, index) =>  (
+          {cart.map((item, index) => (
             <div key={item.id} className={cartStyle['order-container']}>
               <img src={item.img[0].src} className={cartStyle['order-img']} alt="Order" />
               <div className={cartStyle['order-info']}>
                 <p className={cartStyle['order-title']}>{item.name}</p>
                 <p className={cartStyle['order-desc']}>{item.description}</p>
                 <div className={cartStyle['size-qty-container']}>
-                  <p>
+                  {/* <h6 className={cartStyle['size-info']}> */}
+                  <h6 className={'px-2 py-4 text-center'}>
                     Size <b>{item.size}</b>
-                  </p>
-                  <p>
-                    <button className={cartStyle['qty-btn']} onClick={() => handleDecrement(index)}>-</button>
-                    <b>{quantities[index]}</b>
-                    <button className={cartStyle['qty-btn']} onClick={() => handleIncrement(index)}>+</button>
-                  </p>
+                  </h6>
+                  <div className="w-full"> 
+                    <div className="w-[70%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
+                      <button className="text-2xl" onClick={() => handleDecrement(index)}>
+                        -
+                      </button>
+                      <p className=" text-sm px-2 py-1 bg-white rounded-md font-medium">
+                        {quantities[index]}
+                      </p>
+                      <button className="text-2xl" onClick={() => handleIncrement(index)}>
+                        +
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -163,7 +169,7 @@ const Cartpage = () => {
               value={selectedCity}
               onChange={handleCityChange}
               options={cityOptions}
-              placeholder="Choose your city here"
+              placeholder={selectedCity || "Choose your city here"}  
               styles={customStyles}
             />
             <p className={cartStyle['final-address-titles']}>Country</p>

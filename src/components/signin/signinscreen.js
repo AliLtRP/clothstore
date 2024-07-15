@@ -4,6 +4,7 @@ import { useState } from 'react';
 import signinStyle from './signinstyle.module.css'; 
 import eye from '../../assets/eye.svg'
 import axios from 'axios';
+import client from './../../api/axios'
 
 const Signinscreen = () => {
   const [username_or_email , setUsername_or_password] = useState('');
@@ -23,7 +24,7 @@ const Signinscreen = () => {
     };
 
     try{
-      const response = await axios.post('http://localhost:3000/login',requestBody);
+      const response = await client.post('login',requestBody);
       const { success, token } = response.data;
 
       if (!success) {
