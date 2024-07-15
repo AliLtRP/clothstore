@@ -8,6 +8,8 @@ import Footer from '../home page/Footer';
 import useCartStore from '../../provider/zustand';
 import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
+import client from './../../api/axios'
+
 
 
 const Shipping = () => {
@@ -51,7 +53,7 @@ const Shipping = () => {
     
     
     try {
-      const response = await axios.post('http://localhost:3000/order', requestBody , {
+      const response = await client.post('order', requestBody , {
         headers: {
           'Authorization': localStorage.getItem('token') 
         }

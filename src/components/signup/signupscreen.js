@@ -4,6 +4,7 @@ import eye from '../../assets/eye.svg';
 import signupStyle from './signupstyle.module.css'; 
 import { useState } from 'react';
 import axios from 'axios';
+import client from '../../api/axios';
 
 const Signupscreen = () => {
 
@@ -33,7 +34,7 @@ const Signupscreen = () => {
 
     try {
 
-      const response = await axios.post('http://localhost:3000/register',requestBody);
+      const response = await client.post('register',requestBody);
       console.log(response.data);
       navigate('/signin'); 
 

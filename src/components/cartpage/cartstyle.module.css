@@ -15,7 +15,7 @@
 
 .blackcart-icon {
   margin-right: 1%;
-  margin-left: -5%;
+  margin-left: -10%;
 }
 
 .cart-items {
@@ -34,16 +34,18 @@
   height: auto;
   border: solid #f0f0f0;
   border-radius: 10px;
-  padding: 10px;
+  padding: 0 5px;
   display: flex;
   align-items: center;
   margin: 10px auto;
 }
 
 .order-img {
-  width: 100px;
-  height: 100px;
-  margin-left: -1%;
+  width: 80px;
+  height: auto;
+  border-radius: 5px;
+  margin-right: 5px;
+  margin-left: 5px;
 }
 
 .order-info {
@@ -55,10 +57,7 @@
 
 .order-title {
   font-weight: bold;
-}
-
-.order-desc {
-  
+  margin-top: 5%;
 }
 
 .size-qty-container {
@@ -114,6 +113,7 @@
   padding: 15px;
   width: 90%; 
   cursor: pointer;
+  bottom: 0;
 }
 
 .final-address-titles {
@@ -143,4 +143,9 @@
   opacity: 30%;
   width: 100%;
   margin-top: -5px;
+}
+.size-info{
+  background-color: #f2f2f2;
+  padding: 10px;
+  border-radius: 4px;
 }
