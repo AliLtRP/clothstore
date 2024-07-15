@@ -61,7 +61,7 @@
   }
   
   .order-container {
-    width: 90%;
+    width: 100%;
     height: auto;
     border: solid #f0f0f0;
     border-radius: 10px;
@@ -75,6 +75,7 @@
     width: 100px;
     height: auto;
     margin-right: 10px;
+    border-radius: 7px;
   }
   
   .order-info {
