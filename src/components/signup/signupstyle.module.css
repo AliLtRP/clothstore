@@ -21,7 +21,7 @@
     margin: 0 auto;
     font-size: 18px;
     background-color: #F3F3F3;
-    width: 90%;
+    width: 100%;
     border: 1px solid #ccc;
     border-radius: 10px;
     margin-bottom:20px;
@@ -39,8 +39,8 @@
   color: #fff;
   border: none;
   border-radius: 5px;
-  width: 100%;
-  max-width: 380px; 
+  width: 90%;
+  max-width: 375px; 
   padding: 15px;
   cursor: pointer;
 
@@ -70,7 +70,7 @@
   }
   
   .signup-password-input {
-    width: 90%;
+    width: 100%;
     padding: 20px 8px 20px 40px;
     background-color: #F3F3F3;
     background-image: url("../../assets/pass.png");
