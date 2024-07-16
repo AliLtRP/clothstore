@@ -30,7 +30,7 @@
 }
 
 .order-container {
-  width: 90%; 
+  width: 100%; 
   height: auto;
   border: solid #f0f0f0;
   border-radius: 10px;
@@ -85,6 +85,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  
 }
 
 .final-address-input,
@@ -100,7 +101,7 @@
   margin-top: 1%;
 }
 
-.continue-checkout {
+.checkoutbtn {
   font-family: 'Montserrat', sans-serif;
   display: block;
   margin: 30px auto;
@@ -114,6 +115,10 @@
   width: 90%; 
   cursor: pointer;
   bottom: 0;
+}
+.loading{
+  background-color : #750417;
+
 }
 
 .final-address-titles {
@@ -143,9 +148,29 @@
   opacity: 30%;
   width: 100%;
   margin-top: -5px;
+  color: #F6F6F7;
 }
 .size-info{
   background-color: #f2f2f2;
   padding: 10px;
   border-radius: 4px;
+}
+.emptycart{
+  margin-left: 5%;
+  color: #f83758;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  position: absolute;
+  bottom: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  border-color: red ;
+  background-color: #f3d3d3;
+  padding : 10px ;
+  text-wrap: nowrap;
+  
 }
