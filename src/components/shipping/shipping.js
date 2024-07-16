@@ -6,7 +6,6 @@ import rupee from '../../assets/currency_rupee.svg';
 import Popup from '../popupsuccess/popup';
 import Footer from '../home page/Footer';
 import useCartStore from '../../provider/zustand';
-import axios from 'axios';
 import { jwtDecode } from 'jwt-decode';
 import client from './../../api/axios'
 

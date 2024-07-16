@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import client from "../../api/axios";
 import { motion } from "framer-motion";
 import { useRelated } from "../../provider/zustand";
+import Skeleton from "react-loading-skeleton";
 
 
 const TrendingProducts = () => {
@@ -13,7 +14,9 @@ const TrendingProducts = () => {
     const { state } = useLocation();
     const [data, setData] = useState([]);
     const { setItems } = useRelated();
+    const[loading, setLoading] = useState();
 
+    console.log(state.id);
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -31,6 +34,7 @@ const TrendingProducts = () => {
     }, [state]);
 
     const preprocessData = (data) => {
+        console.log(data, 'preprocessData');
         const leftAlign = [];
         const rightAlign = [];
         data.forEach((item, index) => {
@@ -59,8 +63,6 @@ const TrendingProducts = () => {
         ease: [0.43, 0.3, 0.23, 0.96]
     };
 
-    console.log(data);
-    
     return (
         <motion.div variants={routeVariants} initial="initial" animate="final" transition={transition}>
             <div className="w-full flex flex-col mx-auto">
@@ -71,7 +73,8 @@ const TrendingProducts = () => {
                         </div>
                         <p className="text-black font-semibold text-lg leading-4 h-5 pt-0.5 text-end">Top Rate</p>
                     </div>
-                    <hr className="w-full" />
+
+                    <div className="w-full border-[0.6px] bg-[#C6C6C6]"/>
                 </Container>
 
                 <Container>

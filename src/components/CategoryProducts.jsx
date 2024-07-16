@@ -58,6 +58,7 @@ const CategoryProducts = () => {
         ease: [0.43, 0.3, 0.23, 0.96]
     };
 
+    console.log(data);
 
     return (
         <div className="w-full flex flex-col mx-auto">
@@ -85,7 +86,7 @@ const CategoryProducts = () => {
                                             <p className="font-medium text-xs pt-0.5">{v.price}</p>
                                             <div className="w-full flex items-center gap-2 mb-1.5">
                                                 <Rating />
-                                                <p className="font-normal text-[10px]">{Math.floor(v.average_rating)}</p>
+                                                <p className="font-normal text-[10px]">{Math.floor(v.average_rating) || 0}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -103,7 +104,7 @@ const CategoryProducts = () => {
                                             <p className="font-medium text-xs pt-0.5">{v.price}</p>
                                             <div className="w-full flex items-center gap-2 mb-1.5">
                                                 <Rating />
-                                                <p className="font-normal text-[10px]">{Math.floor(v.average_rating)}</p>
+                                                <p className="font-normal text-[10px]">{Math.floor(v.average_rating) || 0}</p>
                                             </div>
                                         </div>
                                     </div>

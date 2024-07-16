@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import signinStyle from "./signinstyle.module.css";
 import eye from "../../assets/eye.svg";
 import eyeoff from "../../assets/eyeoff.svg";
@@ -8,7 +8,6 @@ import client from "../../api/axios";
 const Signinscreen = () => {
   const [username_or_email, setUsername_or_password] = useState("");
   const [password, setPassword] = useState("");
-  const [active, setActive] = useState("");
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
@@ -59,6 +58,19 @@ const Signinscreen = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const checkAuth = async() => {
+    await client.get('check')
+      .then((res) => {
+        console.log(res.data);
+        navigate("/getstarted");
+      })
+      .catch(e => console.log(e));
+  }
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+
   const eyeicon = (
     <img src={eye} className={signinStyle.eyeicon} alt="eye icon" />
   );
@@ -93,14 +105,14 @@ const Signinscreen = () => {
               className={passwordVisible ? signinStyle.eyeoff : signinStyle.eyeicon}
               alt="eye icon"
               onClick={togglePasswordVisibility}
-            />{" "}
+            />
           </div>
           <p className={signinStyle.forgetpass}>Forgot password?</p>
         </div>
         <div>
           <p className={signinStyle.createacc}>
             Create an account{" "}
-            <a onClick={handleSignUpClick} className={signinStyle.signuplink}>
+            <a onClick={handleSignUpClick} className={" hover:cursor-pointer " + signinStyle.signuplink}>
               Sign Up
             </a>
           </p>

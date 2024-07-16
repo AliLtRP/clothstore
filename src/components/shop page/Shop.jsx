@@ -55,8 +55,6 @@ const Shop = () => {
         }
     }
 
-    console.log(data);
-
     return (
         <div className='w-full flex flex-col'>
             <motion.div variants={routeVariants} initial="initial" animate="final" transition={transition}>
@@ -99,7 +97,7 @@ const Shop = () => {
                             <p className=' font-bold text-base'>{Object.keys(data.options[0])} : {data.options[0].color}</p>
                         }
 
-                        <div className='mt-1.5 flex flex-col gap-2'>
+                        <div className='flex flex-col gap-2.5'>
                             <p className=' font-bold text-xl'>{data.name}</p>
                             <p className=' font-normal text-sm'>{data.description}</p>
 
@@ -117,7 +115,7 @@ const Shop = () => {
                                 }
                             </div>
 
-                            <p className=' text-sm font-medium'>Product Details</p>
+                            <p className=' text-sm font-medium mb-0.5'>Product Details</p>
 
                             <p className=' text-xs font-normal'>
                                 {data.description}
