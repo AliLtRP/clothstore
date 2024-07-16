@@ -51,10 +51,6 @@ const Shipping = () => {
 
     console.log("req body",requestBody);
 
-    
-
-    
-    
     try {
       const response = await client.post('order', requestBody , {
         headers: {
@@ -73,9 +69,8 @@ const Shipping = () => {
        
       }
     } catch (error) {
+      console.error('Error placing order:', error);
      setError('Network Error.');
-
-     
     }
     setLoading(false);
   };
