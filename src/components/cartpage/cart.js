@@ -23,9 +23,13 @@ const Cartpage = () => {
   } = useCartStore();
 
   const navigate = useNavigate();
+  const [addressError, setAddressError] = useState(false);
+  const [cartError , setCartError] = useState(false);
+
 
   const handleAddressChange = (event) => {
     setAddress(event.target.value);
+    setAddressError(false);
   };
 
   const handleCityChange = (selectedOption) => {
@@ -35,6 +39,7 @@ const Cartpage = () => {
     } else {
       setCityAndCountry(null, "");
     }
+    setAddressError(false);
   };
 
   const handleIncrement = (index) => {
@@ -42,7 +47,9 @@ const Cartpage = () => {
   };
 
   const handleDecrement = (index) => {
-    decrementQuantity(index);
+    if (quantities[index] > 1) {
+      decrementQuantity(index);
+    }
   };
 
   const cityCountryMap = {
@@ -101,6 +108,21 @@ const Cartpage = () => {
 
   const handleCheckOutClick = () => {
 
+    if (!address || !selectedCity || !selectedCountry) {
+      setAddressError(true);
+      setTimeout(() => {
+        setAddressError(false);
+      }, 3000);
+      return;
+    }
+    if (cart.length === 0) {
+      setCartError(true);
+      setTimeout(() => {
+        setCartError(false);
+      }, 3000);
+      return;
+    }
+
     const checkoutData = {
       cart,
       quantities,
@@ -131,7 +153,7 @@ const Cartpage = () => {
           </div>
 
           {cart.length === 0 ? (
-            <p className={cartStyle["empty-cart-text"]}>Your cart is empty</p>
+            <p className={cartStyle["emptycart"]}>Your cart is empty</p>
           ) : (
             cart.map((item, index) => (
               <div key={item.id} className={cartStyle["order-container"]}>
@@ -148,10 +170,11 @@ const Cartpage = () => {
                       Size <b>{item.size}</b>
                     </h6>
                     <div className="w-full">
-                      <div className="w-[70%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
+                      <div className="w-[50%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
                         <button
                           className="text-2xl"
                           onClick={() => handleDecrement(index)}
+                          disabled={quantities[index] <= 0}
                         >
                           -
                         </button>
@@ -203,10 +226,21 @@ const Cartpage = () => {
               readOnly
             />
           </div>
+          {addressError && !cartError && (
+            <p className={cartStyle["error"]}>
+              Please fill in all address details.
+            </p>
+          )}
+          {cartError && !addressError && (
+            <p className={cartStyle["error"]}>
+              Your cart is empty, please put item in cart.
+            </p>
+          )}
+          
           <button
-            className={cartStyle.checkoutbtn} 
+            className={cartStyle.checkoutbtn}
             onClick={handleCheckOutClick}
-            disabled={cart.length === 0}
+            // disabled={cart.length === 0}
           >
             Checkout
           </button>
