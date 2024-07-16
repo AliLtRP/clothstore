@@ -1,29 +1,26 @@
 import { useNavigate } from 'react-router-dom';
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import signinStyle from './signinstyle.module.css';
-import eye from '../../assets/eye.svg'
-import axios from 'axios';
+import eye from '../../assets/eye.svg';
 import client from '../../api/axios';
-
 
 const Signinscreen = () => {
   const [username_or_email, setUsername_or_password] = useState('');
   const [password, setPassword] = useState('');
   const [active, setActive] = useState('');
   const [error, setError] = useState(null);
-
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleLoginClick = async (event) => {
     event.preventDefault();
+    setLoading(true); 
 
     const requestBody = {
       username_or_email: username_or_email,
-      password: password
+      password: password,
     };
-
 
     try {
       const response = await client.post('login', requestBody);
@@ -31,25 +28,32 @@ const Signinscreen = () => {
 
       if (!success) {
         setError('User is not active or other error occurred');
+        setLoading(false); 
         return;
       }
 
       localStorage.setItem('token', token);
-
       navigate('/getstarted');
-
     } catch (error) {
-      setError(error.response ? error.response.data : error.message);
-
+      if (error.response) {
+        if (error.response.status === 400) {
+          setError('Incorrect username or password');
+        } else {
+          setError('Request error');
+        }
+      } else {
+        setError(`Network Error`);
+      }
+      setLoading(false); 
     }
-
   };
 
   const handleSignUpClick = (event) => {
     event.preventDefault();
     navigate('/signup');
   };
-  const eyeicon = <img src={eye} className={signinStyle.eyeicon} alt="eye icon" />
+
+  const eyeicon = <img src={eye} className={signinStyle.eyeicon} alt="eye icon" />;
 
   return (
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
@@ -79,11 +83,18 @@ const Signinscreen = () => {
         <div>
           <p className={signinStyle.createacc}>Create an account <a onClick={handleSignUpClick} className={signinStyle.signuplink}>Sign Up</a></p>
         </div>
-        <button className={signinStyle.Loginbtn} onClick={handleLoginClick}>Login</button>
+        <button
+          className={`${signinStyle.Loginbtn} ${loading ? signinStyle.loading : ''}`}
+          onClick={handleLoginClick}
+          disabled={loading}
+        >
+          {loading ? 'Loading...' : 'Login'}
+        </button>
+        {error && <p className={signinStyle.error}>{error}</p>}
       </div>
     </div>
-
   );
 };
 
 export default Signinscreen;
+
