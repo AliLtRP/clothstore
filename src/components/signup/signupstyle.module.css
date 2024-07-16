@@ -80,7 +80,7 @@
     border-radius: 10px;
   }
   
-  .signup-eye-icon {
+  .eyeicon {
     position: absolute;
     right: 10%;
     top: 37%;
@@ -102,4 +102,29 @@
     transform: translateX(-50%);
     white-space: nowrap;
   }
-  
+  .loading{
+    background-color : #750417;
+  }
+  .error {
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    border-color: red ;
+    background-color: #f3d3d3;
+    padding : 10px ;
+    text-wrap: nowrap;
+    
+  }
+  .eyeoff{
+    position: absolute;
+    right: 9%;
+    top: 45%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    width:28px;
+    height: auto;
+  }
