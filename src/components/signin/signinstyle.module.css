@@ -81,6 +81,15 @@
   transform: translateY(-50%);
   cursor: pointer;
 }
+.eyeoff{
+  position: absolute;
+  right: 9%;
+  top: 45%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width:28px;
+  height: auto;
+}
 
 .forgetpass {
   margin-left: 200px;
@@ -103,7 +112,7 @@
   color: red;
   font-weight: bold;
   position: absolute;
-  bottom: 200px;
+  bottom: 20%;
   left: 50%;
   transform: translateX(-50%);
   border-radius: 5px;
