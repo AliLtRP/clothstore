@@ -13,6 +13,7 @@ const Signinscreen = () => {
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
 
+
   const navigate = useNavigate();
 
   const handleLoginClick = async (event) => {
@@ -58,10 +59,6 @@ const Signinscreen = () => {
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
   };
-
-  const eyeicon = (
-    <img src={eye} className={signinStyle.eyeicon} alt="eye icon" />
-  );
 
   return (
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">

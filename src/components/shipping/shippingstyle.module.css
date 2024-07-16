@@ -111,3 +111,20 @@
     margin-left: 5%;
 
   }
+  .loading{
+    background-color : #750417;
+  }
+  .error {
+    color: red;
+    font-weight: bold;
+    position: absolute;
+    bottom: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 5px;
+    border-color: red ;
+    background-color: #f3d3d3;
+    padding : 10px ;
+    text-wrap: nowrap;
+    
+  }

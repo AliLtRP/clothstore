@@ -15,7 +15,8 @@ import client from './../../api/axios'
 const Shipping = () => {
   const navigate = useNavigate();
   const orderDetails = useCartStore((state) => state.orderDetails);
-
+  const [loading , setLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
 
   const handleBackArrow = () => {
@@ -32,7 +33,9 @@ const Shipping = () => {
       console.log("Decoded User ID:", userId);
     }
 
-  const handleContinue = async () => {    
+  const handleContinue = async () => {  
+    setLoading(true);
+  
     const requestBody = {
       
       items:orderDetails.cart,
@@ -65,13 +68,16 @@ const Shipping = () => {
         console.log('Order placed successfully:', response.data);
         setShowPopup(true); 
       } else {
-        console.error('Failed to place order:', response.statusText);
+        console.error('Error placing order:', error);        
+        setError('Failed to place order. .');
        
       }
     } catch (error) {
-      console.error('Error placing order:', error);
+     setError('Network Error.');
+
      
     }
+    setLoading(false);
   };
 
 
@@ -84,59 +90,88 @@ const Shipping = () => {
   const currencyDarker = <img src={rupee} style={{ width: '10px', marginRight: '5px' }} alt="Rupee" />;
 
   return (
-    
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
       <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
-      <div className={shippingStyle['shipping-screen-body']}>
-      <div className={shippingStyle['shipping-container']}>
-        <div className={shippingStyle['checkout-navbar']}>
-          <img src={back} className={shippingStyle['left-arrow']} alt="Back" onClick={handleBackArrow} />
-          <p className={shippingStyle['checkout-title']}>Checkout</p>
-        </div>
-        <hr className={shippingStyle['divider']} />
-        <div className={shippingStyle['final-order-total']}>
-          <div className={shippingStyle['final-payment-details']}>
-            <p>Order</p>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              {currency}
-              <p>{orderDetails.totalPrice}</p>
+        <div className={shippingStyle["shipping-screen-body"]}>
+          <div className={shippingStyle["shipping-container"]}>
+            <div className={shippingStyle["checkout-navbar"]}>
+              <img
+                src={back}
+                className={shippingStyle["left-arrow"]}
+                alt="Back"
+                onClick={handleBackArrow}
+              />
+              <p className={shippingStyle["checkout-title"]}>Checkout</p>
+            </div>
+            <hr className={shippingStyle["divider"]} />
+            <div className={shippingStyle["final-order-total"]}>
+              <div className={shippingStyle["final-payment-details"]}>
+                <p>Order</p>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  {currency}
+                  <p>{orderDetails.totalPrice}</p>
+                </div>
+              </div>
+              <div className={shippingStyle["final-payment-details"]}>
+                <p>Shipping</p>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  {currency}
+                  <p>0</p>
+                </div>
+              </div>
+              <div className={shippingStyle["final-total-details"]}>
+                <p>Total</p>
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  {currencyDarker}
+                  <p>{orderDetails.totalPrice}</p>
+                </div>
+              </div>
+              <hr className={shippingStyle["divider-2"]} />
+              <p className={shippingStyle["final-address-details"]}>
+                Address Details
+              </p>
+              <div className={shippingStyle["final-address-info"]}>
+                <p className={shippingStyle["final-address-titles"]}>Address</p>
+                <input
+                  className={shippingStyle["final-address-input"]}
+                  placeholder={orderDetails.address}
+                  value={orderDetails.address}
+                  readOnly
+                />
+                <p className={shippingStyle["final-address-titles"]}>City</p>
+                <input
+                  className={shippingStyle["final-city-input"]}
+                  placeholder={orderDetails.selectedCity}
+                  value={orderDetails.selectedCity}
+                  readOnly
+                />
+                <p className={shippingStyle["final-address-titles"]}>Country</p>
+                <input
+                  className={shippingStyle["final-country-input"]}
+                  placeholder={orderDetails.selectedCountry}
+                  value={orderDetails.selectedCountry}
+                  readOnly
+                />
+              </div>
+              <button
+                className={`${shippingStyle["continue-payment"]} ${loading ? shippingStyle["loading"]:''}`}
+                onClick={handleContinue}
+                disabled={loading}
+              >
+         {loading ? 'Loading...' : 'Continue'}
+              </button>
+              {error && <p className={shippingStyle['error']}>{error}</p>}
+              <Footer path={"cart"}></Footer>
             </div>
           </div>
-          <div className={shippingStyle['final-payment-details']}>
-            <p>Shipping</p>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              {currency}
-              <p>0</p>
-            </div>
-          </div>
-          <div className={shippingStyle['final-total-details']}>
-            <p>Total</p>
-            <div style={{ display: 'flex', alignItems: 'center' }}>
-              {currencyDarker}
-              <p>{orderDetails.totalPrice}</p>
-            </div>
-          </div>
-          <hr className={shippingStyle['divider-2']} />
-          <p className={shippingStyle['final-address-details']}>Address Details</p>
-          <div className={shippingStyle['final-address-info']}>
-            <p className={shippingStyle['final-address-titles']}>Address</p>
-            <input className={shippingStyle['final-address-input']} placeholder={orderDetails.address} value={orderDetails.address} readOnly />
-            <p className={shippingStyle['final-address-titles']}>City</p>
-            <input className={shippingStyle['final-city-input']} placeholder={orderDetails.selectedCity} value={orderDetails.selectedCity} readOnly />
-            <p className={shippingStyle['final-address-titles']}>Country</p>
-            <input className={shippingStyle['final-country-input']} placeholder={orderDetails.selectedCountry} value={orderDetails.selectedCountry} readOnly />
-          </div>
-          <button className={shippingStyle['continue-payment']} onClick={handleContinue}>Continue</button>
-          <Footer
-           path={'cart'} 
-           ></Footer>
+          <Popup
+            message="Payment done successfully."
+            open={showPopup}
+            onClose={closePopup}
+          />
         </div>
       </div>
-      <Popup message="Payment done successfully." open={showPopup} onClose={closePopup} />
     </div>
-    </div>
-    </div>
-    
   );
 }
 
