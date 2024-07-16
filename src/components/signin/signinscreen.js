@@ -59,6 +59,19 @@ const Signinscreen = () => {
     setPasswordVisible(!passwordVisible);
   };
 
+  const checkAuth = async() => {
+    await client.get('check')
+      .then((res) => {
+        console.log(res.data);
+        navigate("/getstarted");
+      })
+      .catch(e => console.log(e));
+  }
+
+  useEffect(() => {
+    checkAuth();
+  }, []);
+  
   return (
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
       <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">

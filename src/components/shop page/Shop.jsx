@@ -8,6 +8,7 @@ import client from '../../api/axios';
 import useCartStore, { useRelated } from '../../provider/zustand';
 import { motion } from "framer-motion";
 import "../../index.css";
+import SvgComponent from './icons/Plus';
 
 const Shop = () => {
     const [data, setData] = useState([]);
@@ -127,7 +128,8 @@ const Shop = () => {
                                     <div className='w-[70%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2'>
                                         <button className='text-2xl' onClick={() => handleRemoveQuantity()}>-</button>
                                         <p className=' text-sm px-2 py-1 bg-white rounded-md font-medium'>{quantity}</p>
-                                        <button className='text-2xl' onClick={() => setQuantity(quantity + 1)}>+</button>
+                                        <SvgComponent />
+                                        {/* <button className='text-2xl' onClick={() => setQuantity(quantity + 1)}>+</button> */}
                                     </div>
                                 </div>
                                 <button className=' bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full' onClick={handleItem}>Add to Cart</button>
