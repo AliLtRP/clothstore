@@ -24,7 +24,7 @@ const Cartpage = () => {
 
   const navigate = useNavigate();
   const [addressError, setAddressError] = useState(false);
-  const [cartError , setCartError] = useState(false);
+  const [cartError, setCartError] = useState(false);
 
 
   const handleAddressChange = (event) => {
@@ -94,8 +94,8 @@ const Cartpage = () => {
       backgroundColor: state.isSelected
         ? "#F83758"
         : state.isFocused
-        ? "#E0E0E0"
-        : "#FFF",
+          ? "#E0E0E0"
+          : "#FFF",
       color: state.isSelected ? "#FFF" : "#000",
       padding: "8px 12px",
     }),
@@ -201,30 +201,32 @@ const Cartpage = () => {
           </div>
           <hr className={cartStyle["divider"]} />
           <p className={cartStyle["final-address-details"]}>Address Details</p>
-          <div className={cartStyle["final-address-info"]}>
-            <p className={cartStyle["final-address-titles"]}>Address</p>
+          <div className={cartStyle["final-address-info"] + " my-4"}>
+            <p className={cartStyle["final-address-titles"] + " my-2"}>Address</p>
             <input
-              className={cartStyle["final-address-input"]}
+              className={cartStyle["final-address-input"] + " mb-4"}
               placeholder="Write your address here"
               value={address}
               onChange={handleAddressChange}
             />
-            <p className={cartStyle["final-address-titles"]}>City</p>
+            <p className={cartStyle["final-address-titles"] + " my-2"}>City</p>
             <Select
-              className={cartStyle["final-city-input"]}
+              className={cartStyle["final-city-input"] + " mb-[100px]"}
               value={selectedCity}
               onChange={handleCityChange}
               options={cityOptions}
               placeholder={selectedCity || "Choose your city here"}
               styles={customStyles}
             />
-            <p className={cartStyle["final-address-titles"]}>Country</p>
-            <input
-              className={cartStyle["final-country-input"]}
-              value={selectedCountry}
-              placeholder="Choose your country here"
-              readOnly
-            />
+            <div className="w-full my-4 flex flex-col justify-center items-center">
+              <p className={cartStyle["final-address-titles"] + " my-2"}>Country</p>
+              <input
+                className={cartStyle["final-country-input"]}
+                value={selectedCountry}
+                placeholder="Choose your country here"
+                readOnly
+              />
+            </div>
           </div>
           {addressError && !cartError && (
             <p className={cartStyle["error"]}>
@@ -236,11 +238,11 @@ const Cartpage = () => {
               Your cart is empty, please put item in cart.
             </p>
           )}
-          
+
           <button
             className={cartStyle.checkoutbtn}
             onClick={handleCheckOutClick}
-            // disabled={cart.length === 0}
+          // disabled={cart.length === 0}
           >
             Checkout
           </button>

@@ -10,6 +10,7 @@ import { motion } from "framer-motion";
 import "../../index.css";
 import SvgComponent from './icons/Plus';
 import Minus from "./icons/Minus";
+import Skeleton from 'react-loading-skeleton';
 
 
 const Shop = () => {
@@ -19,11 +20,17 @@ const Shop = () => {
     const { cart, addToCart } = useCartStore();
     const [quantity, setQuantity] = useState(1);
     const { items } = useRelated();
+    const [loading, setLoading] = useState(true);
 
     const fetchData = async () => {
-        await client.get(`/product?id=${id}`)
-            .then(res => setData(res.data.data))
-            .catch(e => console.log(e));
+        try {
+            const response = await client.get(`/product?id=${id}`);
+            setData(response.data.data);
+        } catch (e) {
+            console.log(e);
+        } finally {
+            setLoading(false);
+        }
     }
 
     useEffect(() => {
@@ -75,8 +82,9 @@ const Shop = () => {
                 <Container>
                     <div className='px-4 pt-1'>
                         {
-                            data.img &&
-                            <img src={data.img[0].src} alt="product image" className=' w-full h-[213px] rounded-2xl object-cover' />
+                            loading ? <Skeleton height={200} className='rounded-2xl' />
+                                :
+                                <img src={data.img[0].src} alt="product image" className=' w-full h-[213px] rounded-2xl object-cover' />
                         }
 
                         <div className='w-full h-8 flex justify-center items-center gap-1'>
@@ -84,7 +92,7 @@ const Shop = () => {
                                 data.img && data.img.map((v, i) => {
                                     return (
                                         <>
-                                            <i className='rounded-full bg-[#F83758] p-[5px]' />
+                                            <i className='rounded-full bg-[#F83758] p-[5px]' key={i} />
                                         </>
                                     )
                                 })
@@ -96,75 +104,93 @@ const Shop = () => {
                 <Container>
                     <div className='p-4 flex flex-col gap-3'>
                         {
-                            data.options &&
-                            <p className=' font-bold text-base'>{Object.keys(data.options[0])} : {data.options[0].color}</p>
+                            loading ? <Skeleton height={50} /> :
+                                <p className=' font-bold text-base'>{Object.keys(data.options[0])} : {data.options[0].color}</p>
                         }
 
-                        <div className='flex flex-col gap-3'>
-                            <p className=' font-bold text-xl'>{data.name}</p>
-                            <p className=' font-normal text-sm'>{data.description}</p>
+                        {
+                            loading ?
+                                <Skeleton height={250} />
+                                :
+                                <div className='flex flex-col gap-3'>
+                                    <p className=' font-bold text-xl'>{data.name}</p>
+                                    <p className=' font-normal text-sm'>{data.description}</p>
 
-                            <div className='w-full flex gap-1.5 items-center'>
-                                <Rating />
-                                <p className=' text-[#828282] font-medium text-sm'>{data.rating}</p>
-                            </div>
-
-                            <div className='w-full flex gap-2 text-sm'>
-                                <p className=' line-through text-[#808488] font-normal'>₹{data.price}</p>
-                                <p className=' font-medium'>₹{data.final_price}</p>
-                                {
-                                    data.discount &&
-                                    <p className=' text-[#FA7189] font-semibold'>{data.discount.value} Off</p>
-                                }
-                            </div>
-
-                            <p className=' text-sm font-medium mb-0.5'>Product Details</p>
-
-                            <p className=' text-xs font-normal'>
-                                {data.description}
-                            </p>
-
-                            <div className='w-full flex items-end'>
-                                <div className='w-full'>
-                                    <p className=' font-semibold text-sm mt-1.5'>Select Quantity</p>
-                                    <div className='w-[70%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2'>
-                                        <div className='h-10 w-auto flex items-center' onClick={() => handleRemoveQuantity()}>
-                                            <Minus />
-                                        </div>
-                                        <p className=' text-sm px-2 py-1 bg-white rounded-md font-medium'>{quantity}</p>
-                                        <div className='h-10 w-auto flex items-center' onClick={() => setQuantity(quantity + 1)}>
-                                            <SvgComponent />
-                                        </div>
+                                    <div className='w-full flex gap-1.5 items-center'>
+                                        <Rating />
+                                        <p className=' text-[#828282] font-medium text-sm'>{data.rating}</p>
                                     </div>
-                                </div>
-                                <button className=' bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full' onClick={handleItem}>Add to Cart</button>
-                            </div>
-                        </div>
 
-                        <p className=' text-xl font-semibold mt-8'>Similar To</p>
+                                    <div className='w-full flex gap-2 text-sm'>
+                                        <p className=' line-through text-[#808488] font-normal'>₹{data.price}</p>
+                                        <p className=' font-medium'>₹{data.final_price}</p>
+                                        {
+                                            data.discount &&
+                                            <p className=' text-[#FA7189] font-semibold'>{data.discount.value} Off</p>
+                                        }
+                                    </div>
 
-                        <div className='w-full flex gap-4 overflow-y-scroll no-scrollbar'>
-                            {
-                                items && items.map((v, i) => {
-                                    return (
-                                        <Link to={`/shop/${v.id}`}>
-                                            <div className=" w-40 min-h-[245px] h-auto pb-0.5 rounded-lg mb-3 shadow-md container ">
-                                                <img src={v.img[0].src} alt="" className="w-full h-[140px] rounded-lg object-cover" />
-                                                <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
-                                                    <p className="font-medium text-base text-[10px]">{v.name}</p>
-                                                    <p className=" font-normal text-[10px]">{v.description}</p>
-                                                    <p className=" font-medium text-xs pt-0.5">₹{v.price}</p>
-                                                    <div className="w-full flex items-center gap-2">
-                                                        <Rating />
-                                                        <p className=" font-normal text-[10px] pt-0.5">{v.rating || 0}</p>
-                                                    </div>
+                                    <p className=' text-sm font-medium mb-0.5'>Product Details</p>
+
+                                    <p className=' text-xs font-normal'>
+                                        {data.description}
+                                    </p>
+
+                                    <div className='w-full flex items-end'>
+                                        <div className='w-full'>
+                                            <p className=' font-semibold text-sm mt-1.5'>Select Quantity</p>
+                                            <div className='w-[70%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2'>
+                                                <div className='h-10 w-auto flex items-center' onClick={() => handleRemoveQuantity()}>
+                                                    <Minus />
+                                                </div>
+                                                <p className=' text-sm px-2 py-1 bg-white rounded-md font-medium'>{quantity}</p>
+                                                <div className='h-10 w-auto flex items-center' onClick={() => setQuantity(quantity + 1)}>
+                                                    <SvgComponent />
                                                 </div>
                                             </div>
-                                        </Link>
-                                    )
-                                })
-                            }
-                        </div>
+                                        </div>
+                                        <button className=' bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full' onClick={handleItem}>Add to Cart</button>
+                                    </div>
+                                </div>
+                        }
+
+                        {
+                            loading ?
+                                <>
+                                    <Skeleton height={50} className='mt-8' />
+                                    <div className='w-full flex gap-3 overflow-y-scroll no-scrollbar'>
+                                        <Skeleton height={200} width={160} />
+                                        <Skeleton height={200} width={160} />
+                                        <Skeleton height={200} width={160} />
+                                    </div>
+                                </>
+                                :
+                                <>
+                                    <p className=' text-xl font-semibold mt-8'>Similar To</p>
+                                    <div className='w-full flex gap-4 overflow-y-scroll no-scrollbar'>
+                                        {
+                                            items.map((v, i) => {
+                                                return (
+                                                    <Link to={`/shop/${v.id}`} key={i}>
+                                                        <div className=" w-40 min-h-[245px] h-auto pb-0.5 rounded-lg mb-3 shadow-md container ">
+                                                            <img src={v.img[0].src} alt="" className="w-full h-[140px] rounded-lg object-cover" />
+                                                            <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
+                                                                <p className="font-medium text-base text-[10px]">{v.name}</p>
+                                                                <p className=" font-normal text-[10px]">{v.description}</p>
+                                                                <p className=" font-medium text-xs pt-0.5">₹{v.price}</p>
+                                                                <div className="w-full flex items-center gap-2">
+                                                                    <Rating />
+                                                                    <p className=" font-normal text-[10px] pt-0.5">{v.rating || 0}</p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </Link>
+                                                )
+                                            })
+                                        }
+                                    </div>
+                                </>
+                        }
                     </div>
                 </Container>
             </motion.div>

@@ -38,7 +38,7 @@ const HomePage = () => {
                     <MicSVG className="absolute top-2/4 right-2.5 translate-x-[-50%] translate-y-[-50%]" />
                 </div>
                 <div className="w-full h-auto gap-2">
-                    {loading ? <Skeleton height={60} /> : <Categories />}
+                    {loading ? <Skeleton height={80} /> : <Categories />}
                 </div>
 
                 <div className="h-full flex flex-col gap-12 mt-2">
