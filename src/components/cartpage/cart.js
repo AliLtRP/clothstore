@@ -156,7 +156,7 @@ const Cartpage = () => {
             <p className={cartStyle["emptycart"]}>Your cart is empty</p>
           ) : (
             cart.map((item, index) => (
-              <div key={item.id} className={cartStyle["order-container"]}>
+              <div key={item.id} className={cartStyle["order-container"] + " "}>
                 <img
                   src={item.img[0].src}
                   className={cartStyle["order-img"]}

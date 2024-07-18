@@ -149,7 +149,7 @@ const Shop = () => {
                                                 </div>
                                             </div>
                                         </div>
-                                        <button className=' bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full' onClick={handleItem}>Add to Cart</button>
+                                        <button className=' bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full active:bg-[#f51e42] hover:cursor-pointer' onClick={handleItem}>Add to Cart</button>
                                     </div>
                                 </div>
                         }
