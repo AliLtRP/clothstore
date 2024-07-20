@@ -39,7 +39,6 @@ const List = ({ v }) => {
                     <div className="w-full h-72 flex gap-3 flex-nowrap overflow-x-scroll no-scrollbar">
                         {
                             v.products_ids.map((v, i) => {
-                                { console.log(v) }
                                 return (
                                     <Link to={`/shop/${v.id}`} key={i}>
                                         {

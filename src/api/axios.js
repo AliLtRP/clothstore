@@ -5,6 +5,7 @@ const client = axios.create({
     baseURL: "https://clothe-store-backend.onrender.com/",
     headers: {
         "Content-Type": "application/json",
+        "Authorization": localStorage.getItem('token')
     },
 });
 

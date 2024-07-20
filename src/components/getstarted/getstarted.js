@@ -10,7 +10,7 @@ const Getstarted = () => {
   };
 
   return (
-    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+    <div className="min-w-full w-full max-h-[100dvh] montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
       <div className={`${getstartedStyle['getstarted-body']} min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6`}>
         <h1 className={getstartedStyle['getstarted-title']}>
           You want<br /> Authentic, here<br /> you go!

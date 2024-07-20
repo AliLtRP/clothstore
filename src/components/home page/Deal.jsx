@@ -56,10 +56,9 @@ const Deal = ({ products, endTime }) => {
 
                             <div className="w-full flex items-center gap-1.5">
                                 <ClockSvg />
-                                <p className=" text-xs">{`${timeLeft.hours}:${timeLeft.minutes}:${timeLeft.seconds}`}</p>
+                                <p className=" text-xs font-normal pt-[1px]">{`${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s remaining`}</p>
                             </div>
                         </div>
-
                         <button className="border-[1px] border-white rounded-[4px] font-semibold text-white text-xs flex gap-1 items-center px-[10px] py-[15px] h-[28px]" onClick={() => handleNavigate()}>View all <NextSVG /></button>
                     </div>
             }

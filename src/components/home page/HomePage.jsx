@@ -32,13 +32,13 @@ const HomePage = () => {
         <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
             <div className="min-w-[24rem] max-w-sm p-4 flex flex-col gap-6">
                 <NavBar />
-                <div className="w-full flex justify-center relative mt-16">
+                <div className="w-full flex justify-center relative mt-12">
                     <SearchSVG className="absolute top-2/4 left-6 translate-x-[-50%] translate-y-[-50%]" />
-                    <input type="text" placeholder="Search any Product.." className="bg-white w-full p-2 pl-10 rounded-md shadow-sm text-sm text-[#BBBBBB]" />
-                    <MicSVG className="absolute top-2/4 right-1 translate-x-[-50%] translate-y-[-50%]" />
+                    <input type="text" placeholder="Search any Product.." className="bg-white w-full p-2 pl-10 rounded-md box-shadow text-sm text-[#BBBBBB]" />
+                    <MicSVG className="absolute top-2/4 right-2.5 translate-x-[-50%] translate-y-[-50%]" />
                 </div>
                 <div className="w-full h-auto gap-2">
-                    {loading ? <Skeleton height={60} /> : <Categories />}
+                    {loading ? <Skeleton height={80} /> : <Categories />}
                 </div>
 
                 <div className="h-full flex flex-col gap-12 mt-2">
