@@ -93,7 +93,8 @@
 .final-country-input {
   font-family: 'Montserrat', sans-serif;
   width: 90%;
-  padding: 15px 17px;
+  padding: 15px ;
+  height: 48px;
   font-size: 16px;
   font-weight: bold;
   border: 1px solid #ccc;
@@ -145,10 +146,10 @@
   color: #000;
 }
 .divider{
-  opacity: 30%;
+  
   width: 100%;
   margin-top: -5px;
-  color: #F6F6F7;
+  color: #C4C4C4;
 }
 .size-info{
   background-color: #f2f2f2;

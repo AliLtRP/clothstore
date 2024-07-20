@@ -69,11 +69,12 @@ const Cartpage = () => {
       border: "none",
       boxShadow: "none",
       minHeight: "20px",
-      height: "20px",
+      height: "25px",
     }),
     container: (provided) => ({
       ...provided,
       width: "90%",
+      height:"48px",
       margin: "0 auto",
     }),
     valueContainer: (provided) => ({
