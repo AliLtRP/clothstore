@@ -44,37 +44,35 @@ const SplashScreen = () => {
   return (
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
       <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
-      <div className={splashStyle['splash-screen']}>
-      <div className={splashStyle['splash-content']}>
-        <img src={splashCollection[currentIndex].img} alt={splashCollection[currentIndex].label} />
-        <h2>{splashCollection[currentIndex].label}</h2>
-        <p>{splashCollection[currentIndex].description}</p>
-      </div>
-      <div className={splashStyle['splash-navigation']}>
-        <button
-          className={`${splashStyle['splash-navigate']} ${currentIndex === 0 ? splashStyle['splash-navigation-disable'] : ''}`}
-          onClick={prevScreen}
-          disabled={currentIndex === 0}
-        >
-          Prev
-        </button>
-        <div className={splashStyle['dots']}>
-          {splashCollection.map((_, index) => (
-            <span key={index} className={`${splashStyle['dot']} ${index === currentIndex ? splashStyle['active'] : ''}`}></span>
-          ))}
+        <div className={splashStyle['splash-screen']}>
+          <div className={splashStyle['splash-content']}>
+            <img src={splashCollection[currentIndex].img} alt={splashCollection[currentIndex].label} />
+            <h2>{splashCollection[currentIndex].label}</h2>
+            <p>{splashCollection[currentIndex].description}</p>
+          </div>
+          <div className={splashStyle['splash-navigation']}>
+            <button
+              className={`${splashStyle['splash-navigate']} ${currentIndex === 0 ? splashStyle['splash-navigation-disable'] : ''}`}
+              onClick={prevScreen}
+              disabled={currentIndex === 0}
+            >
+              Prev
+            </button>
+            <div className={splashStyle['dots']}>
+              {splashCollection.map((_, index) => (
+                <span key={index} className={`${splashStyle['dot']} ${index === currentIndex ? splashStyle['active'] : ''}`}></span>
+              ))}
+            </div>
+            <button
+              className={`${splashStyle['splash-navigate']} ${currentIndex === splashCollection.length - 1 ? splashStyle['start-btn'] : ''}`}
+              onClick={nextScreen}
+            >
+              {currentIndex === splashCollection.length - 1 ? 'Get Started' : 'Next'}
+            </button>
+          </div>
         </div>
-        <button
-          className={`${splashStyle['splash-navigate']} ${currentIndex === splashCollection.length - 1 ? splashStyle['start-btn'] : ''}`}
-          onClick={nextScreen}
-        >
-          {currentIndex === splashCollection.length - 1 ? 'Get Started' : 'Next'}
-        </button>
       </div>
     </div>
-    </div>
-    </div>
-    
-    
   );
 };
 

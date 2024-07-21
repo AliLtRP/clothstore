@@ -24,6 +24,7 @@
   border: 1px solid #ccc;
   border-radius: 10px;
   margin-bottom: 20px;
+  height: 55px;
 }
 
 .Loginbtn {
@@ -51,7 +52,7 @@
 
 .userinput {
   background-image: url("../../assets/User.png");
-  background-position: 15px 20px; 
+  background-position: 15px 15px; 
   background-repeat: no-repeat;
   padding: 20px 8px 20px 40px;
 }
@@ -66,7 +67,7 @@
   padding: 20px 8px 20px 40px;
   background-color: #f3f3f3;
   background-image: url("../../assets/pass.png");
-  background-position: 18px 22px; 
+  background-position: 18px 15px; 
   background-repeat: no-repeat;
   border: 1px solid #ccc;
   border-radius: 10px;
@@ -77,14 +78,14 @@
 .eyeicon {
   position: absolute;
   right: 10%;
-  top: 40%;
+  top: 35%;
   transform: translateY(-50%);
   cursor: pointer;
 }
 .eyeoff{
   position: absolute;
   right: 9%;
-  top: 45%;
+  top: 40%;
   transform: translateY(-50%);
   cursor: pointer;
   width:28px;
@@ -104,6 +105,7 @@
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
+  margin-bottom: 5px;
 }
 .loading{
   background-color : #750417;
@@ -122,3 +124,11 @@
   text-wrap: nowrap;
   
 }
+
+
+.userinput:focus,
+.passwordinput:focus {
+    outline: none;
+    border: 1px solid #f83758;
+    text-decoration: none; 
+  }

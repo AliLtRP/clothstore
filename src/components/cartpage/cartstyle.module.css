@@ -30,14 +30,13 @@
 }
 
 .order-container {
-  width: 90%; 
+  width: 100%; 
   height: auto;
   border: solid #f0f0f0;
   border-radius: 10px;
   padding: 0 5px;
   display: flex;
   align-items: center;
-  margin: 1rem 1rem;
 }
 
 .order-img {
@@ -174,4 +173,8 @@
   padding : 10px ;
   text-wrap: nowrap;
   
+}
+.checkoutbtn:disabled{
+ background-color: #d78e9a;
+ cursor: not-allowed;
 }
