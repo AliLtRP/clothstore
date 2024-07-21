@@ -88,9 +88,7 @@ const HomePage = () => {
                   <Skeleton width={165} height={20} />
                   <Skeleton width={140} height={15} />
                 </div>
-
               </div>
-
             </>
           ) : (
             data.map((v, i) => {
