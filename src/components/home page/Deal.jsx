@@ -45,7 +45,7 @@ const Deal = ({ products, endTime }) => {
     }
 
     return (
-        <div className=" px-4">
+        <div className="px-4">
             {
                 timeLeft.hours == 0 && timeLeft.minutes == 0 && timeLeft.seconds == 0 ?
                     <div></div>

@@ -73,7 +73,7 @@ const TrendingProducts = () => {
                 <Container>
                     <div className="flex items-center justify-between w-[65%] h-16 px-4">
                         <div onClick={() => navigator(-1)}>
-                        <img src={backicon} className="h-5 w-[9.5px]" />
+                        <img src={backicon} loading="lazy" className="h-5 w-[9.5px]" />
                         </div>
                         <p className="text-black font-semibold text-lg leading-4 h-5 pt-0.5 text-end">Top Rate</p>
                     </div>
@@ -89,7 +89,7 @@ const TrendingProducts = () => {
                                 leftAlign.map((v) => (
                                     <Link to={`/shop/${v.id}`} key={v.id}>
                                         <div className="w-full min-h-[245px] h-auto rounded-lg mb-3 shadow-md">
-                                            <img src={v.img[0].src} alt="" className="w-full h-[136px] rounded-lg object-cover" />
+                                            <img src={v.img[0].src} loading="lazy" alt="" className="w-full h-[136px] rounded-lg object-cover" />
                                             <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
                                                 <p className="font-medium text-base text-[10px]">{v.name}</p>
                                                 <p className="font-normal text-[10px]">{v.description}</p>
@@ -109,7 +109,7 @@ const TrendingProducts = () => {
                             rightAlign.map((v) => (
                                 <Link to={`/shop/${v.id}`} key={v.id}>
                                     <div className="w-full min-h-[305px] h-auto rounded-lg mb-3 shadow-md">
-                                        <img src={v.img[0].src} alt="" className="w-full h-[196px] rounded-lg object-cover" />
+                                        <img src={v.img[0].src} loading="lazy" alt="" className="w-full h-[196px] rounded-lg object-cover" />
                                         <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
                                             <p className="font-medium text-base text-[10px]">{v.name}</p>
                                             <p className="font-normal text-[10px]">{v.description}</p>

@@ -15,7 +15,7 @@ const ProductCard = (props) => {
                 <Skeleton height={100} />
             ) : (
                 <>
-                    <img src={props.image} alt="product" className="h-[165px] w-full object-cover rounded-[4px]" />
+                    <img src={props.image} alt="product" loading="lazy" className="h-[165px] w-full object-cover rounded-[4px]" />
                     <p className="text-xs font-medium pt-2">{props.title || "title"}</p>
                     {props.desc && <p className="text-[10px] font-normal pt-1.5">{props.desc}</p>}
                     <div className="py-1.5">
