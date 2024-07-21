@@ -10,7 +10,7 @@ const ProductCard = (props) => {
     }, [props]);
 
     return (
-        <div className="min-w-[170px] h-[241px]">
+        <div className="min-w-[168px] h-[241px]">
             {loading ? (
                 <Skeleton height={100} />
             ) : (

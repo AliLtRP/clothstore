@@ -29,50 +29,66 @@ const HomePage = () => {
 
   return (
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-      <div className="min-w-[24rem] max-w-sm p-4 flex flex-col gap-6">
+      <div className="min-w-[24rem] max-w-sm p- flex flex-col gap-3">
         <NavBar loading={loading} />
-        <div className="w-full flex justify-center relative mt-12">
+        <div className="w-full flex justify-center relative px-4 mt-16 mb-2">
           {loading ? (
             <Skeleton width={350} height={35} className="rounded-md" />
           ) : (
             <>
-              <SearchSVG className="absolute top-2/4 left-6 translate-x-[-50%] translate-y-[-50%]" />
+              <SearchSVG className="absolute top-2/4 left-10 translate-x-[-50%] translate-y-[-50%]" />
               <input
                 type="text"
                 placeholder="Search any Product.."
-                className="bg-white w-full p-2 pl-10 rounded-md box-shadow text-sm text-[#BBBBBB]"
+                className="bg-white w-full p-2 pl-12 rounded-md box-shadow text-sm text-[#BBBBBB]"
               />
-              <MicSVG className="absolute top-2/4 right-2.5 translate-x-[-50%] translate-y-[-50%]" />
+              <MicSVG className="absolute top-2/4 right-7 translate-x-[-50%] translate-y-[-50%]" />
             </>
           )}
         </div>
-        <div className="w-full h-auto gap-2">
-          <Categories loading={loading} />
-        </div>
 
-        <div className="h-full flex flex-col gap-12 mt-2">
+        <Categories loading={loading} />
+
+        <div className="h-full flex flex-col gap-12">
           {loading ? (
             <>
-              <div className="flex items-center gap-1.5 mt-[-3px] ">
+              <div className="flex h-auto items-center gap-1.5 mt-[-3px] ">
                 <Skeleton height={20} width={100} />
               </div>
-              <div className="flex gap-4 mt-[-30px] ">
+              <div className="flex gap-4 mt-[-30px] px-4">
                 <div className="flex flex-col gap-1.5">
-                <Skeleton height={170} width={165} borderRadius={10}/>
+                  <Skeleton height={170} width={165} borderRadius={10} />
                   <Skeleton width={165} height={20} />
                   <Skeleton width={140} height={15} />
                 </div>
                 <div className="flex flex-col gap-1.5">
-                <Skeleton height={170} width={165} borderRadius={10}/>
+                  <Skeleton height={170} width={165} borderRadius={10} />
                   <Skeleton width={165} height={20} />
                   <Skeleton width={140} height={15} />
                 </div>
 
               </div>
               <div className="mt-[-30px]">
-              <Skeleton height={200} width={350}  borderRadius={10}  />
+                <Skeleton height={200} width={350} borderRadius={10} />
               </div>
-
+              <div className="mt-[-30px]">
+                <Skeleton height={200} width={350} borderRadius={10} />
+              </div>
+              <div className="flex items-center gap-1.5 mt-[-30px] ">
+                <Skeleton height={20} width={100} />
+              </div>
+              <div className="flex gap-4 mt-[-30px] px-4">
+                <div className="flex flex-col gap-1.5">
+                  <Skeleton height={170} width={165} borderRadius={10} />
+                  <Skeleton width={165} height={20} />
+                  <Skeleton width={140} height={15} />
+                </div>
+                <div className="flex flex-col gap-1.5 px-4">
+                  <Skeleton height={170} width={165} borderRadius={10} />
+                  <Skeleton width={165} height={20} />
+                  <Skeleton width={140} height={15} />
+                </div>
+              </div>
             </>
           ) : (
             data.map((v, i) => {
@@ -87,6 +103,7 @@ const HomePage = () => {
                   />
                 );
               } else if (v.type === "deal") {
+                console.log(v, 'deal');
                 return (
                   <Deal
                     key={i}
