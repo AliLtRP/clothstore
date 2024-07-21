@@ -40,6 +40,7 @@
   max-width: 375px; 
   padding: 15px;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 
 .signuplink {
@@ -111,7 +112,7 @@
   left: 50%;
   transform: translateX(-50%);
   white-space: nowrap;
-  margin-bottom: 5px;
+  margin-bottom: 20px;
 }
 .loading{
   background-color : #750417;
