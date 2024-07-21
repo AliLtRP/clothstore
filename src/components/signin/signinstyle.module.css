@@ -1,6 +1,6 @@
 .welcomtitle {
-  font-size: 45px;
-  color: #333;
+  font-size: 36px;
+  color: #000000;
   margin-top: 10px;
   font-weight: 650;
 }
@@ -99,6 +99,10 @@
   color: #f83758;
   margin-top: -10px;
   white-space: nowrap;
+}
+
+.forgetpass:hover {
+  cursor: pointer;
 }
 
 .createacc {
