@@ -69,21 +69,28 @@ const Cartpage = () => {
       border: "none",
       boxShadow: "none",
       minHeight: "20px",
-      height: "20px",
+      height: "25px",
     }),
     container: (provided) => ({
       ...provided,
       width: "90%",
+      height:"48px",
       margin: "0 auto",
     }),
     valueContainer: (provided) => ({
       ...provided,
-      padding: "0 8px",
-      height: "25px",
+      padding: "0 0px",
+      height: "30px",
+      // display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      position : "absolute"
     }),
     indicatorsContainer: (provided) => ({
       ...provided,
       height: "20px",
+      position :"absolute",
+      left : '250px'
     }),
     singleValue: (provided) => ({
       ...provided,
@@ -92,9 +99,11 @@ const Cartpage = () => {
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected
-        ? "#F83758"
+        ? ""
+        // "#F83758"
         : state.isFocused
-          ? "#E0E0E0"
+          ? ""
+          //"#E0E0E0"
           : "#FFF",
       color: state.isSelected ? "#FFF" : "#000",
       padding: "8px 12px",
@@ -242,7 +251,7 @@ const Cartpage = () => {
           <button
             className={cartStyle.checkoutbtn}
             onClick={handleCheckOutClick}
-          // disabled={cart.length === 0}
+            disabled={cart.length === 0}
           >
             Checkout
           </button>

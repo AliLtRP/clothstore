@@ -30,14 +30,13 @@
 }
 
 .order-container {
-  width: 90%; 
+  width: 100%; 
   height: auto;
   border: solid #f0f0f0;
   border-radius: 10px;
   padding: 0 5px;
   display: flex;
   align-items: center;
-  margin: 1rem 1rem;
 }
 
 .order-img {
@@ -93,7 +92,8 @@
 .final-country-input {
   font-family: 'Montserrat', sans-serif;
   width: 90%;
-  padding: 15px 17px;
+  padding: 15px ;
+  height: 48px;
   font-size: 16px;
   font-weight: bold;
   border: 1px solid #ccc;
@@ -145,10 +145,10 @@
   color: #000;
 }
 .divider{
-  opacity: 30%;
+  
   width: 100%;
   margin-top: -5px;
-  color: #F6F6F7;
+  color: #C4C4C4;
 }
 .size-info{
   background-color: #f2f2f2;
@@ -173,4 +173,8 @@
   padding : 10px ;
   text-wrap: nowrap;
   
+}
+.checkoutbtn:disabled{
+ background-color: #d78e9a;
+ cursor: not-allowed;
 }

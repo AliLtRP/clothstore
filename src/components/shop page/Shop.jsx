@@ -11,6 +11,7 @@ import "../../index.css";
 import SvgComponent from './icons/Plus';
 import Minus from "./icons/Minus";
 import Skeleton from 'react-loading-skeleton';
+import backicon from '../../assets/back.svg'
 
 
 const Shop = () => {
@@ -71,7 +72,7 @@ const Shop = () => {
                 <Container>
                     <div className='w-full h-20 flex justify-between items-center p-4'>
                         <div onClick={() => navigate(-1)}>
-                            <BackArrow className="h-5 w-[9.5px]" />
+                            <img src={backicon} className="h-5 w-[9.5px]" />
                         </div>
                         <div className='bg-[#F2F2F2] rounded-full p-2' onClick={() => navigate('/cart')}>
                             <Cart />

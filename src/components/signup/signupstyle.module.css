@@ -128,3 +128,8 @@
     width:28px;
     height: auto;
   }
+  input:focus {
+    outline: none;
+    border: 1px solid #f83758;
+    text-decoration: none; 
+  }

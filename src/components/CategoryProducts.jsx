@@ -8,6 +8,7 @@ import { motion } from "framer-motion"
 import { useRelated } from "../provider/zustand";
 import Skeleton from "react-loading-skeleton";
 import LoadingSkeleton from "./LoadingSkeleton";
+import backicon from '../assets/back.svg';
 
 
 
@@ -71,7 +72,7 @@ const CategoryProducts = () => {
                 <Container>
                     <div className="flex items-center justify-between w-[65%] h-16 px-4">
                         <div onClick={() => navigator(-1)}>
-                            <BackArrow className="h-5 w-[9.5px]" />
+                        <img src={backicon} className="h-5 w-[9.5px]" />
                         </div>
                         <p className="text-black font-semibold text-lg leading-4 h-5 pt-0.5 text-end">{name}</p>
                     </div>
