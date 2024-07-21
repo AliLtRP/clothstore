@@ -25,7 +25,7 @@ const Signupscreen = () => {
     if (password !== confirmPassword) {
       setError('Passwords do not match');
       setLoading(false);
-      setTimeout(() => setError(null), 3000); 
+      setTimeout(() => setError(null), 3000);
       return;
     }
 
@@ -65,23 +65,15 @@ const Signupscreen = () => {
 
   return (
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
-        <h1 className={signupStyle['signup-welcome-title']}>Create an account</h1>
+      <div className="max-w-sm p-4 flex flex-col gap-6">
+        <h1 className={signupStyle['signup-welcome-title']}>Create an<span className='block'>account</span></h1>
         <div className={signupStyle['signup-data-input']}>
-          <div>
+          <div className='mb-8'>
             <input
-              placeholder="Username"
+              placeholder="Username or Email"
               className={signupStyle['signup-user-input']}
               value={username}
               onChange={(e) => setUsername(e.target.value)}
-            />
-          </div>
-          <div>
-            <input
-              placeholder="Email"
-              className={signupStyle['signup-user-input']}
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className={signupStyle['signup-password-input-container']}>
@@ -94,12 +86,12 @@ const Signupscreen = () => {
             />
             <img
               src={passwordVisible ? eyeoff : eye}
-              className={passwordVisible ? signupStyle.eyeoff  : signupStyle.eyeicon  }
+              className={passwordVisible ? signupStyle.eyeoff : signupStyle.eyeicon}
               alt="eye icon"
               onClick={togglePasswordVisibility}
             />
           </div>
-          <div className={signupStyle['signup-password-input-container']}>
+          <div className={signupStyle['signup-confirm-password-input-container']}>
             <input
               type={confirmPasswordVisible ? 'text' : 'password'}
               placeholder="Confirm password"
@@ -109,19 +101,18 @@ const Signupscreen = () => {
             />
             <img
               src={confirmPasswordVisible ? eyeoff : eye}
-              className={confirmPasswordVisible ? signupStyle.eyeoff  : signupStyle.eyeicon  }
+              className={confirmPasswordVisible ? signupStyle.eyeoff : signupStyle.eyeicon}
               alt="eye icon"
               onClick={toggleConfirmPasswordVisibility}
             />
           </div>
         </div>
-        <div className={signupStyle['signup-more-options']}>
-          <p className={signupStyle['signup-info']}>
-            By clicking the <a style={{ color: '#F83758' }}>Register</a> button, you agree
-            <br /> to the public offer
+        <div className="w-full mt-[-30px] px-1">
+          <p className='w-[80%] text-sm font-normal text-[#676767]'>
+            By clicking the <span className='text-[#F83758]'>Register</span> button, you agree to the public offer
           </p>
           <p className={signupStyle['signup-create-acc']}>
-            I Already Have an Account{' '}
+            I Already Have an Account <a></a>
             <a
               href="##"
               className={signupStyle['signin-link']}
@@ -132,7 +123,7 @@ const Signupscreen = () => {
           </p>
         </div>
         <button
-          className={`${signupStyle['signup-login-btn']} ${loading ? signupStyle['loading'] : ''}`}
+          className={`${signupStyle['signup-login-btn']} h-[55px] text-center mb-2.5 ${loading ? signupStyle['loading'] : ''}`}
           onClick={handleSignUpClick}
           disabled={loading}
         >
