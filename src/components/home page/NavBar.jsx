@@ -9,7 +9,7 @@ const NavBar = ({ loading }) => {
   return (
     <Container>
       {loading ? (
-        <div className="w-[352px] z-20 top-0 h-16 bg-white fixed flex justify-between items-center">
+        <div className="w-[352px] z-20 top-0 h-16 bg-white fixed flex justify-between items-center ">
           <Skeleton circle={true} height={40} width={40} />
           <Skeleton height={40} width={100} />
           <Skeleton circle={true} height={40} width={40} />
