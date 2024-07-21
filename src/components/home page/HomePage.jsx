@@ -72,25 +72,6 @@ const HomePage = () => {
               <div className="mt-[-30px]">
               <Skeleton height={200} width={350}  borderRadius={10}  />
               </div>
-              <div className="mt-[-30px]">
-              <Skeleton height={200} width={350}  borderRadius={10} />
-              </div>
-              <div className="flex items-center gap-1.5 mt-[-30px] ">
-                <Skeleton height={20} width={100} />
-              </div>
-              <div className="flex gap-4 mt-[-30px] ">
-                <div className="flex flex-col gap-1.5">
-                <Skeleton height={170} width={165} borderRadius={10}/>
-                  <Skeleton width={165} height={20} />
-                  <Skeleton width={140} height={15} />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                <Skeleton height={170} width={165} borderRadius={10}/>
-                  <Skeleton width={165} height={20} />
-                  <Skeleton width={140} height={15} />
-                </div>
-
-              </div>
 
             </>
           ) : (
