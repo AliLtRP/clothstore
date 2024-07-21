@@ -1,13 +1,11 @@
 .welcomtitle {
   font-size: 45px;
   color: #333;
-  margin-left: 5%;
-  margin-top: 50px;
+  margin-top: 10px;
   font-weight: 650;
 }
 
 .datainput {
-  margin-top: 10%;
   display: block;
   width: 100%;
 }
@@ -15,7 +13,7 @@
 .userinput,
 .passwordinput {
   display: block;
-  margin: 0 auto;
+  margin: 0 0;
   font-size: 18px;
   width: 100%;
   max-width: 380px; 
@@ -23,7 +21,7 @@
   padding: 20px 10px;
   border: 1px solid #ccc;
   border-radius: 10px;
-  margin-bottom: 20px;
+  margin-bottom: 28px;
   height: 55px;
 }
 
@@ -52,9 +50,11 @@
 
 .userinput {
   background-image: url("../../assets/User.png");
-  background-position: 15px 15px; 
+  background-position: 15px 14px; 
   background-repeat: no-repeat;
-  padding: 20px 8px 20px 40px;
+  padding: 20px 8px 20px 45px;
+  font-size: 16px;
+  color: #676767;
 }
 
 .passwordinputcontainer {
@@ -64,7 +64,7 @@
 }
 
 .passwordinput {
-  padding: 20px 8px 20px 40px;
+  padding: 20px 8px 20px 45px;
   background-color: #f3f3f3;
   background-image: url("../../assets/pass.png");
   background-position: 18px 15px; 
@@ -73,6 +73,8 @@
   border-radius: 10px;
   width: 100%;
   max-width: 380px; 
+  font-size: 16px;
+  color: #676767;
 }
 
 .eyeicon {
@@ -95,7 +97,7 @@
 .forgetpass {
   margin-left: 200px;
   color: #f83758;
-  margin-top: -15px;
+  margin-top: -10px;
   white-space: nowrap;
 }
 
