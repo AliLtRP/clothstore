@@ -7,10 +7,10 @@ const Deal = ({ products, endTime }) => {
     const navigate =  useNavigate();
     const [id, setID] = useState([]);
 
-    useEffect(() => {
-        const ids = products.map(product => product.id);
-        setID(ids);
-    }, [products]);
+    // useEffect(() => {
+    //     const ids = products.map(product => product.id);
+    //     setID(ids);
+    // }, [products]);
 
     const handleNavigate = () => {
         navigate(`/trending/product`, { state: { id: id } })
@@ -45,7 +45,7 @@ const Deal = ({ products, endTime }) => {
     }
 
     return (
-        <>
+        <div className=" px-4">
             {
                 timeLeft.hours == 0 && timeLeft.minutes == 0 && timeLeft.seconds == 0 ?
                     <div></div>
@@ -62,7 +62,7 @@ const Deal = ({ products, endTime }) => {
                         <button className="border-[1px] border-white rounded-[4px] font-semibold text-white text-xs flex gap-1 items-center px-[10px] py-[15px] h-[28px]" onClick={() => handleNavigate()}>View all <NextSVG /></button>
                     </div>
             }
-        </>
+        </div>
     );
 };
 

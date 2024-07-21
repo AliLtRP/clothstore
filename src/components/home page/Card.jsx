@@ -47,7 +47,7 @@ const Card = ({ banners }) => {
     console.log(banners, 'banner');
 
     return (
-        <div className="h-[230px] flex w-full overflow- relative">
+        <div className="h-[230px] flex w-full overflow- relative ">
             <div className="h-full absolute inset-0 flex flex-col px-4">
                 <div className="absolute left-0 h-[100%] w-16" onClick={prevImg} />
                 <img src={banners[current].img[0].src} alt="banners" className="h-[200px] w-full object-cover rounded-xl" />

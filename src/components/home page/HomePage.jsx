@@ -47,44 +47,79 @@ const HomePage = () => {
           )}
         </div>
 
+        <Categories loading={loading} />
 
-        <div className="h-full flex justify-start items-start flex-col gap-12">
-          <Categories loading={loading} />
-          
-          {
-            loading
-              ? <>
-                <Skeleton height={140} />
-                <Skeleton height={200} />
-                <Skeleton height={200} />
-              </>
-              :
-              data.map((v, i) => {
-                if (v.type === "slider") {
-                  return <Card key={i} banners={v.banners} loading={loading} />;
-                } else if (v.type === "banner") {
-                  return (
-                    <NewArrival
-                      key={i}
-                      title={v.title}
-                      description={v.description}
-                    />
-                  );
-                } else if (v.type === "deal") {
-                  return (
-                    <Deal
-                      key={i}
-                      products={v.products_ids}
-                      endTime={v.end_date}
-                    />
-                  );
-                } else if (v.type === "list") {
-                  return <List key={i} v={v} />;
-                } else {
-                  return null;
-                }
-              })
-          }
+        <div className="h-full flex flex-col gap-12">
+          {loading ? (
+            <>
+              <div className="flex h-auto items-center gap-1.5 mt-[-3px] ">
+                <Skeleton height={20} width={100} />
+              </div>
+              <div className="flex gap-4 mt-[-30px] px-4">
+                <div className="flex flex-col gap-1.5">
+                  <Skeleton height={170} width={165} borderRadius={10} />
+                  <Skeleton width={165} height={20} />
+                  <Skeleton width={140} height={15} />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <Skeleton height={170} width={165} borderRadius={10} />
+                  <Skeleton width={165} height={20} />
+                  <Skeleton width={140} height={15} />
+                </div>
+
+              </div>
+              <div className="mt-[-30px]">
+                <Skeleton height={200} width={350} borderRadius={10} />
+              </div>
+              <div className="mt-[-30px]">
+                <Skeleton height={200} width={350} borderRadius={10} />
+              </div>
+              <div className="flex items-center gap-1.5 mt-[-30px] ">
+                <Skeleton height={20} width={100} />
+              </div>
+              <div className="flex gap-4 mt-[-30px] px-4">
+                <div className="flex flex-col gap-1.5">
+                  <Skeleton height={170} width={165} borderRadius={10} />
+                  <Skeleton width={165} height={20} />
+                  <Skeleton width={140} height={15} />
+                </div>
+                <div className="flex flex-col gap-1.5 px-4">
+                  <Skeleton height={170} width={165} borderRadius={10} />
+                  <Skeleton width={165} height={20} />
+                  <Skeleton width={140} height={15} />
+                </div>
+
+              </div>
+
+            </>
+          ) : (
+            data.map((v, i) => {
+              if (v.type === "slider") {
+                return <Card key={i} banners={v.banners} />;
+              } else if (v.type === "banner") {
+                return (
+                  <NewArrival
+                    key={i}
+                    title={v.title}
+                    description={v.description}
+                  />
+                );
+              } else if (v.type === "deal") {
+                console.log(v, 'deal');
+                return (
+                  <Deal
+                    key={i}
+                    products={v.products_ids}
+                    endTime={v.end_date}
+                  />
+                );
+              } else if (v.type === "list") {
+                return <List key={i} v={v} />;
+              } else {
+                return null;
+              }
+            })
+          )}
         </div>
       </div>
       <div className="max-w-sm flex justify-center">
