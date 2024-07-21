@@ -42,15 +42,15 @@ const SplashScreen = () => {
   };
 
   return (
-    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
-      <div className={splashStyle['splash-screen']}>
+    <div className="w-full max-w-sm h-full montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+      <div className="w-full flex flex-col gap-6">
+      <div className='h-full w-full flex flex-col justify-center items-center gap-6'>
       <div className={splashStyle['splash-content']}>
-        <img src={splashCollection[currentIndex].img} alt={splashCollection[currentIndex].label} />
+        <img src={splashCollection[currentIndex].img} className=' object-cover' alt={splashCollection[currentIndex].label} />
         <h2>{splashCollection[currentIndex].label}</h2>
-        <p>{splashCollection[currentIndex].description}</p>
+        <p className='px-4'>{splashCollection[currentIndex].description}</p>
       </div>
-      <div className={splashStyle['splash-navigation']}>
+      <div className={splashStyle['splash-navigation'] + " w-full max-w-sm"}>
         <button
           className={`${splashStyle['splash-navigate']} ${currentIndex === 0 ? splashStyle['splash-navigation-disable'] : ''}`}
           onClick={prevScreen}
@@ -70,7 +70,11 @@ const SplashScreen = () => {
           {currentIndex === splashCollection.length - 1 ? 'Get Started' : 'Next'}
         </button>
       </div>
-    </div>
+      </div>
+    
+
+
+
     </div>
     </div>
     
