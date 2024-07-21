@@ -74,21 +74,19 @@ const Signinscreen = () => {
   
   return (
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
+      <div className="max-w-sm p-4 flex flex-col gap-6">
         <h1 className={signinStyle.welcomtitle}>
           Welcome
           <br />
           Back!
         </h1>
-        <div className={signinStyle.datainput}>
-          <div>
+        <div className={`${signinStyle.datainput}`}>
             <input
               placeholder="Username or email"
               className={signinStyle.userinput}
               value={username_or_email}
               onChange={(e) => setUsername_or_password(e.target.value)}
             />
-          </div>
           <div className={signinStyle.passwordinputcontainer}>
             <input
               type={passwordVisible ? "text" : "password"}
@@ -117,7 +115,7 @@ const Signinscreen = () => {
         <button
           className={`${signinStyle.Loginbtn} ${
             loading ? signinStyle.loading : ""
-          }`}
+          } mb-2.5`}
           onClick={handleLoginClick}
           disabled={loading}
         >

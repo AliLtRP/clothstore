@@ -42,17 +42,17 @@ const SplashScreen = () => {
   };
 
   return (
-    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
-        <div className={splashStyle['splash-screen']}>
-          <div className={splashStyle['splash-content']}>
-            <img src={splashCollection[currentIndex].img} alt={splashCollection[currentIndex].label} />
-            <h2>{splashCollection[currentIndex].label}</h2>
-            <p>{splashCollection[currentIndex].description}</p>
+    <div className="w-full max-w-sm h-[100dvh] bg-[aqua montserrat flex flex-col items-center mx-auto bg-[#FDFDFD">
+      <div className="w-full h-full p- flex flex-col justify-start gap-6">
+          <div className="w-full h-[75%] flex flex-col justify-end items-center">
+            <img src={splashCollection[currentIndex].img} alt={splashCollection[currentIndex].label} className={`${currentIndex == 2 ? "mb-[-12px]": ""} ${currentIndex == 0 ? "mb-[-9px]": ""} object-cover w-[300px] h-[300px] px-2`}/>
+            <h2 className=' font-bold text-2xl text-center leading-8 mt-1'>{splashCollection[currentIndex].label}</h2>
+            <p className=' w-[340px] font-semibold text-sm text-center text-[#A8A8A9] pt-1.5 leading-6 tracking-[2%]'>{splashCollection[currentIndex].description}</p>
           </div>
-          <div className={splashStyle['splash-navigation']}>
+
+          <div className={splashStyle['splash-navigation'] + " max-w-sm w-full"}>
             <button
-              className={`${splashStyle['splash-navigate']} ${currentIndex === 0 ? splashStyle['splash-navigation-disable'] : ''}`}
+              className={`${splashStyle['splash-navigate']} ${currentIndex === 0 ? splashStyle['splash-navigation-disable'] + " invisible" : ''}`}
               onClick={prevScreen}
               disabled={currentIndex === 0}
             >
@@ -72,7 +72,6 @@ const SplashScreen = () => {
           </div>
         </div>
       </div>
-    </div>
   );
 };
 

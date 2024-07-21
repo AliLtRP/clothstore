@@ -1,18 +1,13 @@
 .signup-welcome-title {
-    font-size: 30px;
-    color: #333;
-    margin-top:10%;
-    margin-bottom:5%;
-    margin-left: 5%;
+    font-size: 36px;
+    color: #000000;
+    margin-top: 10px;
     font-weight: bold;
     text-wrap: nowrap;
-
   }
   
   .signup-data-input {
     margin-bottom: 5px;
-    margin-top: -5%;
-  
   }
   
   .signup-user-input,
@@ -41,7 +36,6 @@
   border-radius: 5px;
   width: 90%;
   max-width: 375px; 
-  padding: 15px;
   cursor: pointer;
   margin-bottom: 20px;
 
@@ -52,6 +46,7 @@
     color: #F83758;
     text-decoration: underline;
     font-weight: bolder;
+    font-size: 14px;
   }
   
  .signin-link:hover {
@@ -63,23 +58,32 @@
     background-position: 10px 14px; 
     background-repeat: no-repeat;
     padding: 20px 8px 20px 40px;
+    font-size: 16px;
   }
   
   .signup-password-input-container {
     position: relative;
     display: flex;
     justify-content: center;
+    margin-bottom: 12px;
   }
   
+  .signup-confirm-password-input-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+  } 
+
   .signup-password-input {
     width: 100%;
-    padding: 20px 8px 20px 40px;
+    padding: 20px 8px 20px 43px;
     background-color: #F3F3F3;
     background-image: url("../../assets/pass.png");
     background-position: 16px 15px; 
     background-repeat: no-repeat;
     border: 1px solid #ccc;
     border-radius: 10px;
+    font-size: 16px;
   }
   
   .eyeicon {
@@ -103,7 +107,8 @@
     left: 50%;
     transform: translateX(-50%);
     white-space: nowrap;
-    margin-bottom: 20px;
+    color: #575757;
+    font-size: 14px;
   }
   .loading{
     background-color : #750417;
