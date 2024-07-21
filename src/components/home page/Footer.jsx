@@ -9,7 +9,7 @@ const Footer = ({ path }) => {
 
 
     return (
-        <div className="w-full max-w-sm sm:max-w-sm mx-auto h-14 px-4 flex justify-between items-center fixed bottom-0 bg-white border-t-[1px]">
+        <div className="w-full max-w-sm sm:max-w-sm mx-auto h-14 flex justify-between items-center fixed bottom-0 bg-white border-t-[1px] px-4">
                 <div className=" flex flex-col items-center justify-center" onClick={() => navigate('/home')}>
                     <HomeSVG color={path === "home" ? `#EB3030` : "#000"} />
                     <p className={`text-xs text-center ${path === "home" ? "text-[#EB3030]" : "text-black"} ${style.roboto_regular}`}>Home</p>

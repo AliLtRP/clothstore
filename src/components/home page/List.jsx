@@ -21,13 +21,13 @@ const List = ({ v }) => {
     }, [v]);
 
     return (
-        <div className="h-auto flex flex-col gap-3 px-0">
+        <div className="h-[308px] max-w-sm flex flex-col gap-3.5 pl-4 ">
             <div className="w-full flex justify-between items-center">
                 {
                     loading ? <Skeleton /> :
                         <>
                             <p className=" font-semibold text-sm hover:cursor-pointer" onClick={() => navigateToTrendingProduct(v.id)}>{v.title}</p>
-                            <div onClick={() => navigateToTrendingProduct(v.id)} className=" hover:cursor-pointer">
+                            <div onClick={() => navigateToTrendingProduct(v.id)} className=" hover:cursor-pointer pr-4">
                                 <RightArrowSVG />
                             </div>
                         </>
@@ -36,7 +36,7 @@ const List = ({ v }) => {
 
             {
                 loading ? <Skeleton height={200} /> :
-                    <div className="w-full h-72 flex gap-3 flex-nowrap overflow-x-scroll no-scrollbar">
+                    <div className="w-full h-72 flex gap-3 flex-nowrap overflow-x-scroll overflow-y-hidden no-scrollbar">
                         {
                             v.products_ids.map((v, i) => {
                                 return (

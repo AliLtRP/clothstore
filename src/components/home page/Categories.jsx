@@ -22,7 +22,7 @@ const Categories = ({ loading }) => {
     }, []);
 
     return (
-        <div className='w-full flex justify-between'>
+        <div className='w-full h-[90px] px-4 flex items-end justify-between -mb-14'>
             {loading ? (
                 Array.from({ length: 5 }).map((_, i) => (
                     <div className='flex flex-col w-14' key={i}>

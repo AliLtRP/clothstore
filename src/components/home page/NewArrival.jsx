@@ -4,7 +4,7 @@ import { NextSVG } from "./icons";
 
 const NewArrival = ({ title, description }) => {
     return (
-        <div className="w-full h-[270px] bg-white px-2">
+        <div className="w-full h-[270px] bg-white px-4">
             <img src={hot_summer_sale} alt="" className=" rounded-t-lg h-[204px]" />
 
             <div className="w-full flex justify-between pt-4">
