@@ -1,3 +1,4 @@
+import { LazyLoadImage } from "react-lazy-load-image-component";
 import hot_summer_sale from "../../assets/hot_summer_sale.png";
 import { NextSVG } from "./icons";
 
@@ -5,8 +6,11 @@ import { NextSVG } from "./icons";
 const NewArrival = ({ title, description }) => {
     return (
         <div className="w-full h-[270px] bg-white px-4">
-            <img src={hot_summer_sale} alt="" className=" rounded-t-lg h-[204px]" />
-
+            <LazyLoadImage
+                src={hot_summer_sale}
+                className=" rounded-t-lg h-[204px]"
+                effect="opacity"
+            />
             <div className="w-full flex justify-between pt-4">
                 <div>
                     <p className=" text-xl font-medium leading-[22px]">{title || "New Arrival"}</p>

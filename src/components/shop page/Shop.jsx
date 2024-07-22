@@ -12,6 +12,7 @@ import SvgComponent from './icons/Plus';
 import Minus from "./icons/Minus";
 import Skeleton from 'react-loading-skeleton';
 import backicon from '../../assets/back.svg'
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 
 const Shop = () => {
@@ -85,7 +86,12 @@ const Shop = () => {
                         {
                             loading ? <Skeleton height={200} className='rounded-2xl' />
                                 :
-                                <img src={data.img[0].src} alt="product image" className=' w-full h-[213px] rounded-2xl object-cover' />
+                                <LazyLoadImage
+                                    className=' w-full h-[213px] rounded-2xl object-cover'
+                                    src={data.img[0].src}
+                                    effect='opacity'
+                                    width="100%"
+                                />
                         }
 
                         <div className='w-full h-8 flex justify-center items-center gap-1'>
@@ -174,14 +180,20 @@ const Shop = () => {
                                                 return (
                                                     <Link to={`/shop/${v.id}`} key={i}>
                                                         <div className=" w-40 min-h-[245px] h-auto pb-0.5 rounded-lg mb-3 shadow-md container ">
-                                                            <img src={v.img[0].src} alt="" className="w-full h-[140px] rounded-lg object-cover" />
+                                                            <LazyLoadImage
+                                                                className="w-full h-[140px] rounded-lg object-cover"
+                                                                effect="opacity"
+                                                                src={v.img[0].src}
+                                                                alt="category images"
+                                                                width="100%"
+                                                            />
                                                             <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
                                                                 <p className="font-medium text-base text-[10px]">{v.name}</p>
-                                                                <p className=" font-normal text-[10px]">{v.description}</p>
+                                                                <p className=" font-normal text-[10px] h-10">{v.description}</p>
                                                                 <p className=" font-medium text-xs pt-0.5">₹{v.price}</p>
                                                                 <div className="w-full flex items-center gap-2">
                                                                     <Rating />
-                                                                    <p className=" font-normal text-[10px] pt-0.5">{v.rating || 0}</p>
+                                                                    <p className=" font-normal text-[10px] pt-0.5">{v.rating || ""}</p>
                                                                 </div>
                                                             </div>
                                                         </div>

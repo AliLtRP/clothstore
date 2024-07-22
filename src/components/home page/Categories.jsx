@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import client from '../../api/axios';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 const Categories = ({ loading }) => {
     const [data, setData] = useState([]);
@@ -35,7 +36,11 @@ const Categories = ({ loading }) => {
                     <div className='flex flex-col w-14' key={i}>
                         <Link to={`/category/product/${v.id}/${v.name}`} >
                             <div className='w-14 h-14 rounded-full bg-black'>
-                                <img src={v.img} alt="category images" className='rounded-full h-14 w-14 object-fill' />
+                                <LazyLoadImage
+                                    src={v.img}
+                                    className='rounded-full h-14 w-14 object-fill'
+                                    effect='opacity'
+                                />
                             </div>
                         </Link>
                         <p className='text-center pt-2 text-[#21003D] text-[10px] leading-[16px]'>{v.name}</p>
