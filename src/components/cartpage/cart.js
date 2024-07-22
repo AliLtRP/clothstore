@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState, useEffect } from "react";
 import blackcart from "../../assets/blackshippingcart.svg";
 import cartStyle from "./cartstyle.module.css";
 import Select from "react-select";
