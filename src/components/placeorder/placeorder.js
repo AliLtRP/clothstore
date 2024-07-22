@@ -26,7 +26,7 @@ const Placeorder = () => {
   const currency = <img src={rupee} style={{ width: '10px', marginTop: '-20%' }} alt="currency" />;
 
   return (
-    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] px-4">
       <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
         <div className={placeorderStyle['checkout-navbar']}>
           <img src={back} className={placeorderStyle['left-arrow']} alt="Back" onClick={handleBackArrow} />

@@ -9,9 +9,9 @@ const NavBar = ({ loading }) => {
   return (
     <Container>
       {loading ? (
-        <div className="max-w-sm w-full z-20 top-0 h-16 bg-white fixed flex justify-between items-center">
+        <div className="max-w-sm w-full z-20 top-0 h-16 bg-white fixed flex justify-between items-center px-4">
           <Skeleton circle={true} height={40} width={40} />
-          <Skeleton height={40} width={100} />
+          <Skeleton height={30} width={100} />
           <Skeleton circle={true} height={40} width={40} />
         </div>
       ) : (
