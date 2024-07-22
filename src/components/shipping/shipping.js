@@ -17,6 +17,7 @@ const Shipping = () => {
   const [loading , setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
+  const clearCart = useCartStore((state) => state.clearCart);
 
   const handleBackArrow = () => {
     navigate('/placeorder');
@@ -62,6 +63,12 @@ const Shipping = () => {
       if (response.status === 201) {
         console.log('Order placed successfully:', response.data);
         setShowPopup(true); 
+        clearCart();
+        localStorage.removeItem("cartstorage")
+        setTimeout(() => {
+          navigate('/home');
+        }, 3000);
+        
       } else {
         console.error('Error placing order:', error);        
         setError('Failed to place order. .');
