@@ -15,7 +15,7 @@
 
 .blackcart-icon {
   margin-right: 5%;
-  margin-left: -10%;
+  margin-left: -16%;
 }
 
 .cart-items {
@@ -37,6 +37,7 @@
   padding: 0 5px;
   display: flex;
   align-items: center;
+  margin-bottom: 5px;
 }
 
 .order-img {
@@ -75,9 +76,8 @@
 .final-address-details {
   font-weight: bold;
   font-size: 18px;
-  margin-left: 5%;
   margin-top: 5%;
-
+  margin-left: 2%;
 }
 
 .final-address-info {
@@ -91,7 +91,7 @@
 .final-city-input,
 .final-country-input {
   font-family: 'Montserrat', sans-serif;
-  width: 90%;
+  width: 100%;
   padding: 15px ;
   height: 48px;
   font-size: 16px;
@@ -104,7 +104,7 @@
 .checkoutbtn {
   font-family: 'Montserrat', sans-serif;
   display: block;
-  margin: 30px auto;
+  margin-bottom: 70px;
   background-color: #f83758;
   font-size: 20px;
   font-weight: 650;
@@ -112,9 +112,8 @@
   border: none;
   border-radius: 5px;
   padding: 15px;
-  width: 90%; 
+  width: 100%; 
   cursor: pointer;
-  bottom: 0;
 }
 .loading{
   background-color : #750417;

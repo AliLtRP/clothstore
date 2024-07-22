@@ -20,7 +20,10 @@ const TrendingProducts = () => {
     const { setItems } = useRelated();
     const [loading, setLoading] = useState(true);
 
-    console.log(state.id);
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    
     useEffect(() => {
         const fetchData = async () => {
             try {

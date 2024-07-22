@@ -1,11 +1,10 @@
-import React from "react";
+import React, { useState} from "react";
 import blackcart from "../../assets/blackshippingcart.svg";
 import cartStyle from "./cartstyle.module.css";
 import Select from "react-select";
 import Footer from "../home page/Footer";
 import useCartStore from "../../provider/zustand";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 const Cartpage = () => {
   const {
@@ -25,7 +24,6 @@ const Cartpage = () => {
   const navigate = useNavigate();
   const [addressError, setAddressError] = useState(false);
   const [cartError, setCartError] = useState(false);
-
 
   const handleAddressChange = (event) => {
     setAddress(event.target.value);
@@ -73,24 +71,23 @@ const Cartpage = () => {
     }),
     container: (provided) => ({
       ...provided,
-      width: "90%",
-      height:"48px",
+      width: "100%",
+      height: "48px",
       margin: "0 auto",
     }),
     valueContainer: (provided) => ({
       ...provided,
       padding: "0 0px",
       height: "30px",
-      // display: "flex",
       alignItems: "center",
       justifyContent: "center",
-      position : "absolute"
+      position: "absolute",
     }),
     indicatorsContainer: (provided) => ({
       ...provided,
       height: "20px",
-      position :"absolute",
-      left : '250px'
+      position: "absolute",
+      left: '90%',
     }),
     singleValue: (provided) => ({
       ...provided,
@@ -100,10 +97,8 @@ const Cartpage = () => {
       ...provided,
       backgroundColor: state.isSelected
         ? ""
-        // "#F83758"
         : state.isFocused
           ? ""
-          //"#E0E0E0"
           : "#FFF",
       color: state.isSelected ? "#FFF" : "#000",
       padding: "8px 12px",
@@ -116,7 +111,6 @@ const Cartpage = () => {
   };
 
   const handleCheckOutClick = () => {
-
     if (!address || !selectedCity || !selectedCountry) {
       setAddressError(true);
       setTimeout(() => {
@@ -145,7 +139,7 @@ const Cartpage = () => {
   };
 
   return (
-    <div className="max-w-md h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+    <div className="max-w-md h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] px-4">
       <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
         <div className={cartStyle["checkout-screen-body"]}>
           <div className={cartStyle["cart-navbar"]}>
@@ -165,7 +159,7 @@ const Cartpage = () => {
             <p className={cartStyle["emptycart"]}>Your cart is empty</p>
           ) : (
             cart.map((item, index) => (
-              <div key={item.id} className={cartStyle["order-container"] + " "}>
+              <div key={item.id} className={cartStyle["order-container"]}>
                 <img
                   src={item.img[0].src}
                   className={cartStyle["order-img"]}
@@ -205,7 +199,7 @@ const Cartpage = () => {
           )}
 
           <div className={cartStyle["payment-details"]}>
-            <p>Order Total</p>
+            <p className="ml-[-8px]">Order Total</p>
             <p style={{ fontWeight: "bold" }}>{calculateTotalPrice()}</p>
           </div>
           <hr className={cartStyle["divider"]} />

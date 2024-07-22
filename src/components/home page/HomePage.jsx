@@ -33,7 +33,7 @@ const HomePage = () => {
         <NavBar loading={loading} />
         <div className="w-full flex justify-center relative px-4 mt-16 mb-2">
           {loading ? (
-            <Skeleton width={350} height={35} className="rounded-md" />
+            <Skeleton width={350} height={35} className="rounded-md " />
           ) : (
             <>
               <SearchSVG className="absolute top-2/4 left-10 translate-x-[-50%] translate-y-[-50%]" />
@@ -52,7 +52,7 @@ const HomePage = () => {
         <div className="h-full flex flex-col gap-12">
           {loading ? (
             <>
-              <div className="flex h-auto items-center gap-1.5 mt-[-3px] ">
+              <div className="flex h-auto items-center gap-1.5 mt-[35px] mb-[-10px] px-4">
                 <Skeleton height={20} width={100} />
               </div>
               <div className="flex gap-4 mt-[-30px] px-4">
@@ -68,26 +68,8 @@ const HomePage = () => {
                 </div>
 
               </div>
-              <div className="mt-[-30px]">
+              <div className="mt-[-25px] mb-[15px] px-4">
                 <Skeleton height={200} width={350} borderRadius={10} />
-              </div>
-              <div className="mt-[-30px]">
-                <Skeleton height={200} width={350} borderRadius={10} />
-              </div>
-              <div className="flex items-center gap-1.5 mt-[-30px] ">
-                <Skeleton height={20} width={100} />
-              </div>
-              <div className="flex gap-4 mt-[-30px] px-4">
-                <div className="flex flex-col gap-1.5">
-                  <Skeleton height={170} width={165} borderRadius={10} />
-                  <Skeleton width={165} height={20} />
-                  <Skeleton width={140} height={15} />
-                </div>
-                <div className="flex flex-col gap-1.5 px-4">
-                  <Skeleton height={170} width={165} borderRadius={10} />
-                  <Skeleton width={165} height={20} />
-                  <Skeleton width={140} height={15} />
-                </div>
               </div>
             </>
           ) : (

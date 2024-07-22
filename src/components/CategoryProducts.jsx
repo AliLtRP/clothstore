@@ -36,6 +36,11 @@ const CategoryProducts = () => {
         fetchData();
     }, [id]);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    
+
     const preprocessData = (data) => {
         const leftAlign = [];
         const rightAlign = [];

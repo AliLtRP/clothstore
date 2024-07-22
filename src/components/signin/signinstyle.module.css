@@ -8,12 +8,12 @@
 .datainput {
   display: block;
   width: 100%;
+  margin-top: 20px;
 }
 
 .userinput,
 .passwordinput {
   display: block;
-  margin: 0 0;
   font-size: 18px;
   width: 100%;
   max-width: 380px; 

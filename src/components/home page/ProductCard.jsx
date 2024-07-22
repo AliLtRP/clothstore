@@ -10,6 +10,7 @@ const ProductCard = (props) => {
         setLoading(false);
     }, [props]);
 
+
     return (
         <div className="min-w-[168px] h-[241px]">
             {loading ? (

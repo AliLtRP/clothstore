@@ -22,6 +22,11 @@ const Categories = ({ loading }) => {
         fetchData();
     }, []);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+    
+
     return (
         <div className='w-full h-[90px] px-4 flex overflow-x-scroll overflow-y-hidden no-scrollbar items-end justify-start gap-10 -mb-7'>
             {loading ? (
