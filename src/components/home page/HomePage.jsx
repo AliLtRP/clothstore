@@ -53,8 +53,8 @@ const HomePage = () => {
         <div className="h-auto w-full flex flex-col gap-10 mt-12 mb-24">
           {loading ? (
             <>
-              <div className="flex h-auto items-center gap-1.5 mt-[35px] mb-[-10px] px-4">
-                <Skeleton height={20} width={100} />
+              <div className="flex h-full items-center gap-1.5 mt-[3px] mb-[-10px] px-4">
+                <Skeleton height={20} width={100} className="mb-3"/>
               </div>
               <div className="flex gap-4 mt-[-30px] px-4">
                 <div className="flex flex-col gap-1.5">
