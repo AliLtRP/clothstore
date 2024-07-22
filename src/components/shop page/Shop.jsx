@@ -143,9 +143,9 @@ const Shop = () => {
               <div className="flex-col gap-3">
                 <Skeleton height={15} />
                 <Skeleton height={15} width={150} />
-                <div className="w-full grid grid-flow-col justify-between mt-3">
-                  <Skeleton height={50} width={120} />
-                  <Skeleton height={50} width={120} />
+                <div className="w-full grid grid-flow-col justify-between mt-3 ">
+                  <Skeleton height={50} width={120}  />
+                  <Skeleton height={50} width={175} />
                 </div>
               </div>
             ) : (
