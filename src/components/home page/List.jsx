@@ -21,7 +21,7 @@ const List = ({ v }) => {
     }, [v]);
 
     return (
-        <div className="h-[308px] max-w-sm flex flex-col gap-3.5 pl-4 ">
+        <div className="h-[315px] max-w-sm flex flex-col gap-3.5 pl-4 ">
             <div className="w-full flex justify-between items-center">
                 {
                     loading ? <Skeleton /> :

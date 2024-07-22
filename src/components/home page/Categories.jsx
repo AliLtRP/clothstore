@@ -28,7 +28,7 @@ const Categories = ({ loading }) => {
 
 
     return (
-        <div className='w-full h-[90px] px-4 flex overflow-x-scroll overflow-y-hidden no-scrollbar items-end justify-start gap-4 -mb-7'>
+        <div className='w-full h-[90px] px-4 flex overflow-x-scroll overflow-y-hidden no-scrollbar items-end justify-start gap-[18px] -mb-7'>
             {loading ? (
                 Array.from({ length: 5 }).map((_, i) => (
                     <div className='flex flex-col w-14' key={i}>

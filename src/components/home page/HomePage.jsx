@@ -15,7 +15,8 @@ const HomePage = () => {
   const fetchData = async () => {
     try {
       const res = await client.get(`/banner/all`);
-      setData(res.data.data);
+      const sorted = res.data.data.sort((a,b) => a.priority > b.priority);
+      setData(sorted);
     } catch (e) {
       console.log(e);
     } finally {
@@ -28,7 +29,7 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+    <div className="w-full h-full montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
       <div className="min-w-[24rem] max-w-sm p- flex flex-col gap-3">
         <NavBar loading={loading} />
         <div className="w-full flex justify-center relative px-4 mt-16 mb-2">
@@ -49,7 +50,7 @@ const HomePage = () => {
 
         <Categories loading={loading} />
 
-        <div className="h-full flex flex-col gap-12">
+        <div className="h-auto w-full flex flex-col gap-10 mt-12 mb-24">
           {loading ? (
             <>
               <div className="flex h-auto items-center gap-1.5 mt-[35px] mb-[-10px] px-4">
@@ -85,7 +86,6 @@ const HomePage = () => {
                   />
                 );
               } else if (v.type === "deal") {
-                console.log(v, 'deal');
                 return (
                   <Deal
                     key={i}
