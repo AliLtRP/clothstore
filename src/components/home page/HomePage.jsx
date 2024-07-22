@@ -69,9 +69,10 @@ const HomePage = () => {
                 </div>
 
               </div>
-              <div className="mt-[-25px] mb-[15px] px-4">
-                <Skeleton height={200} width={350} borderRadius={10} />
+              <div className="mt-[-25px] px-4">
+                <Skeleton height={200} width={350} borderRadius={10} className="mb-[-70px]"/>
               </div>
+
             </>
           ) : (
             data.map((v, i) => {
@@ -104,6 +105,7 @@ const HomePage = () => {
       </div>
       <div className="max-w-sm flex justify-center">
         {loading ? (
+         
           <Skeleton height={60} width={350} />
         ) : (
           <Footer path="home" />
