@@ -9,7 +9,7 @@ const NewArrival = ({ title, description }) => {
             <LazyLoadImage
                 src={hot_summer_sale}
                 className=" rounded-t-lg h-[204px]"
-                effect="opacity"
+                effect="blur"
             />
             <div className="w-full flex justify-between pt-4">
                 <div>

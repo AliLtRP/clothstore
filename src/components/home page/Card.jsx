@@ -33,7 +33,7 @@ const Card = ({ banners }) => {
                                                 src={currentImg.src}
                                                 alt="banners"
                                                 className="h-[200px] w-full object-cover rounded-xl"
-                                                effect="opacity"
+                                                effect="blur"
                                                 width="100%"
                                             />
                                             <div className="h-full absolute w-[40%] text-[#fff] top-2/4 left-24 py-2 -translate-x-2/4 -translate-y-2/4 font-bold">

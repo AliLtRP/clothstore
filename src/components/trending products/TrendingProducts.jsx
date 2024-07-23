@@ -96,7 +96,7 @@ const TrendingProducts = () => {
                                         <div className="w-full min-h-[245px] h-auto rounded-lg mb-3 shadow-md">
                                             <LazyLoadImage
                                                 className="w-full h-[140px] rounded-lg object-cover"
-                                                effect="opacity"
+                                                effect="blur"
                                                 src={v.img[0].src}
                                                 width="100%"
                                             />
@@ -121,7 +121,7 @@ const TrendingProducts = () => {
                                         <div className="w-full min-h-[305px] h-auto rounded-lg mb-3 shadow-md">
                                             <LazyLoadImage
                                                 className="w-full h-[196px] rounded-lg object-cover"
-                                                effect="opacity"
+                                                effect="blur"
                                                 src={v.img[0].src}
                                                 width="100%"
                                             />

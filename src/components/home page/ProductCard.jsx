@@ -20,7 +20,7 @@ const ProductCard = (props) => {
                     <LazyLoadImage
                         className="h-[165px] w-full object-cover rounded-[4px]"
                         src={props.image}
-                        effect='opacity'
+                        effect='blur'
                         width="100%"
                     />
                     <p className="text-xs font-medium pt-2">{props.title || "title"}</p>

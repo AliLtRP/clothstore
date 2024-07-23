@@ -15,7 +15,7 @@ import Settings from './components/additional/settings.js';
 import Wsishlistpage from './components/additional/wsishlist.js';
 import CategoryProducts from './components/CategoryProducts.jsx';
 import DiscountedProducts from './components/DiscountedProducts.jsx';
-
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 
 function App() {

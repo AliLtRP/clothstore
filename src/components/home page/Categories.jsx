@@ -44,7 +44,7 @@ const Categories = ({ loading }) => {
                                 <LazyLoadImage
                                     src={v.img}
                                     className='rounded-full h-14 w-14 object-fill'
-                                    effect='opacity'
+                                    effect='blur'
                                 />
                             </div>
                         </Link>
