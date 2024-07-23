@@ -41,7 +41,7 @@ const Shop = () => {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
+  }, [data]);
 
   const handleItem = () => {
     const existsInCart = cart.some((item) => item.id === data.id);
@@ -74,7 +74,6 @@ const Shop = () => {
 
   const handleItemClick = (newItemId) => {
     navigate(`/shop/${newItemId}`);
-    navigate(0);
   }
 
   return (

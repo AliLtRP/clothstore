@@ -10,7 +10,7 @@ const List = ({ v }) => {
     const navigate = useNavigate();
     const { setItems } = useRelated();
     const navigateToTrendingProduct = (bannerID) => {
-        navigate('/trending/product', { state: { id: bannerID } });
+        navigate('/trending/product', { state: { id: bannerID, title: v.title } });
     };
 
     useEffect(() => {
@@ -19,6 +19,8 @@ const List = ({ v }) => {
             setLoading(false);
         }
     }, [v]);
+
+    console.log(v.title, 'titlee');
 
     return (
         <div className="h-[315px] max-w-sm flex flex-col gap-3.5 pl-4 ">

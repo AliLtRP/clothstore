@@ -23,7 +23,7 @@ const TrendingProducts = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
-    
+
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -43,7 +43,6 @@ const TrendingProducts = () => {
     }, [state]);
 
     const preprocessData = (data) => {
-        console.log(data, 'preprocessData');
         const leftAlign = [];
         const rightAlign = [];
         data.forEach((item, index) => {
@@ -76,11 +75,13 @@ const TrendingProducts = () => {
         <motion.div variants={routeVariants} initial="initial" animate="final" transition={transition}>
             <div className="w-full flex flex-col mx-auto">
                 <Container>
-                    <div className="flex items-center justify-between w-[65%] h-16 px-4">
-                        <div onClick={() => navigator(-1)}>
+                    <div className="flex items-center justify-between w-full h-16 px-4">
+                        <div onClick={() => navigator(-1)} className=" hover:cursor-pointer">
                             <img src={backicon} loading="lazy" className="h-5 w-[9.5px]" />
                         </div>
-                        <p className="text-black font-semibold text-lg leading-4 h-5 pt-0.5 text-end">Top Rate</p>
+                        <div className="w-[75%]">
+                            <p className="text-black font-semibold text-lg leading-4 h-5 pt-0.5 text-center w-2/3">{state.title}</p>
+                        </div>
                     </div>
 
                     <div className="w-full border-[0.6px] bg-[#C6C6C6]" />
