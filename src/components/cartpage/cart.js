@@ -83,6 +83,7 @@ const Cartpage = () => {
       alignItems: "center",
       justifyContent: "center",
       position: "absolute",
+      marginTop : "-10px"
       
     }),
     indicatorsContainer: (provided) => ({
