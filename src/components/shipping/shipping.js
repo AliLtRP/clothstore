@@ -8,6 +8,7 @@ import Footer from '../home page/Footer';
 import useCartStore from '../../provider/zustand';
 import { jwtDecode } from 'jwt-decode';
 import client from './../../api/axios'
+import ButtonComp from '../btnComp';
 
 
 
@@ -91,8 +92,8 @@ const Shipping = () => {
   const currencyDarker = <img src={rupee} style={{ width: '10px', marginRight: '5px' }} alt="Rupee" />;
 
   return (
-    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
+    <div className="w-full h-full montserrat flex flex-col items-center bg-[#FDFDFD]">
+      <div className="max-w-sm p-4 flex flex-col gap-6">
         <div className={shippingStyle["shipping-screen-body"]}>
           <div className={shippingStyle["shipping-container"]}>
             <div className={shippingStyle["checkout-navbar"]}>
@@ -105,7 +106,7 @@ const Shipping = () => {
               <p className={shippingStyle["checkout-title"]}>Checkout</p>
             </div>
             <hr className={shippingStyle["divider"]} />
-            <div className={shippingStyle["final-order-total"]}>
+            <div className={shippingStyle[""]}>
               <div className={shippingStyle["final-payment-details"]}>
                 <p>Order</p>
                 <div style={{ display: "flex", alignItems: "center" }}>
@@ -154,13 +155,13 @@ const Shipping = () => {
                   readOnly
                 />
               </div>
-              <button
+              {/* <button
                 className={`${shippingStyle["continue-payment"]} ${loading ? shippingStyle["loading"]:''}`}
                 onClick={handleContinue}
                 disabled={loading}
               >
          {loading ? 'Loading...' : 'Continue'}
-              </button>
+              </button> */}
               {error && <p className={shippingStyle['error']}>{error}</p>}
               <Footer path={"cart"}></Footer>
             </div>

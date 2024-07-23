@@ -21,6 +21,11 @@ const useCartStore = create(persist(
       const quantities = cart.map(item => item.quantity || 1);
       return { cart, quantities };
     }),
+    removeFromCart: (itemId) => set((state) => {
+      const cart = state.cart.filter(item => item.id !== itemId);
+      const quantities = cart.map(item => item.quantity || 1);
+      return { cart, quantities };
+    }),
     setAddress: (address) => set(() => ({ address })),
     setCityAndCountry: (city, country) => set(() => ({ selectedCity: city, selectedCountry: country })),
     incrementQuantity: (index) => set((state) => {

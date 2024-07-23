@@ -6,6 +6,8 @@ import Footer from "../home page/Footer";
 import useCartStore from "../../provider/zustand";
 import { useNavigate } from "react-router-dom";
 import Header from "../headerComp";
+import { BsCartX } from "react-icons/bs";
+
 
 const Cartpage = () => {
   const {
@@ -20,6 +22,8 @@ const Cartpage = () => {
     decrementQuantity,
     calculateTotalPrice,
     setOrderDetails,
+    addToCart,
+    removeFromCart
   } = useCartStore();
 
   const navigate = useNavigate();
@@ -83,8 +87,8 @@ const Cartpage = () => {
       alignItems: "center",
       justifyContent: "center",
       position: "absolute",
-      marginTop : "-10px"
-      
+      marginTop: "-10px"
+
     }),
     indicatorsContainer: (provided) => ({
       ...provided,
@@ -110,7 +114,7 @@ const Cartpage = () => {
       ...provided,
       color: "#000",
       lineHeight: "0px",
-  
+
     }),
   };
 
@@ -142,11 +146,13 @@ const Cartpage = () => {
     navigate("/placeorder");
   };
 
+  console.log(cart);
+
   return (
     <div className="w-full h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] px-4">
-      <div className="max-w-sm p-4 flex flex-col gap-6">
+      <div className="w-full max-w-sm p-4 flex flex-col gap-6">
         <div className={cartStyle["checkout-screen-body"]}>
-        <Header title={"Cart"}/>
+          <Header title={"Cart"} />
           <div className={cartStyle["cart-items"]}>
             <img
               src={blackcart}
@@ -173,7 +179,7 @@ const Cartpage = () => {
                     <h6 className={"px-2 py-4 text-center"}>
                       Size <b>{item.size}</b>
                     </h6>
-                    <div className="w-full">
+                    <div className="w-full flex items-center justify-between">
                       <div className="w-[50%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
                         <button
                           className="text-2xl"
@@ -192,6 +198,8 @@ const Cartpage = () => {
                           +
                         </button>
                       </div>
+
+                      <BsCartX size={20} className="mt-1 hover:cursor-pointer" onClick={() => removeFromCart(item.id)} />
                     </div>
                   </div>
                 </div>
@@ -252,7 +260,7 @@ const Cartpage = () => {
           </button>
         </div>
       </div>
-     
+
     </div>
   );
 };
