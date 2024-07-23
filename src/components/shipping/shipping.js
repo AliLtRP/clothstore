@@ -8,8 +8,8 @@ import Footer from '../home page/Footer';
 import useCartStore from '../../provider/zustand';
 import { jwtDecode } from 'jwt-decode';
 import client from './../../api/axios'
-
-
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Shipping = () => {
   const navigate = useNavigate();
@@ -71,12 +71,12 @@ const Shipping = () => {
         
       } else {
         console.error('Error placing order:', error);        
-        setError('Failed to place order. .');
+        toast.error('Failed to place order. .');
        
       }
     } catch (error) {
       console.error('Error placing order:', error);
-     setError('Network Error.');
+      toast.error('Network Error.');
     }
     setLoading(false);
   };
@@ -171,6 +171,7 @@ const Shipping = () => {
             onClose={closePopup}
           />
         </div>
+        <ToastContainer position="top-center"  />
       </div>
     </div>
   );

@@ -5,6 +5,8 @@ import eye from "../../assets/eye.svg";
 import eyeoff from "../../assets/eyeoff.svg";
 import client from "../../api/axios";
 import ButtonComp from "../btnComp";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signinscreen = () => {
   const [username_or_email, setUsername_or_password] = useState("");
@@ -14,6 +16,8 @@ const Signinscreen = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
+
+
 
   const handleLoginClick = async (event) => {
     event.preventDefault();
@@ -31,6 +35,7 @@ const Signinscreen = () => {
       if (!success) {
         setError("User is not active or other error occurred");
         setLoading(false);
+        toast.error(error)
         return;
       }
 
@@ -39,12 +44,12 @@ const Signinscreen = () => {
     } catch (error) {
       if (error.response) {
         if (error.response.status === 400) {
-          setError("Incorrect username or password");
+          toast.error("User or Password is not correct"); 
         } else {
-          setError("Request error");
+          toast.error("Request error");
         }
       } else {
-        setError("Network Error");
+        toast.error("Network Error");
       }
       setLoading(false);
     }
@@ -114,6 +119,7 @@ const Signinscreen = () => {
       </a>
     </p>
   </div>
+  <ToastContainer position="top-center"  />
   <div className="w-full max-w-sm px-4">
     <ButtonComp
       title="Login"
