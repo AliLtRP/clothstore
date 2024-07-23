@@ -6,6 +6,7 @@ import Footer from "../home page/Footer";
 import useCartStore from "../../provider/zustand";
 import { useNavigate } from "react-router-dom";
 import Header from "../headerComp";
+import { color } from "framer-motion";
 
 const Cartpage = () => {
   const {
@@ -83,14 +84,13 @@ const Cartpage = () => {
       alignItems: "center",
       justifyContent: "center",
       position: "absolute",
-      marginTop : "-10px"
-      
+      marginTop: "-10px",
     }),
     indicatorsContainer: (provided) => ({
       ...provided,
       height: "20px",
       position: "absolute",
-      left: '90%',
+      left: "90%",
     }),
     singleValue: (provided) => ({
       ...provided,
@@ -99,18 +99,17 @@ const Cartpage = () => {
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected
-        ? ""
+        ? "#808080"
         : state.isFocused
-          ? ""
-          : "#FFF",
-      color: state.isSelected ? "#FFF" : "#000",
+        ? ""
+        : "#FFF",
+      color: state.isSelected ? "black" : "#000",
       padding: "8px 12px",
     }),
-    placeholder: (provided) => ({
+    placeholder: (provided, state) => ({
       ...provided,
-      color: "#000",
+      color: state.isSelected ? "#808080" : "black",
       lineHeight: "0px",
-  
     }),
   };
 
@@ -146,7 +145,7 @@ const Cartpage = () => {
     <div className="w-full h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] px-4">
       <div className="max-w-sm p-4 flex flex-col gap-6">
         <div className={cartStyle["checkout-screen-body"]}>
-        <Header title={"Cart"}/>
+          <Header title={"Cart"} />
           <div className={cartStyle["cart-items"]}>
             <img
               src={blackcart}
@@ -206,7 +205,9 @@ const Cartpage = () => {
           <hr className={cartStyle["divider"]} />
           <p className={cartStyle["final-address-details"]}>Address Details</p>
           <div className={cartStyle["final-address-info"] + " my-4"}>
-            <p className={cartStyle["final-address-titles"] + " my-2"}>Address</p>
+            <p className={cartStyle["final-address-titles"] + " my-2"}>
+              Address
+            </p>
             <input
               className={cartStyle["final-address-input"] + " mb-4"}
               placeholder="Write your address here"
@@ -216,14 +217,30 @@ const Cartpage = () => {
             <p className={cartStyle["final-address-titles"] + " my-2"}>City</p>
             <Select
               className={cartStyle["final-city-input"] + " mb-[100px]"}
-              value={selectedCity}
+              value={
+                cityOptions.find((option) => option.value === selectedCity) ||
+                null
+              }
               onChange={handleCityChange}
               options={cityOptions}
-              placeholder={selectedCity || "Choose your city here"}
-              styles={customStyles}
+              placeholder="Choose your city here"
+              styles={{
+                ...customStyles,
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: selectedCity ? "#000" : provided.color,
+                }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: selectedCity ? "transparent" : '#9BA3AF',
+                }),
+              }}
             />
+
             <div className="w-full my-4 flex flex-col justify-center items-center">
-              <p className={cartStyle["final-address-titles"] + " my-2"}>Country</p>
+              <p className={cartStyle["final-address-titles"] + " my-2"}>
+                Country
+              </p>
               <input
                 className={cartStyle["final-country-input"]}
                 value={selectedCountry}
@@ -241,7 +258,6 @@ const Cartpage = () => {
           </button>
         </div>
       </div>
-     
     </div>
   );
 };
