@@ -29,12 +29,12 @@ const HomePage = () => {
   }, []);
 
   return (
-    <div className="w-full h-full montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+    <div className="w-full h-full montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] mt-2">
       <div className="min-w-[24rem] max-w-sm p- flex flex-col gap-3">
         <NavBar loading={loading} />
         <div className="w-full flex justify-center relative px-4 mt-16 mb-2">
           {loading ? (
-            <Skeleton width={350} height={35} className="rounded-md " />
+            <Skeleton width={350} height={35} className="rounded-md" />
           ) : (
             <>
               <SearchSVG className="absolute top-2/4 left-10 translate-x-[-50%] translate-y-[-50%]" />
@@ -53,7 +53,7 @@ const HomePage = () => {
         <div className="h-auto w-full flex flex-col gap-10 mt-12 mb-24">
           {loading ? (
             <>
-              <div className="flex h-full items-center gap-1.5 mt-[3px] mb-[-10px] px-4">
+              <div className="flex h-full items-center gap-1.5 mt-[3px] mb-[-2px] px-4">
                 <Skeleton height={20} width={100} className="mb-3"/>
               </div>
               <div className="flex gap-4 mt-[-30px] px-4">
@@ -72,7 +72,6 @@ const HomePage = () => {
               <div className="mt-[-25px] px-4">
                 <Skeleton height={200} width={350} borderRadius={10} className="mb-[-70px]"/>
               </div>
-
             </>
           ) : (
             data.map((v, i) => {

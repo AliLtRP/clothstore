@@ -119,7 +119,6 @@ const Signinscreen = () => {
       </a>
     </p>
   </div>
-  <ToastContainer position="top-center"  />
   <div className="w-full max-w-sm px-4">
     <ButtonComp
       title="Login"

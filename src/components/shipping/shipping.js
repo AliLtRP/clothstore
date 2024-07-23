@@ -8,13 +8,14 @@ import Footer from '../home page/Footer';
 import useCartStore from '../../provider/zustand';
 import { jwtDecode } from 'jwt-decode';
 import client from './../../api/axios'
+import ButtonComp from '../btnComp';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 const Shipping = () => {
   const navigate = useNavigate();
   const orderDetails = useCartStore((state) => state.orderDetails);
-  const [loading , setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [showPopup, setShowPopup] = useState(false);
   const clearCart = useCartStore((state) => state.clearCart);
@@ -23,38 +24,38 @@ const Shipping = () => {
     navigate('/placeorder');
   };
 
-  const token = localStorage.getItem('token'); 
+  const token = localStorage.getItem('token');
   console.log("Token:", token);
 
   let userId;
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      userId = decodedToken.id; 
-      console.log("Decoded User ID:", userId);
-    }
+  if (token) {
+    const decodedToken = jwtDecode(token);
+    userId = decodedToken.id;
+    console.log("Decoded User ID:", userId);
+  }
 
-  const handleContinue = async () => {  
+  const handleContinue = async () => {
     setLoading(true);
-  
+
     const requestBody = {
-      
-      items:orderDetails.cart,
+
+      items: orderDetails.cart,
       address: orderDetails.address,
       phone: 1234,
       total_price: orderDetails.totalPrice,
       city: orderDetails.selectedCity,
       country: orderDetails.selectedCountry,
-      statuscode: [{'status':'pending'}],
-      user_id:userId,
+      statuscode: [{ 'status': 'pending' }],
+      user_id: userId,
       voucher_id: orderDetails.voucherId,
     }
 
-    console.log("req body",requestBody);
+    console.log("req body", requestBody);
 
     try {
-      const response = await client.post('order', requestBody , {
+      const response = await client.post('order', requestBody, {
         headers: {
-          'Authorization': localStorage.getItem('token') 
+          'Authorization': localStorage.getItem('token')
         }
       });
 
@@ -62,17 +63,17 @@ const Shipping = () => {
 
       if (response.status === 201) {
         console.log('Order placed successfully:', response.data);
-        setShowPopup(true); 
+        setShowPopup(true);
         clearCart();
         localStorage.removeItem("cartstorage")
         setTimeout(() => {
           navigate('/home');
         }, 3000);
-        
+
       } else {
-        console.error('Error placing order:', error);        
+        console.error('Error placing order:', error);
         toast.error('Failed to place order. .');
-       
+
       }
     } catch (error) {
       console.error('Error placing order:', error);
@@ -91,8 +92,8 @@ const Shipping = () => {
   const currencyDarker = <img src={rupee} style={{ width: '10px', marginRight: '5px' }} alt="Rupee" />;
 
   return (
-    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
+    <div className="w-full h-full montserrat flex flex-col justify-center items-center bg-[#FDFDFD]">
+      <div className="max-w-sm p-4 flex flex-col items-center justify-center gap-6">
         <div className={shippingStyle["shipping-screen-body"]}>
           <div className={shippingStyle["shipping-container"]}>
             <div className={shippingStyle["checkout-navbar"]}>
@@ -105,7 +106,7 @@ const Shipping = () => {
               <p className={shippingStyle["checkout-title"]}>Checkout</p>
             </div>
             <hr className={shippingStyle["divider"]} />
-            <div className={shippingStyle["final-order-total"]}>
+            <div className={shippingStyle[""]}>
               <div className={shippingStyle["final-payment-details"]}>
                 <p>Order</p>
                 <div style={{ display: "flex", alignItems: "center" }}>
@@ -154,13 +155,9 @@ const Shipping = () => {
                   readOnly
                 />
               </div>
-              <button
-                className={`${shippingStyle["continue-payment"]} ${loading ? shippingStyle["loading"]:''}`}
-                onClick={handleContinue}
-                disabled={loading}
-              >
-         {loading ? 'Loading...' : 'Continue'}
-              </button>
+              <div className='flex w-full h-full justify-center items-center px-4 pt-8'>
+                <ButtonComp title="Continue" width="98%" />
+              </div>
               {error && <p className={shippingStyle['error']}>{error}</p>}
               <Footer path={"cart"}></Footer>
             </div>
@@ -171,7 +168,7 @@ const Shipping = () => {
             onClose={closePopup}
           />
         </div>
-        <ToastContainer position="top-center"  />
+        <ToastContainer position="top-center" />
       </div>
     </div>
   );
