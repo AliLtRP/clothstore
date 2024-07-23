@@ -27,7 +27,7 @@ const Placeorder = () => {
 
   return (
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] px-4">
-      <div className="min-w-[384px] max-w-[480px] p-4 flex flex-col gap-6">
+      <div className="max-w-sm p-4 flex flex-col gap-6">
         <div className={placeorderStyle['checkout-navbar']}>
           <img src={back} className={placeorderStyle['left-arrow']} alt="Back" onClick={handleBackArrow} />
           <p className={placeorderStyle['checkout-title']}>Checkout</p>

@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Container } from "../trending products";
-import { BackArrow } from "../trending products/icons";
 import Cart from "./icons/Cart";
 import { Rating } from "../home page/icons";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import client from "../../api/axios";
 import useCartStore, { useRelated } from "../../provider/zustand";
 import { motion } from "framer-motion";
@@ -26,8 +25,13 @@ const Shop = () => {
 
   const fetchData = async () => {
     try {
-      const response = await client.get(`/product?id=${id}`);
-      setData(response.data.data);
+      const savedItem = localStorage.getItem(`item_${id}`);
+      if (savedItem) {
+        setData(JSON.parse(savedItem));
+      } else {
+        const response = await client.get(`/product?id=${id}`);
+        setData(response.data.data);
+      }
     } catch (e) {
       console.log(e);
     } finally {
@@ -39,9 +43,17 @@ const Shop = () => {
     fetchData();
   }, [id]);
 
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // }, [data]);
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [data]);
+    const previousItemId = localStorage.getItem('previousItemId');
+    if (previousItemId && previousItemId !== id) {
+      localStorage.removeItem(`item_${previousItemId}`);
+    }
+    localStorage.setItem('previousItemId', id);
+  }, [id]);
 
   const handleItem = () => {
     const existsInCart = cart.some((item) => item.id === data.id);
@@ -73,7 +85,9 @@ const Shop = () => {
   };
 
   const handleItemClick = (newItemId) => {
+    setLoading(true);
     navigate(`/shop/${newItemId}`);
+    navigate(0);
   }
 
   return (
@@ -86,16 +100,16 @@ const Shop = () => {
       >
         <Container>
           <div className="w-full h-20 flex justify-between items-center p-4">
-            <div onClick={() => navigate(-1)}>
+            <div onClick={() => navigate(-1)} className="hover:cursor-pointer">
               <img src={backicon} className="h-5 w-[9.5px]" />
             </div>
             <div
-              className={`bg-[#F2F2F2] rounded-full p-2 ${isScaled ? 'scale-125' : 'scale-100'} transform transition-transform duration-200 ease-in-out`}
+              className={`bg-[#F2F2F2] rounded-full p-2 ${isScaled ? 'scale-125' : 'scale-100'} transform transition-transform duration-200 ease-in-out cursor-pointer`}
               onClick={() => navigate("/cart")}
             >
               <Cart />
               {
-                cart.length != 0 ? <div className=" absolute top-0.5 right-0.5 w-3 h-3 rounded-full bg-[#f6153a] flex justify-center items-center text-white text-[10px]">{cart.length}</div> : ""
+                cart.length != 0 ? <div className="absolute top-0.5 right-0.5 w-3 h-3 rounded-full bg-[#f6153a] flex justify-center items-center text-white text-[10px]">{cart.length}</div> : ""
               }
             </div>
           </div>
@@ -115,21 +129,13 @@ const Shop = () => {
             )}
 
             <div className="w-full h-8 flex justify-center items-center gap-1">
-              {data.img &&
-                data.img.map((v, i) => {
-                  return (
-                    <>
-                      {loading ? (
-                        <></>
-                      ) : (
-                        <i
-                          className="rounded-full bg-[#F83758] p-[5px]"
-                          key={i}
-                        />
-                      )}
-                    </>
-                  );
-                })}
+              {loading ? <Skeleton height={10} width={10} className=" rounded-full"/> :
+                data.img.map((v, i) => (
+                  <i
+                    className="rounded-full bg-[#F83758] p-[5px]"
+                    key={i}
+                  />
+                ))}
             </div>
           </div>
         </Container>
@@ -142,7 +148,7 @@ const Shop = () => {
                   <Skeleton height={20} width={150} />
                 </div>
               ) : (
-                <p className=" font-bold text-base my-1.5">
+                <p className="font-bold text-base my-1.5">
                   {Object.keys(data.options[0])} : {data.options[0].color}
                 </p>
               )}
@@ -151,36 +157,36 @@ const Shop = () => {
                 <div className="flex-col gap-3">
                   <Skeleton height={15} />
                   <Skeleton height={15} width={150} />
-                  <div className="w-full grid grid-flow-col justify-between mt-3 ">
+                  <div className="w-full grid grid-flow-col justify-between mt-3">
                     <Skeleton height={50} width={120} />
                     <Skeleton height={50} width={175} />
                   </div>
                 </div>
               ) : (
                 <div className="flex flex-col gap-3">
-                  <p className=" font-bold text-xl">{data.name}</p>
-                  <p className=" font-normal text-sm">{data.description}</p>
+                  <p className="font-bold text-xl">{data.name}</p>
+                  <p className="font-normal text-sm">{data.description}</p>
 
                   <div className="w-full flex gap-1.5 items-center">
                     <Rating />
-                    <p className=" text-[#828282] font-medium text-sm">
+                    <p className="text-[#828282] font-medium text-sm">
                       {data.rating}
                     </p>
                   </div>
 
                   <div className="w-full flex gap-2 text-sm">
-                    <p className=" line-through text-[#808488] font-normal">
+                    <p className="line-through text-[#808488] font-normal">
                       ₹{data.price}
                     </p>
-                    <p className=" font-medium">₹{data.final_price}</p>
+                    <p className="font-medium">₹{data.final_price}</p>
                     {data.discount && (
-                      <p className=" text-[#FA7189] font-semibold">
+                      <p className="text-[#FA7189] font-semibold">
                         {data.discount.value} Off
                       </p>
                     )}
                   </div>
 
-                  <p className=" text-sm font-medium mb-0.5">Product Details</p>
+                  <p className="text-sm font-medium mb-0.5">Product Details</p>
 
                   <p className=" text-xs font-normal">{data.description}</p>
 

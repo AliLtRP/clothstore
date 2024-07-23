@@ -63,4 +63,9 @@ export const useRelated = create(
   )
 );
 
+export const useItemStore = create((set) => ({
+  item: null,
+  setItem: (item) => set({ item }),
+}));
+
 export default useCartStore;
