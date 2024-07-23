@@ -4,6 +4,7 @@ import signinStyle from "./signinstyle.module.css";
 import eye from "../../assets/eye.svg";
 import eyeoff from "../../assets/eyeoff.svg";
 import client from "../../api/axios";
+import ButtonComp from "../btnComp";
 
 const Signinscreen = () => {
   const [username_or_email, setUsername_or_password] = useState("");
@@ -11,7 +12,6 @@ const Signinscreen = () => {
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
-
 
   const navigate = useNavigate();
 
@@ -44,7 +44,7 @@ const Signinscreen = () => {
           setError("Request error");
         }
       } else {
-        setError(`Network Error`);
+        setError("Network Error");
       }
       setLoading(false);
     }
@@ -59,21 +59,21 @@ const Signinscreen = () => {
     setPasswordVisible(!passwordVisible);
   };
 
-  const checkAuth = async() => {
+  const checkAuth = async () => {
     await client.get('check')
       .then((res) => {
         console.log(res.data);
         navigate("/getstarted");
       })
       .catch(e => console.log(e));
-  }
+  };
 
   useEffect(() => {
     checkAuth();
   }, []);
-  
+
   return (
-    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+    <div className="w-full h-auto min-h-screen montserrat flex flex-col items-center bg-[#FDFDFD] relative">
       <div className="max-w-sm p-4 flex flex-col gap-6">
         <h1 className={signinStyle.welcomtitle}>
           Welcome
@@ -81,12 +81,12 @@ const Signinscreen = () => {
           Back!
         </h1>
         <div className={`${signinStyle.datainput}`}>
-            <input
-              placeholder="Username or email"
-              className={signinStyle.userinput}
-              value={username_or_email}
-              onChange={(e) => setUsername_or_password(e.target.value)}
-            />
+          <input
+            placeholder="Username or email"
+            className={signinStyle.userinput}
+            value={username_or_email}
+            onChange={(e) => setUsername_or_password(e.target.value)}
+          />
           <div className={signinStyle.passwordinputcontainer}>
             <input
               type={passwordVisible ? "text" : "password"}
@@ -104,25 +104,27 @@ const Signinscreen = () => {
           </div>
           <p className={signinStyle.forgetpass}>Forgot password?</p>
         </div>
-        <div>
-          <p className={signinStyle.createacc}>
-            Create an account{" "}
-            <a onClick={handleSignUpClick} className={" hover:cursor-pointer " + signinStyle.signuplink}>
-              Sign Up
-            </a>
-          </p>
-        </div>
-        <button
-          className={`${signinStyle.Loginbtn} ${
-            loading ? signinStyle.loading : ""
-          } mb-2.5`}
-          onClick={handleLoginClick}
-          disabled={loading}
-        >
-          {loading ? "Loading..." : "Login"}
-        </button>
-        {error && <p className={signinStyle.error}>{error}</p>}
       </div>
+      <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center">
+  <div className="mb-10">
+    <p className={signinStyle.createacc}>
+      Create an account{" "}
+      <a onClick={handleSignUpClick} className={"hover:cursor-pointer " + signinStyle.signuplink}>
+        Sign Up
+      </a>
+    </p>
+  </div>
+  <div className="w-full max-w-sm px-4">
+    <ButtonComp
+      title="Login"
+      disabled={false}
+      loading={loading}
+      width="100%"
+      onClick={handleLoginClick}
+    />
+  </div>
+</div>
+
     </div>
   );
 };
