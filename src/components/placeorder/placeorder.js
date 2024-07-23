@@ -6,6 +6,7 @@ import edit from '../../assets/edit.svg';
 import rupee from '../../assets/currency_rupee.svg';
 import useCartStore from '../../provider/zustand';
 import { useNavigate } from 'react-router-dom';
+import Header from '../headerComp';
 
 const Placeorder = () => {
   const navigate = useNavigate();
@@ -28,11 +29,7 @@ const Placeorder = () => {
   return (
     <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] px-4">
       <div className="max-w-sm p-4 flex flex-col gap-6">
-        <div className={placeorderStyle['checkout-navbar']}>
-          <img src={back} className={placeorderStyle['left-arrow']} alt="Back" onClick={handleBackArrow} />
-          <p className={placeorderStyle['checkout-title']}>Checkout</p>
-        </div>
-        <hr style={{ opacity: '30%', width: '100%', marginTop: '-5px' }} />
+        <Header title={"Checkout"}/>
         <div className={placeorderStyle['checkout-body']}>
           <div className={placeorderStyle['delivery-address']}>
             <img src={location} className={placeorderStyle['location-icon']} alt="Location" />

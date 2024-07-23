@@ -5,6 +5,7 @@ import Select from "react-select";
 import Footer from "../home page/Footer";
 import useCartStore from "../../provider/zustand";
 import { useNavigate } from "react-router-dom";
+import Header from "../headerComp";
 
 const Cartpage = () => {
   const {
@@ -82,6 +83,7 @@ const Cartpage = () => {
       alignItems: "center",
       justifyContent: "center",
       position: "absolute",
+      
     }),
     indicatorsContainer: (provided) => ({
       ...provided,
@@ -107,6 +109,7 @@ const Cartpage = () => {
       ...provided,
       color: "#000",
       lineHeight: "0px",
+  
     }),
   };
 
@@ -142,10 +145,7 @@ const Cartpage = () => {
     <div className="w-full h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] px-4">
       <div className="w-full sm:max-w-sm p-4 flex flex-col gap-6">
         <div className={cartStyle["checkout-screen-body"]}>
-          <div className={cartStyle["cart-navbar"]}>
-            <p className={cartStyle["cart-title"]}>Cart</p>
-          </div>
-          <hr className={cartStyle["divider"]} />
+        <Header title={"Cart"}/>
           <div className={cartStyle["cart-items"]}>
             <img
               src={blackcart}
@@ -251,7 +251,7 @@ const Cartpage = () => {
           </button>
         </div>
       </div>
-      <Footer path="cart" />
+     
     </div>
   );
 };

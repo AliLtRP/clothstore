@@ -25,24 +25,6 @@
   height: 55px;
 }
 
-.Loginbtn {
-  position: absolute;
-  bottom: 10px;
-  left: 50%;
-  transform: translateX(-50%);
-  background-color: #f83758;
-  font-size: 20px;
-  font-weight: 650;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  width: 90%;
-  max-width: 375px; 
-  padding: 15px;
-  cursor: pointer;
-  margin-bottom: 20px;
-}
-
 .signuplink {
   color: #f83758;
   text-decoration: underline;
@@ -106,17 +88,6 @@
   cursor: pointer;
 }
 
-.createacc {
-  position: absolute;
-  bottom: 100px;
-  left: 50%;
-  transform: translateX(-50%);
-  white-space: nowrap;
-  margin-bottom: 20px;
-}
-.loading{
-  background-color : #750417;
-}
 .error {
   color: red;
   font-weight: bold;
@@ -138,4 +109,9 @@
     outline: none;
     border: 1px solid #f83758;
     text-decoration: none; 
+  }
+
+  .loginstyle{
+  display: block;
+  width: 100%;
   }
