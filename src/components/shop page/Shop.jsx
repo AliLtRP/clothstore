@@ -37,7 +37,7 @@ const Shop = () => {
 
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -71,6 +71,11 @@ const Shop = () => {
       setQuantity(quantity - 1);
     }
   };
+
+  const handleItemClick = (newItemId) => {
+    navigate(`/shop/${newItemId}`);
+    navigate(0);
+  }
 
   return (
     <div className="w-full flex flex-col">
@@ -134,7 +139,7 @@ const Shop = () => {
           <div className="flex flex-col gap-3">
             <div className="px-4">
               {loading ? (
-                <div className="mt-[-30px]">
+                <div className="mt[-30px]">
                   <Skeleton height={20} width={150} />
                 </div>
               ) : (
@@ -218,8 +223,8 @@ const Shop = () => {
 
             {loading ? (
               <>
-                <Skeleton height={50} className="mt-8" />
-                <div className="w-full flex gap-3 overflow-y-scroll no-scrollbar">
+                <Skeleton height={50} width={352} className="mt-8 ml-4 mb-2" />
+                <div className="w-full flex gap-3 overflow-y-scroll no-scrollbar px-4">
                   <Skeleton height={200} width={160} />
                   <Skeleton height={200} width={160} />
                   <Skeleton height={200} width={160} />
@@ -230,7 +235,7 @@ const Shop = () => {
                 <p className=" text-xl font-semibold mt-8 mb-4">Similar To</p>
                 <div className="w-full flex gap-4 overflow-y-scroll no-scrollbar">
                   {items.map((v, i) => (
-                    <Link to={`/shop/${v.id}`} key={i}>
+                    <div className="hover:cursor-pointer" onClick={() => handleItemClick(v.id)}>
                       <div className=" w-40 min-h-[245px] h-auto pb-0.5 rounded-lg mb-3 shadow-md container ">
                         <LazyLoadImage
                           src={v.img[0].src}
@@ -256,7 +261,7 @@ const Shop = () => {
                           </div>
                         </div>
                       </div>
-                    </Link>
+                    </div>
                   ))}
                 </div>
               </div>
