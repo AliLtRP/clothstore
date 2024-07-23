@@ -49,7 +49,7 @@ const Shop = () => {
       addToCart({ ...data, quantity });
     }
     setIsScaled(true);
-    setTimeout(() => setIsScaled(false), 200); // Reset the scale after 200ms
+    setTimeout(() => setIsScaled(false), 200);
   };
 
   const routeVariants = {
@@ -105,7 +105,7 @@ const Shop = () => {
               <LazyLoadImage
                 className="w-full h-[213px] rounded-2xl object-cover"
                 src={data.img[0].src}
-                effect="opacity"
+                effect="blur"
                 width="100%"
               />
             )}
@@ -131,87 +131,90 @@ const Shop = () => {
         </Container>
 
         <Container>
-          <div className="p-4 flex flex-col gap-3">
-            {loading ? (
-              <div className="mt-[-30px]">
-                <Skeleton height={20} width={150} />
-              </div>
-            ) : (
-              <p className=" font-bold text-base">
-                {Object.keys(data.options[0])} : {data.options[0].color}
-              </p>
-            )}
-
-            {loading ? (
-              <div className="flex-col gap-3">
-                <Skeleton height={15} />
-                <Skeleton height={15} width={150} />
-                <div className="w-full grid grid-flow-col justify-between mt-3 ">
-                  <Skeleton height={50} width={120}  />
-                  <Skeleton height={50} width={175} />
+          <div className="flex flex-col gap-3">
+            <div className="px-4">
+              {loading ? (
+                <div className="mt-[-30px]">
+                  <Skeleton height={20} width={150} />
                 </div>
-              </div>
-            ) : (
-              <div className="flex flex-col gap-3">
-                <p className=" font-bold text-xl">{data.name}</p>
-                <p className=" font-normal text-sm">{data.description}</p>
+              ) : (
+                <p className=" font-bold text-base my-1.5">
+                  {Object.keys(data.options[0])} : {data.options[0].color}
+                </p>
+              )}
 
-                <div className="w-full flex gap-1.5 items-center">
-                  <Rating />
-                  <p className=" text-[#828282] font-medium text-sm">
-                    {data.rating}
-                  </p>
+              {loading ? (
+                <div className="flex-col gap-3">
+                  <Skeleton height={15} />
+                  <Skeleton height={15} width={150} />
+                  <div className="w-full grid grid-flow-col justify-between mt-3 ">
+                    <Skeleton height={50} width={120} />
+                    <Skeleton height={50} width={175} />
+                  </div>
                 </div>
+              ) : (
+                <div className="flex flex-col gap-3">
+                  <p className=" font-bold text-xl">{data.name}</p>
+                  <p className=" font-normal text-sm">{data.description}</p>
 
-                <div className="w-full flex gap-2 text-sm">
-                  <p className=" line-through text-[#808488] font-normal">
-                    ₹{data.price}
-                  </p>
-                  <p className=" font-medium">₹{data.final_price}</p>
-                  {data.discount && (
-                    <p className=" text-[#FA7189] font-semibold">
-                      {data.discount.value} Off
+                  <div className="w-full flex gap-1.5 items-center">
+                    <Rating />
+                    <p className=" text-[#828282] font-medium text-sm">
+                      {data.rating}
                     </p>
-                  )}
-                </div>
-
-                <p className=" text-sm font-medium mb-0.5">Product Details</p>
-
-                <p className=" text-xs font-normal">{data.description}</p>
-
-                <div className="w-full flex items-end">
-                  <div className="w-full">
-                    <p className=" font-semibold text-sm mt-1.5">
-                      Select Quantity
-                    </p>
-                    <div className="w-[70%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
-                      <div
-                        className="h-10 w-auto flex items-center"
-                        onClick={() => handleRemoveQuantity()}
-                      >
-                        <Minus />
-                      </div>
-                      <p className=" text-sm px-2 py-1 bg-white rounded-md font-medium">
-                        {quantity}
-                      </p>
-                      <div
-                        className="h-10 w-auto flex items-center"
-                        onClick={() => setQuantity(quantity + 1)}
-                      >
-                        <SvgComponent />
-                      </div>
-                    </div>
                   </div>
 
-                  <button
-                    className=" bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full active:bg-[#f51e42] hover:cursor-pointer"
-                    onClick={handleItem}
-                  >
-                    Add to Cart
-                  </button>
+                  <div className="w-full flex gap-2 text-sm">
+                    <p className=" line-through text-[#808488] font-normal">
+                      ₹{data.price}
+                    </p>
+                    <p className=" font-medium">₹{data.final_price}</p>
+                    {data.discount && (
+                      <p className=" text-[#FA7189] font-semibold">
+                        {data.discount.value} Off
+                      </p>
+                    )}
+                  </div>
+
+                  <p className=" text-sm font-medium mb-0.5">Product Details</p>
+
+                  <p className=" text-xs font-normal">{data.description}</p>
+
+                  <div className="w-full flex items-end">
+                    <div className="w-full">
+                      <p className=" font-semibold text-sm mt-1.5">
+                        Select Quantity
+                      </p>
+                      <div className="w-[70%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
+                        <div
+                          className="h-10 w-auto flex items-center"
+                          onClick={() => handleRemoveQuantity()}
+                        >
+                          <Minus />
+                        </div>
+                        <p className=" text-sm px-2 py-1 bg-white rounded-md font-medium">
+                          {quantity}
+                        </p>
+                        <div
+                          className="h-10 w-auto flex items-center"
+                          onClick={() => setQuantity(quantity + 1)}
+                        >
+                          <SvgComponent />
+                        </div>
+                      </div>
+                    </div>
+
+                    <button
+                      className=" bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full active:bg-[#f51e42] hover:cursor-pointer"
+                      onClick={handleItem}
+                    >
+                      Add to Cart
+                    </button>
+                  </div>
                 </div>
-              </div>
-            )}
+
+              )}
+            </div>
 
             {loading ? (
               <>
@@ -223,16 +226,17 @@ const Shop = () => {
                 </div>
               </>
             ) : (
-              <>
-                <p className=" text-xl font-semibold mt-8">Similar To</p>
+              <div className="pl-4">
+                <p className=" text-xl font-semibold mt-8 mb-4">Similar To</p>
                 <div className="w-full flex gap-4 overflow-y-scroll no-scrollbar">
                   {items.map((v, i) => (
                     <Link to={`/shop/${v.id}`} key={i}>
                       <div className=" w-40 min-h-[245px] h-auto pb-0.5 rounded-lg mb-3 shadow-md container ">
-                        <img
+                        <LazyLoadImage
                           src={v.img[0].src}
-                          alt=""
                           className="w-full h-[140px] rounded-lg object-cover"
+                          effect="blur"
+                          width="100%"
                         />
                         <div className="w-full flex flex-col gap-0.5 mx-2 my-2">
                           <p className="font-medium text-base text-[10px]">
@@ -247,7 +251,7 @@ const Shop = () => {
                           <div className="w-full flex items-center gap-2">
                             <Rating />
                             <p className=" font-normal text-[10px] pt-0.5">
-                              {v.rating || 0}
+                              {v.rating || ""}
                             </p>
                           </div>
                         </div>
@@ -255,7 +259,7 @@ const Shop = () => {
                     </Link>
                   ))}
                 </div>
-              </>
+              </div>
             )}
           </div>
         </Container>

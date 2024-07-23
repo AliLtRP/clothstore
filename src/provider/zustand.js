@@ -50,9 +50,17 @@ const useCartStore = create(persist(
   }
 ));
 
-export const useRelated = create((set) => ({
-  items: [],
-  setItems: (items) => set({ items }),
-}));
+export const useRelated = create(
+  persist(
+    (set) => ({
+      items: [],
+      setItems: (items) => set({ items }),
+    }),
+    {
+      name: 'related-storage', 
+      getStorage: () => localStorage,
+    }
+  )
+);
 
 export default useCartStore;
