@@ -9,7 +9,7 @@ const Header = ({ title, icon, path }) => {
     <>
       <div>
           <div className=" w-full h-20 flex justify-between items-center ">
-          <div onClick={() => navigate(-1)}>
+          <div onClick={() => navigate(-1)} className=' hover:cursor-pointer'>
             <img src={backicon} className="h-5 w-[9.5px]" />
           </div>
           <p className='text-black font-semibold text-lg leading-4'>{title}</p>

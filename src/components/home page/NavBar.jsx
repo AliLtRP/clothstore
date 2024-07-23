@@ -9,13 +9,13 @@ const NavBar = ({ loading }) => {
   return (
     <Container>
       {loading ? (
-        <div className="max-w-sm w-full z-20 top-0 h-16 bg-white fixed flex justify-between items-center px-4">
+        <div className="max-w-sm w-full z-20 top-0 h-16 bg-white fixed flex justify-between items-center px-4 mt-2">
           <Skeleton circle={true} height={40} width={40} />
           <Skeleton height={30} width={100} />
           <Skeleton circle={true} height={40} width={40} />
         </div>
       ) : (
-        <div className="max-w-sm w-full px-4 z-20 top-0 h-16 bg-white fixed flex justify-between items-center">
+        <div className="max-w-sm w-full px-4 z-20 top-0 h-16 bg-white fixed flex justify-between items-center mt-2">
           <HumMenu />
           <img src={Logo} alt="logo" className="w-[113px] h-[32px]" />
           <img src={Avatar} alt="user avatar" className="w-10 h-10" />
