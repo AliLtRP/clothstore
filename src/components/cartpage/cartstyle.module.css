@@ -14,8 +14,10 @@
 }
 
 .blackcart-icon {
-  margin-right: 5%;
+  margin-right: 4%;
   margin-left: -16%;
+  width: 18px;
+  height: 18px;
 }
 
 .cart-items {
