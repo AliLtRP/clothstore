@@ -240,17 +240,6 @@ const Cartpage = () => {
               />
             </div>
           </div>
-          {addressError && !cartError && (
-            <p className={cartStyle["error"]}>
-              Please fill in all address details.
-            </p>
-          )}
-          {cartError && !addressError && (
-            <p className={cartStyle["error"]}>
-              Your cart is empty, please put item in cart.
-            </p>
-          )}
-
           <button
             className={cartStyle.checkoutbtn}
             onClick={handleCheckOutClick}

@@ -16,29 +16,33 @@ import Wsishlistpage from './components/additional/wsishlist.js';
 import CategoryProducts from './components/CategoryProducts.jsx';
 import DiscountedProducts from './components/DiscountedProducts.jsx';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path='/' element={<SplashScreen />} />
-        <Route path="/signin" element={<Signinscreen />} />
-        <Route path="/signup" element={<Signupscreen />} />
-        <Route path="/getstarted" element={<Getstarted />} />
-        <Route path="/placeorder" element={<Placeorder />} />
-        <Route path="/shipping" element={<Shipping />} />
-        <Route path='/home' element={<HomePage />} />
-        <Route path='/wishlist' element={<Wsishlistpage />} />
-        <Route path='/trending/product' element={<TrendingProducts />} />
-        <Route path='/category/product/:id/:name' element={<CategoryProducts />} />
-        <Route path='/discounted/product' element={<DiscountedProducts />} />
-        <Route path='/shop/:id' element={<Shop />} />
-        <Route path='/cart' element={<Cartpage />} />
-        <Route path='/settings' element={<Settings />} />
-        <Route path='/search' element={<Search />} />
-      </Routes>
-    </Router>
+    <>
+      <ToastContainer position="top-center" className="min-w-[24rem]" />
+      <Router>
+        <Routes>
+          <Route path='/' element={<SplashScreen />} />
+          <Route path="/signin" element={<Signinscreen />} />
+          <Route path="/signup" element={<Signupscreen />} />
+          <Route path="/getstarted" element={<Getstarted />} />
+          <Route path="/placeorder" element={<Placeorder />} />
+          <Route path="/shipping" element={<Shipping />} />
+          <Route path='/home' element={<HomePage />} />
+          <Route path='/wishlist' element={<Wsishlistpage />} />
+          <Route path='/trending/product' element={<TrendingProducts />} />
+          <Route path='/category/product/:id/:name' element={<CategoryProducts />} />
+          <Route path='/discounted/product' element={<DiscountedProducts />} />
+          <Route path='/shop/:id' element={<Shop />} />
+          <Route path='/cart' element={<Cartpage />} />
+          <Route path='/settings' element={<Settings />} />
+          <Route path='/search' element={<Search />} />
+        </Routes>
+      </Router>
+    </>
   );
 }
 
