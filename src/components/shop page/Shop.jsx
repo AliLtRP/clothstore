@@ -90,6 +90,9 @@ const Shop = () => {
               onClick={() => navigate("/cart")}
             >
               <Cart />
+              {
+                cart.length != 0 ? <div className=" absolute top-0.5 right-0.5 w-3 h-3 rounded-full bg-[#f6153a] flex justify-center items-center text-white text-[10px]">{cart.length}</div> : ""
+              }
             </div>
           </div>
         </Container>
