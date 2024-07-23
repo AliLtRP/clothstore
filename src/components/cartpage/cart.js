@@ -144,7 +144,7 @@ const Cartpage = () => {
 
   return (
     <div className="w-full h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] px-4">
-      <div className="w-full sm:max-w-sm p-4 flex flex-col gap-6">
+      <div className="max-w-sm p-4 flex flex-col gap-6">
         <div className={cartStyle["checkout-screen-body"]}>
         <Header title={"Cart"}/>
           <div className={cartStyle["cart-items"]}>
