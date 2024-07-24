@@ -13,7 +13,7 @@ const Getstarted = () => {
   };
 
   return (
-    <div className="w-full max-w-sm h-full montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+    <div className="w-full h-full montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
         <LazyLoadImage 
           src={bg_img} 
           className='object-cover absolute inset-0 h-[100vh]'
