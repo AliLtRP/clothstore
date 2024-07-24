@@ -7,14 +7,11 @@ import rupee from '../../assets/currency_rupee.svg';
 import useCartStore from '../../provider/zustand';
 import { useNavigate } from 'react-router-dom';
 import Header from '../headerComp';
+import ButtonComp from '../btnComp';
 
 const Placeorder = () => {
   const navigate = useNavigate();
   const orderDetails = useCartStore((state) => state.orderDetails);
-
-  if (!orderDetails) {
-    return <div>Loading...</div>; 
-  }
 
   const handleCheckOut = () => {
     navigate('/shipping');
@@ -52,7 +49,6 @@ const Placeorder = () => {
                 <p className={placeorderStyle['order-title']}>{item.name}</p>
                 <p className={placeorderStyle['order-description']}>{item.description}</p>
                 <div className={placeorderStyle['size-qty-container']}>
-                  <p>Size <b>{item.size}</b></p>
                   <p>Qty <b>{orderDetails.quantities[index]}</b></p>
                 </div>
               </div>
@@ -72,7 +68,7 @@ const Placeorder = () => {
             </div>
             <div className={placeorderStyle['payment-details']}>
               <p>Delivery Fee</p>
-              <p style={{ fontWeight: 'bold', color: '#F83758' }}>Free</p>
+              <a>Free</a>
             </div>
           </div>
           <hr style={{ opacity: '30%', width: '80%' }} />
@@ -94,7 +90,11 @@ const Placeorder = () => {
                 <a href="#" style={{ whiteSpace: 'nowrap', fontSize: '14px', color: '#F83758', textDecoration: 'none', fontWeight: 'bold', marginLeft: '-10%' }}>View Details</a>
               </div>
             </div>
-            <button onClick={handleCheckOut}>Proceed to Payment</button>
+            <ButtonComp
+            title={"Proceed to Payment"}
+            small={true}
+            onClick={handleCheckOut}
+            />
           </div>
         </div>
       </div>

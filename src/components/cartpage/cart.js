@@ -5,8 +5,11 @@ import Select from "react-select";
 import useCartStore from "../../provider/zustand";
 import { useNavigate } from "react-router-dom";
 import Header from "../headerComp";
+import { color } from "framer-motion";
 import { BsCartX } from "react-icons/bs";
 import ButtonComp from "../btnComp";
+import { toast } from 'react-toastify';
+
 
 
 const Cartpage = () => {
@@ -94,7 +97,7 @@ const Cartpage = () => {
       ...provided,
       height: "20px",
       position: "absolute",
-      left: '90%',
+      left: "90%",
     }),
     singleValue: (provided) => ({
       ...provided,
@@ -103,16 +106,16 @@ const Cartpage = () => {
     option: (provided, state) => ({
       ...provided,
       backgroundColor: state.isSelected
-        ? ""
+        ? "#808080"
         : state.isFocused
-          ? ""
-          : "#FFF",
-      color: state.isSelected ? "#FFF" : "#000",
+        ? ""
+        : "#FFF",
+      color: state.isSelected ? "black" : "#000",
       padding: "8px 12px",
     }),
-    placeholder: (provided) => ({
+    placeholder: (provided, state) => ({
       ...provided,
-      color: "#000",
+      color: state.isSelected ? "#808080" : "black",
       lineHeight: "0px",
 
     }),
@@ -121,18 +124,19 @@ const Cartpage = () => {
   const handleCheckOutClick = () => {
     if (!address || !selectedCity || !selectedCountry) {
       setAddressError(true);
+      toast.error("Please fill in all address details.");
       setTimeout(() => {
         setAddressError(false);
       }, 3000);
       return;
     }
-    if (cart.length === 0) {
-      setCartError(true);
-      setTimeout(() => {
-        setCartError(false);
-      }, 3000);
-      return;
-    }
+    // if (cart.length === 0) {
+    //   setCartError(true);
+    //   setTimeout(() => {
+    //     setCartError(false);
+    //   }, 3000);
+    //   return;
+    // }
 
     const checkoutData = {
       cart,
@@ -175,7 +179,7 @@ const Cartpage = () => {
                   <p className="ml-1 mt-1">{item.description}</p>
                   <div className={cartStyle["size-qty-container"]}>
                     <div className="w-full flex items-center justify-between">
-                      <div className="w-[50%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
+                      <div className="w-[50%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-8 mt-2">
                         <button
                           className="text-2xl"
                           onClick={() => handleDecrement(index)}
@@ -194,7 +198,7 @@ const Cartpage = () => {
                         </button>
                       </div>
 
-                      <BsCartX size={20} className="mt-1 hover:cursor-pointer" onClick={() => removeFromCart(item.id)} />
+                      <BsCartX size={20} className="mt-3 hover:cursor-pointer" onClick={() => removeFromCart(item.id)} />
                     </div>
                   </div>
                 </div>
@@ -209,7 +213,9 @@ const Cartpage = () => {
           <hr className={cartStyle["divider"]} />
           <p className={cartStyle["final-address-details"]}>Address Details</p>
           <div className={cartStyle["final-address-info"] + " my-4"}>
-            <p className={cartStyle["final-address-titles"] + " my-2"}>Address</p>
+            <p className={cartStyle["final-address-titles"] + " my-2"}>
+              Address
+            </p>
             <input
               className={cartStyle["final-address-input"] + " mb-4"}
               placeholder="Write your address here"
@@ -219,14 +225,30 @@ const Cartpage = () => {
             <p className={cartStyle["final-address-titles"] + " my-2"}>City</p>
             <Select
               className={cartStyle["final-city-input"] + " mb-[100px]"}
-              value={selectedCity}
+              value={
+                cityOptions.find((option) => option.value === selectedCity) ||
+                null
+              }
               onChange={handleCityChange}
               options={cityOptions}
-              placeholder={selectedCity || "Choose your city here"}
-              styles={customStyles}
+              placeholder="Choose your city here"
+              styles={{
+                ...customStyles,
+                singleValue: (provided) => ({
+                  ...provided,
+                  color: selectedCity ? "#000" : provided.color,
+                }),
+                placeholder: (provided) => ({
+                  ...provided,
+                  color: selectedCity ? "transparent" : '#9BA3AF',
+                }),
+              }}
             />
+
             <div className="w-full my-4 flex flex-col justify-center items-center">
-              <p className={cartStyle["final-address-titles"] + " my-2"}>Country</p>
+              <p className={cartStyle["final-address-titles"] + " my-2"}>
+                Country
+              </p>
               <input
                 className={cartStyle["final-country-input"]}
                 value={selectedCountry}
@@ -237,7 +259,7 @@ const Cartpage = () => {
           </div>
 
           <div className="w-full px-4 h-24 flex flex-col justify-center">
-            <ButtonComp title="Checkout" disabled={cart.length === 0} onClick={handleCheckOutClick} />
+            <ButtonComp title="Checkout" disabled={cart.length === 0 || addressError == true} onClick={handleCheckOutClick} />
           </div>
         </div>
       </div>
