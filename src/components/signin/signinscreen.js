@@ -5,8 +5,8 @@ import eye from "../../assets/eye.svg";
 import eyeoff from "../../assets/eyeoff.svg";
 import client from "../../api/axios";
 import ButtonComp from "../btnComp";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signinscreen = () => {
   const [username_or_email, setUsername_or_password] = useState("");
@@ -16,8 +16,6 @@ const Signinscreen = () => {
   const [passwordVisible, setPasswordVisible] = useState(false);
 
   const navigate = useNavigate();
-
-
 
   const handleLoginClick = async (event) => {
     event.preventDefault();
@@ -35,7 +33,7 @@ const Signinscreen = () => {
       if (!success) {
         setError("User is not active or other error occurred");
         setLoading(false);
-        toast.error(error)
+        toast.error(error);
         return;
       }
 
@@ -44,7 +42,7 @@ const Signinscreen = () => {
     } catch (error) {
       if (error.response) {
         if (error.response.status === 400) {
-          toast.error("User or Password is not correct"); 
+          toast.error("User or Password is not correct");
         } else {
           toast.error("Request error");
         }
@@ -65,12 +63,13 @@ const Signinscreen = () => {
   };
 
   const checkAuth = async () => {
-    await client.get('check')
+    await client
+      .get("check")
       .then((res) => {
         console.log(res.data);
         navigate("/getstarted");
       })
-      .catch(e => console.log(e));
+      .catch((e) => console.log(e));
   };
 
   useEffect(() => {
@@ -102,34 +101,38 @@ const Signinscreen = () => {
             />
             <img
               src={passwordVisible ? eyeoff : eye}
-              className={passwordVisible ? signinStyle.eyeoff : signinStyle.eyeicon}
+              className={
+                passwordVisible ? signinStyle.eyeoff : signinStyle.eyeicon
+              }
               alt="eye icon"
               onClick={togglePasswordVisibility}
             />
           </div>
           <p className={signinStyle.forgetpass}>Forgot password?</p>
         </div>
+        <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center p-4">
+          <div className="mb-10">
+            <p className={signinStyle.createacc}>
+              Create an account{" "}
+              <a
+                onClick={handleSignUpClick}
+                className={"hover:cursor-pointer " + signinStyle.signuplink}
+              >
+                Sign Up
+              </a>
+            </p>
+          </div>
+          <div className="w-full max-w-sm px-4">
+            <ButtonComp
+              title="Login"
+              disabled={false}
+              loading={loading}
+              width="100%"
+              onClick={handleLoginClick}
+            />
+          </div>
+        </div>
       </div>
-      <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center">
-  <div className="mb-10">
-    <p className={signinStyle.createacc}>
-      Create an account{" "}
-      <a onClick={handleSignUpClick} className={"hover:cursor-pointer " + signinStyle.signuplink}>
-        Sign Up
-      </a>
-    </p>
-  </div>
-  <div className="w-full max-w-sm px-4">
-    <ButtonComp
-      title="Login"
-      disabled={false}
-      loading={loading}
-      width="100%"
-      onClick={handleLoginClick}
-    />
-  </div>
-</div>
-
     </div>
   );
 };

@@ -155,10 +155,9 @@ const Shipping = () => {
                   readOnly
                 />
               </div>
-              <div className='flex w-full h-full justify-center items-center px-4 pt-8'>
-                <ButtonComp title="Continue" width="98%" />
+              <div className='flex w-full h-full justify-center items-center px-5 pt-8'>
+                <ButtonComp title="Continue" width="100%" onClick={handleContinue} loading={loading} />
               </div>
-              {error && <p className={shippingStyle['error']}>{error}</p>}
               <Footer path={"cart"}></Footer>
             </div>
           </div>

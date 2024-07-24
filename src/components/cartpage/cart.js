@@ -8,6 +8,8 @@ import Header from "../headerComp";
 import { color } from "framer-motion";
 import { BsCartX } from "react-icons/bs";
 import ButtonComp from "../btnComp";
+import { toast } from 'react-toastify';
+
 
 
 const Cartpage = () => {
@@ -122,18 +124,19 @@ const Cartpage = () => {
   const handleCheckOutClick = () => {
     if (!address || !selectedCity || !selectedCountry) {
       setAddressError(true);
+      toast.error("Please fill in all address details.");
       setTimeout(() => {
         setAddressError(false);
       }, 3000);
       return;
     }
-    if (cart.length === 0) {
-      setCartError(true);
-      setTimeout(() => {
-        setCartError(false);
-      }, 3000);
-      return;
-    }
+    // if (cart.length === 0) {
+    //   setCartError(true);
+    //   setTimeout(() => {
+    //     setCartError(false);
+    //   }, 3000);
+    //   return;
+    // }
 
     const checkoutData = {
       cart,
@@ -176,7 +179,7 @@ const Cartpage = () => {
                   <p className="ml-1 mt-1">{item.description}</p>
                   <div className={cartStyle["size-qty-container"]}>
                     <div className="w-full flex items-center justify-between">
-                      <div className="w-[50%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
+                      <div className="w-[50%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-8 mt-2">
                         <button
                           className="text-2xl"
                           onClick={() => handleDecrement(index)}
@@ -195,7 +198,7 @@ const Cartpage = () => {
                         </button>
                       </div>
 
-                      <BsCartX size={20} className="mt-1 hover:cursor-pointer" onClick={() => removeFromCart(item.id)} />
+                      <BsCartX size={20} className="mt-3 hover:cursor-pointer" onClick={() => removeFromCart(item.id)} />
                     </div>
                   </div>
                 </div>
@@ -256,7 +259,7 @@ const Cartpage = () => {
           </div>
 
           <div className="w-full px-4 h-24 flex flex-col justify-center">
-            <ButtonComp title="Checkout" disabled={cart.length === 0} onClick={handleCheckOutClick} />
+            <ButtonComp title="Checkout" disabled={cart.length === 0 || addressError == true} onClick={handleCheckOutClick} />
           </div>
         </div>
       </div>
