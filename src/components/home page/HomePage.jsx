@@ -54,27 +54,31 @@ const HomePage = () => {
         <div className="h-full w-full flex flex-col justify-between category mb-24">
           {loading ? (
             <HomeSkeleton />
-          ) : (
-            data.map((v, i) => {
-              if (v.type === "slider") {
-                return <Card key={i} banners={v.banners} />;
-              } else if (v.type === "banner") {
-                return (
-                  <NewArrival
-                    key={i}
-                    title={v.title}
-                    description={v.description}
-                  />
-                );
-              } else if (v.type === "deal") {
-                return (
-                  <Deal key={i} products={v.products_ids} endTime={v.end_date} />
-                );
-              } else if (v.type === "list") {
-                return <List key={i} v={v} />;
+          ) : 
+            <div className="h-full flex flex-col gap-10">
+              {
+                data.map((v, i) => {
+                  if (v.type === "slider") {
+                    return <Card key={i} banners={v.banners} />;
+                  } else if (v.type === "banner") {
+                    return (
+                      <NewArrival
+                        key={i}
+                        title={v.title}
+                        description={v.description}
+                      />
+                    );
+                  } else if (v.type === "deal") {
+                    return (
+                      <Deal key={i} products={v.products_ids} endTime={v.end_date} />
+                    );
+                  } else if (v.type === "list") {
+                    return <List key={i} v={v} />;
+                  }
+                })
               }
-            })
-          )}
+            </div>
+          }
         </div>
       </div>
       <div className="max-w-sm flex justify-center">
