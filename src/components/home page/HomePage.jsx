@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import client from "../../api/axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import HomeSkeleton from "./HomeSkeleton";
 import List from "./List";
 
 const HomePage = () => {
@@ -15,7 +16,7 @@ const HomePage = () => {
   const fetchData = async () => {
     try {
       const res = await client.get(`/banner/all`);
-      const sorted = res.data.data.sort((a,b) => a.priority > b.priority);
+      const sorted = res.data.data.sort((a, b) => a.priority > b.priority);
       setData(sorted);
     } catch (e) {
       console.log(e);
@@ -50,29 +51,9 @@ const HomePage = () => {
 
         <Categories loading={loading} />
 
-        <div className="h-auto w-full flex flex-col gap-10 mb-24">
+        <div className="h-full w-full flex flex-col justify-between category mb-24">
           {loading ? (
-            <>
-              <div className="flex h-full items-center gap-1.5 mt-12 mb-[-2px] px-4">
-                <Skeleton height={20} width={100} className="mb-3"/>
-              </div>
-              <div className="flex gap-4 mt-[-30px] px-4">
-                <div className="flex flex-col gap-1.5">
-                  <Skeleton height={170} width={165} borderRadius={10} />
-                  <Skeleton width={165} height={20} />
-                  <Skeleton width={140} height={15} />
-                </div>
-                <div className="flex flex-col gap-1.5">
-                  <Skeleton height={170} width={165} borderRadius={10} />
-                  <Skeleton width={165} height={20} />
-                  <Skeleton width={140} height={15} />
-                </div>
-
-              </div>
-              <div className="mt-[-25px] px-4">
-                <Skeleton height={200} width={350} borderRadius={10} className="mb-[-70px]"/>
-              </div>
-            </>
+            <HomeSkeleton />
           ) : (
             data.map((v, i) => {
               if (v.type === "slider") {
@@ -87,16 +68,10 @@ const HomePage = () => {
                 );
               } else if (v.type === "deal") {
                 return (
-                  <Deal
-                    key={i}
-                    products={v.products_ids}
-                    endTime={v.end_date}
-                  />
+                  <Deal key={i} products={v.products_ids} endTime={v.end_date} />
                 );
               } else if (v.type === "list") {
                 return <List key={i} v={v} />;
-              } else {
-                return null;
               }
             })
           )}
@@ -104,7 +79,6 @@ const HomePage = () => {
       </div>
       <div className="max-w-sm flex justify-center">
         {loading ? (
-         
           <Skeleton height={60} width={350} />
         ) : (
           <Footer path="home" />

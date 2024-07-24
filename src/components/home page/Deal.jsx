@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const Deal = ({ products, endTime }) => {
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
-    const navigate =  useNavigate();
+    const navigate = useNavigate();
     const [id, setID] = useState([]);
 
     // useEffect(() => {
@@ -45,24 +45,26 @@ const Deal = ({ products, endTime }) => {
     }
 
     return (
-        <div className="px-4">
+        <>
             {
                 timeLeft.hours == 0 && timeLeft.minutes == 0 && timeLeft.seconds == 0 ?
-                    <div></div>
+                    ""
                     :
-                    <div className="w-full h-16 bg-[#4392F9] rounded-lg flex justify-between px-3 items-center">
-                        <div className="text-white flex flex-col gap-1">
-                            <p className=" font-medium">Deal of the Day</p>
+                    <div className="px-4">
+                        <div className="w-full h-16 bg-[#4392F9] rounded-lg flex justify-between px-3 items-center">
+                            <div className="text-white flex flex-col gap-1">
+                                <p className=" font-medium">Deal of the Day</p>
 
-                            <div className="w-full flex items-center gap-1.5">
-                                <ClockSvg />
-                                <p className=" text-xs font-normal pt-[1px]">{`${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s remaining`}</p>
+                                <div className="w-full flex items-center gap-1.5">
+                                    <ClockSvg />
+                                    <p className=" text-xs font-normal pt-[1px]">{`${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s remaining`}</p>
+                                </div>
                             </div>
+                            <button className="border-[1px] border-white rounded-[4px] font-semibold text-white text-xs flex gap-1 items-center px-[10px] py-[15px] h-[28px]" onClick={() => handleNavigate()}>View all <NextSVG /></button>
                         </div>
-                        <button className="border-[1px] border-white rounded-[4px] font-semibold text-white text-xs flex gap-1 items-center px-[10px] py-[15px] h-[28px]" onClick={() => handleNavigate()}>View all <NextSVG /></button>
                     </div>
             }
-        </div>
+        </>
     );
 };
 

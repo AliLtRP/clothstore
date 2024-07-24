@@ -119,7 +119,7 @@ const Signinscreen = () => {
       </a>
     </p>
   </div>
-  <div className="w-full max-w-sm px-4">
+  <div className="w-full flex justify-center min-w-[24rem] max-w-sm px-4">
     <ButtonComp
       title="Login"
       disabled={false}

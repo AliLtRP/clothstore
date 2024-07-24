@@ -20,10 +20,9 @@ const List = ({ v }) => {
         }
     }, [v]);
 
-    console.log(v.title, 'titlee');
 
     return (
-        <div className="h-[315px] max-w-sm flex flex-col gap-3.5 pl-4 ">
+        <div className="h-[315px] max-w-sm flex flex-col gap-3.5 pl-4">
             <div className="w-full flex justify-between items-center">
                 {
                     loading ? <Skeleton /> :
