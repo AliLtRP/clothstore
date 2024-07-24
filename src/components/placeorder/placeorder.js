@@ -1,6 +1,5 @@
 import React from 'react';
 import placeorderStyle from './placeorderstyle.module.css';
-import back from './../../assets/back.svg';
 import location from '../../assets/location.svg';
 import edit from '../../assets/edit.svg';
 import rupee from '../../assets/currency_rupee.svg';
@@ -72,7 +71,6 @@ const Placeorder = () => {
                 <a>Free</a>
               </div>
             </div>
-            <hr style={{ opacity: '30%', width: '80%' }} />
             <div className={placeorderStyle['order-total']}>
               <div className={placeorderStyle['payment-details']}>
                 <p>Order Total</p>

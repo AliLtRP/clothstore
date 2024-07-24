@@ -10,7 +10,7 @@ const Popup = ({ message, open, onClose }) => {
       dialogRef.current.showModal();
       const timer = setTimeout(() => {
         onClose();
-      }, 5000);
+      }, 3000);
       return () => clearTimeout(timer);
     } else {
       dialogRef.current.close();
