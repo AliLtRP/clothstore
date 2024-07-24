@@ -2,12 +2,12 @@ import React, { useState, useEffect } from "react";
 import blackcart from "../../assets/blackshippingcart.svg";
 import cartStyle from "./cartstyle.module.css";
 import Select from "react-select";
-import Footer from "../home page/Footer";
 import useCartStore from "../../provider/zustand";
 import { useNavigate } from "react-router-dom";
 import Header from "../headerComp";
 import { color } from "framer-motion";
 import { BsCartX } from "react-icons/bs";
+import ButtonComp from "../btnComp";
 
 
 const Cartpage = () => {
@@ -147,11 +147,9 @@ const Cartpage = () => {
     navigate("/placeorder");
   };
 
-  console.log(cart);
-
   return (
-    <div className="w-full h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] px-4">
-      <div className="w-full max-w-sm p-4 flex flex-col gap-6">
+    <div className="w-full h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+      <div className="w-full max-w-sm flex flex-col gap-6">
         <div className={cartStyle["checkout-screen-body"]}>
           <Header title={"Cart"} />
           <div className={cartStyle["cart-items"]}>
@@ -170,16 +168,13 @@ const Cartpage = () => {
               <div key={item.id} className={cartStyle["order-container"]}>
                 <img
                   src={item.img[0].src}
-                  className={cartStyle["order-img"]}
+                  className="w-32 rounded-xl mr-0.5 object-cover h-full p-2"
                   alt="Order"
                 />
                 <div className={cartStyle["order-info"]}>
                   <p className={cartStyle["order-title"]}>{item.name}</p>
-                  <p className={cartStyle["order-desc"]}>{item.description}</p>
+                  <p className="ml-1 mt-1">{item.description}</p>
                   <div className={cartStyle["size-qty-container"]}>
-                    <h6 className={"px-2 py-4 text-center"}>
-                      Size <b>{item.size}</b>
-                    </h6>
                     <div className="w-full flex items-center justify-between">
                       <div className="w-[50%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
                         <button
@@ -209,7 +204,7 @@ const Cartpage = () => {
           )}
 
           <div className={cartStyle["payment-details"]}>
-            <p className="ml-[-8px]">Order Total</p>
+            <p className="ml-[-5px]">Order Total</p>
             <p style={{ fontWeight: "bold" }}>{calculateTotalPrice()}</p>
           </div>
           <hr className={cartStyle["divider"]} />
@@ -259,13 +254,10 @@ const Cartpage = () => {
               />
             </div>
           </div>
-          <button
-            className={cartStyle.checkoutbtn}
-            onClick={handleCheckOutClick}
-            disabled={cart.length === 0}
-          >
-            Checkout
-          </button>
+
+          <div className="w-full px-4 h-24 flex flex-col justify-center">
+            <ButtonComp title="Checkout" disabled={cart.length === 0} onClick={handleCheckOutClick} />
+          </div>
         </div>
       </div>
 
