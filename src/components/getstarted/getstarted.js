@@ -13,13 +13,12 @@ const Getstarted = () => {
   };
 
   return (
-    <div className="w-full max-h-[100vh] montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-      <div className={`w-full max-w-sm p- flex flex-col gap-6`}>
+    <div className="w-full max-w-sm h-full montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
         <LazyLoadImage 
           src={bg_img} 
-          className='object-cover' 
+          className='object-cover absolute inset-0 h-[100vh]'
           effect="blur" 
-          width={"100%"}
+          width="100%"
         />
 
         <h1 className={getstartedStyle['getstarted-title']}>
@@ -32,7 +31,6 @@ const Getstarted = () => {
           Get Started
         </button>
       </div>
-    </div>
   );
 };
 
