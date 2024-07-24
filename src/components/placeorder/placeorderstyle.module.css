@@ -29,7 +29,8 @@
   .delivery-address {
     display: flex;
     align-items: center;
-    margin: 3% 10%;
+    margin: -10px 0 15px;
+    gap: 8px;
   }
   
   .delivery-text {

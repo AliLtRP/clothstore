@@ -8,6 +8,7 @@ import useCartStore from '../../provider/zustand';
 import { useNavigate } from 'react-router-dom';
 import Header from '../headerComp';
 import ButtonComp from '../btnComp';
+import { MdLocationPin } from "react-icons/md";
 
 const Placeorder = () => {
   const navigate = useNavigate();
@@ -30,7 +31,7 @@ const Placeorder = () => {
         <div className='px-4'>
           <div className={placeorderStyle['checkout-body']}>
             <div className={placeorderStyle['delivery-address']}>
-              <img src={location} className={placeorderStyle['location-icon']} alt="Location" />
+              <MdLocationPin size={15} className=' mt-0.5'/>
               <p className={placeorderStyle['delivery-text']}>Delivery Address</p>
             </div>
             <div className={placeorderStyle['address-container']}>
