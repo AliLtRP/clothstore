@@ -50,10 +50,10 @@ const HomePage = () => {
 
         <Categories loading={loading} />
 
-        <div className="h-auto w-full flex flex-col gap-10 mt12 mb-24">
+        <div className="h-auto w-full flex flex-col gap-10 mb-24">
           {loading ? (
             <>
-              <div className="flex h-full items-center gap-1.5 mt-[3px] mb-[-2px] px-4">
+              <div className="flex h-full items-center gap-1.5 mt-12 mb-[-2px] px-4">
                 <Skeleton height={20} width={100} className="mb-3"/>
               </div>
               <div className="flex gap-4 mt-[-30px] px-4">
