@@ -129,7 +129,6 @@ const Signupscreen = () => {
         >
           {loading ? 'Loading...' : 'Create Account'}
         </button>
-        {error && <p className={signupStyle['error']}>{error}</p>}
       </div>
     </div>
   );
