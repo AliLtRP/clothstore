@@ -43,10 +43,6 @@ const Shop = () => {
     fetchData();
   }, [id]);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // }, [data]);
-
   useEffect(() => {
     const previousItemId = localStorage.getItem('previousItemId');
     if (previousItemId && previousItemId !== id) {

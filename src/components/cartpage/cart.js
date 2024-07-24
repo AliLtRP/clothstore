@@ -108,8 +108,8 @@ const Cartpage = () => {
       backgroundColor: state.isSelected
         ? "#808080"
         : state.isFocused
-        ? ""
-        : "#FFF",
+          ? ""
+          : "#FFF",
       color: state.isSelected ? "black" : "#000",
       padding: "8px 12px",
     }),
@@ -153,7 +153,7 @@ const Cartpage = () => {
   return (
     <div className="w-full h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
       <div className="w-full max-w-sm flex flex-col gap-6">
-        <div className={cartStyle["checkout-screen-body"]}>
+        <div className=" flex flex-col gap-2">
           <Header title={"Cart"} />
           <div className={cartStyle["cart-items"]}>
             <img
@@ -187,7 +187,7 @@ const Cartpage = () => {
                         >
                           -
                         </button>
-                        <p className=" text-sm px-2 py-1 bg-white rounded-md font-medium">
+                        <p className=" text-sm w-6 flex justify-center items-center h-[25px] bg-white rounded-sm font-medium">
                           {quantities[index]}
                         </p>
                         <button
