@@ -252,7 +252,7 @@ const Shop = () => {
                           <p className="font-medium text-base text-[10px]">
                             {v.name}
                           </p>
-                          <p className=" font-normal text-[10px]">
+                          <p className=" font-normal text-[10px] h-10">
                             {v.description}
                           </p>
                           <p className=" font-medium text-xs pt-0.5">
