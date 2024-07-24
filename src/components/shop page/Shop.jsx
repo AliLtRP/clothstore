@@ -236,9 +236,9 @@ const Shop = () => {
                 </div>
               </>
             ) : (
-              <div className="pl-4">
-                <p className=" text-xl font-semibold mt-8 mb-4">Similar To</p>
-                <div className="w-full flex gap-4 overflow-y-scroll no-scrollbar">
+              <div className="">
+                <p className=" text-xl font-semibold mt-8 mb-4 pl-4">Similar To</p>
+                <div className="w-full flex gap-4 overflow-y-scroll no-scrollbar px-4">
                   {items.map((v, i) => (
                     <div className="hover:cursor-pointer" onClick={() => handleItemClick(v.id)}>
                       <div className=" w-40 min-h-[245px] h-auto pb-0.5 rounded-lg mb-3 shadow-md container ">
