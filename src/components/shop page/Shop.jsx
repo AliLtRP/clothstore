@@ -56,10 +56,7 @@ const Shop = () => {
   }, [id]);
 
   const handleItem = () => {
-    const existsInCart = cart.some((item) => item.id === data.id);
-    if (!existsInCart) {
-      addToCart({ ...data, quantity });
-    }
+    addToCart({ ...data, quantity });
     setIsScaled(true);
     setTimeout(() => setIsScaled(false), 200);
   };
@@ -104,12 +101,12 @@ const Shop = () => {
               <img src={backicon} className="h-5 w-[9.5px]" />
             </div>
             <div
-              className={`bg-[#F2F2F2] rounded-full p-2 ${isScaled ? 'scale-125' : 'scale-100'} transform transition-transform duration-200 ease-in-out cursor-pointer`}
+              className={`bg-[#F2F2F2] rounded-full p-2 ${isScaled ? 'scale-125' : 'scale-100'} transform transition-transform duration-200 ease-in-out cursor-pointer w-10 h-10 flex justify-center items-center`}
               onClick={() => navigate("/cart")}
             >
               <Cart />
               {
-                cart.length != 0 ? <div className="absolute top-0.5 right-0.5 w-3 h-3 rounded-full bg-[#f6153a] flex justify-center items-center text-white text-[10px]">{cart.length}</div> : ""
+                cart.length != 0 ? <div className="absolute -top-0.5 right-0.5 w-3 h-3 rounded-full bg-[#f6153a] flex justify-center items-center text-white text-[10px]">{cart.length}</div> : ""
               }
             </div>
           </div>
@@ -129,7 +126,7 @@ const Shop = () => {
             )}
 
             <div className="w-full h-8 flex justify-center items-center gap-1">
-              {loading ? <Skeleton height={10} width={10} className=" rounded-full"/> :
+              {loading ? <Skeleton height={10} width={10} className=" rounded-full" /> :
                 data.img.map((v, i) => (
                   <i
                     className="rounded-full bg-[#F83758] p-[5px]"
