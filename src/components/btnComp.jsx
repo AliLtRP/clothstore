@@ -1,6 +1,6 @@
 import React from "react";
 
-const ButtonComp = ({ title, disabled, className, width, loading, onClick }) => {
+const ButtonComp = ({ title, disabled, className, width, loading, onClick , small , big }) => {
   return (
     <>
       {disabled ? (
@@ -17,7 +17,23 @@ const ButtonComp = ({ title, disabled, className, width, loading, onClick }) => 
         >
           Loading...
         </div>
-      ) : (
+      ) : small == true ? (
+        <div
+        className={`bg-[#f83758] text-white text-center text-[14px] px-5 py-3 font-bold rounded-[5px] cursor-pointer`}
+        style={{ width: width }}
+        onClick={onClick}
+        >
+          {title}
+        </div>
+      ): big == true ? (
+        <div
+        className={`bg-[#f83758] text-white text-center text-[20px] px-5 py-3 font-bold rounded-[5px] cursor-pointer`}
+        style={{ width: width }}
+        onClick={onClick}
+        >
+          {title}
+        </div>
+      ):(
         <div
           className={`bg-[#f83758] text-white text-center text-[18px] px-5 py-3 font-bold rounded-[5px] cursor-pointer`}
           style={{ width: width }}
