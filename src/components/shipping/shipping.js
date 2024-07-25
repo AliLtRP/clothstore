@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-import back from './../../assets/back.svg';
+import React, { useEffect, useState } from 'react';
 import shippingStyle from './shippingstyle.module.css';
 import { useNavigate } from 'react-router-dom';
 import rupee from '../../assets/currency_rupee.svg';
 import Popup from '../popupsuccess/popup';
-import Footer from '../home page/Footer';
 import useCartStore from '../../provider/zustand';
 import { jwtDecode } from 'jwt-decode';
 import client from './../../api/axios'
@@ -12,34 +10,34 @@ import ButtonComp from '../btnComp';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from '../headerComp';
+import { useMutation } from 'react-query';
 
 const Shipping = () => {
   const navigate = useNavigate();
-  const orderDetails = useCartStore((state) => state.orderDetails);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(null);
+  const {orderDetails, clearCart } = useCartStore();
   const [showPopup, setShowPopup] = useState(false);
-  const clearCart = useCartStore((state) => state.clearCart);
 
-  const handleBackArrow = () => {
-    navigate('/placeorder');
+  const closePopup = () => {
+    setShowPopup(false);
   };
 
-  const token = localStorage.getItem('token');
-  console.log("Token:", token);
+  const currency = <img src={rupee} style={{ width: '10px', opacity: '40%', marginRight: '5px' }} alt="Rupee" />;
+  const currencyDarker = <img src={rupee} style={{ width: '10px', marginRight: '5px' }} alt="Rupee" />;
 
-  let userId;
-  if (token) {
-    const decodedToken = jwtDecode(token);
-    userId = decodedToken.id;
-    console.log("Decoded User ID:", userId);
-  }
+  const mutation = useMutation((newOrder) =>
+    client.post('order', newOrder)
+  );
 
-  const handleContinue = async () => {
-    setLoading(true);
+  const submitData = () => {
+    let userId;
+    const token = localStorage.getItem('token');
 
-    const requestBody = {
-
+    if (token) {
+      const decodedToken = jwtDecode(token);
+      userId = decodedToken.id;
+    }
+    
+    const order = {
       items: orderDetails.cart,
       address: orderDetails.address,
       phone: 1234,
@@ -51,46 +49,26 @@ const Shipping = () => {
       voucher_id: orderDetails.voucherId,
     }
 
-    console.log("req body", requestBody);
+    mutation.mutate(order);
+  }
 
-    try {
-      const response = await client.post('order', requestBody, {
-        headers: {
-          'Authorization': localStorage.getItem('token')
-        }
-      });
+  const orderSuccess = () => {
+    setShowPopup(true);
+    clearCart();
+    localStorage.removeItem('cartstorage');
+    setTimeout(() => {
+      navigate('/home');
+    }, 3000);
+  }
 
-      console.log(response.data);
-
-      if (response.status === 201) {
-        console.log('Order placed successfully:', response.data);
-        setShowPopup(true);
-        clearCart();
-        localStorage.removeItem("cartstorage")
-        setTimeout(() => {
-          navigate('/home');
-        }, 3000);
-
-      } else {
-        console.error('Error placing order:', error);
-        toast.error('Failed to place order. .');
-
-      }
-    } catch (error) {
-      console.error('Error placing order:', error);
-      toast.error('Network Error.');
+  useEffect(() => {
+    if (mutation.error) {
+      return toast.error(mutation.error);
+    } else if (mutation.isSuccess) {
+      return orderSuccess();
     }
-    setLoading(false);
-  };
+  }, [mutation.isSuccess, mutation.error]);
 
-
-
-  const closePopup = () => {
-    setShowPopup(false);
-  };
-
-  const currency = <img src={rupee} style={{ width: '10px', opacity: '40%', marginRight: '5px' }} alt="Rupee" />;
-  const currencyDarker = <img src={rupee} style={{ width: '10px', marginRight: '5px' }} alt="Rupee" />;
 
   return (
     <div className="w-full h-full montserrat flex flex-col justify-center items-center bg-[#FDFDFD]">
@@ -149,7 +127,7 @@ const Shipping = () => {
                   />
                 </div>
                 <div className='flex w-full h-full justify-center items-center px-5 pt-8'>
-                  <ButtonComp title="Continue" width="100%" onClick={handleContinue} loading={loading} />
+                  <ButtonComp title="Continue" width="100%" onClick={submitData} loading={mutation.isLoading} />
                 </div>
               </div>
             </div>
