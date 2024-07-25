@@ -4,6 +4,9 @@ import eye from '../../assets/eye.svg';
 import eyeoff from '../../assets/eyeoff.svg';
 import signupStyle from './signupstyle.module.css';
 import client from '../../api/axios';
+import ButtonComp from '../btnComp';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signupscreen = () => {
   const [email, setEmail] = useState('');
@@ -23,7 +26,7 @@ const Signupscreen = () => {
     setLoading(true);
 
     if (password !== confirmPassword) {
-      setError('Passwords do not match');
+      toast.error('Passwords do not match');
       setLoading(false);
       setTimeout(() => setError(null), 3000);
       return;
@@ -43,12 +46,12 @@ const Signupscreen = () => {
     } catch (error) {
       if (error.response) {
         if (error.response.status === 400) {
-          setError('Creating account failed,check your input');
+          toast.error('Creating account failed, check your input');
         } else {
-          setError('Request error');
+          toast.error('Request error');
         }
       } else {
-        setError('Network Error');
+        toast.error('Network Error');
       }
       setLoading(false);
       setTimeout(() => setError(null), 3000);
@@ -63,12 +66,19 @@ const Signupscreen = () => {
     setConfirmPasswordVisible(!confirmPasswordVisible);
   };
 
+  const handleSigninClick = (event) => {
+    event.preventDefault();
+    navigate("/signin");
+  };
+
   return (
-    <div className="w-full h-auto montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-      <div className="max-w-sm p-4 flex flex-col gap-6">
-        <h1 className={signupStyle['signup-welcome-title']}>Create an<span className='block'>account</span></h1>
+    <div className="w-full h-auto min-h-screen montserrat flex flex-col items-center bg-[#FDFDFD] relative">
+      <div className="max-w-sm p-6 flex flex-col gap-6 w-full">
+        <h1 className={signupStyle['signup-welcome-title']}>
+          Create an account
+        </h1>
         <div className={signupStyle['signup-data-input']}>
-          <div className='mb-8'>
+          <div className=''>
             <input
               placeholder="Username or Email"
               className={signupStyle['signup-user-input']}
@@ -86,7 +96,7 @@ const Signupscreen = () => {
             />
             <img
               src={passwordVisible ? eyeoff : eye}
-              className={passwordVisible ? signupStyle.eyeoff : signupStyle.eyeicon}
+              className={passwordVisible ? signupStyle['eyeoff'] : signupStyle['eyeicon']}
               alt="eye icon"
               onClick={togglePasswordVisibility}
             />
@@ -101,34 +111,34 @@ const Signupscreen = () => {
             />
             <img
               src={confirmPasswordVisible ? eyeoff : eye}
-              className={confirmPasswordVisible ? signupStyle.eyeoff : signupStyle.eyeicon}
+              className={confirmPasswordVisible ? signupStyle['eyeoff'] : signupStyle['eyeicon']}
               alt="eye icon"
               onClick={toggleConfirmPasswordVisibility}
             />
           </div>
         </div>
-        <div className="w-full mt-[-30px] px-1">
-          <p className='w-[80%] text-sm font-normal text-[#676767]'>
-            By clicking the <span className='text-[#F83758]'>Register</span> button, you agree to the public offer
-          </p>
-          <p className={signupStyle['signup-create-acc']}>
-            I Already Have an Account <a></a>
-            <a
-              href="##"
-              className={signupStyle['signin-link']}
-              onClick={() => navigate('/signin')}
-            >
-              Login
-            </a>
-          </p>
+        <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center p-4">
+          <div className="mb-10">
+            <p className={signupStyle.createacc}>
+              I already have an account{" "}
+              <a
+                onClick={handleSigninClick}
+                className={"hover:cursor-pointer " + signupStyle["signin-link"]}
+              >
+                Login
+              </a>
+            </p>
+          </div>
+          <div className="w-full flex justify-center min-w-[24rem] max-w-sm px-4 mb-[-35px]">
+            <ButtonComp
+              title="Create Account"
+              disabled={loading}
+              loading={loading}
+              width="100%"
+              onClick={handleSignUpClick}
+            />
+          </div>
         </div>
-        <button
-          className={`${signupStyle['signup-login-btn']} h-[55px] text-center mb-2.5 ${loading ? signupStyle['loading'] : ''}`}
-          onClick={handleSignUpClick}
-          disabled={loading}
-        >
-          {loading ? 'Loading...' : 'Create Account'}
-        </button>
       </div>
     </div>
   );
