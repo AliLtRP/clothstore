@@ -10,6 +10,7 @@ import LoadingSkeleton from "./LoadingSkeleton";
 import backicon from '../assets/back.svg';
 import { LazyLoadImage } from "react-lazy-load-image-component";
 import 'react-lazy-load-image-component/src/effects/black-and-white.css';
+import Header from "./headerComp";
 
 
 
@@ -74,13 +75,7 @@ const CategoryProducts = () => {
         <div className="w-full flex flex-col mx-auto">
             <motion.div variants={routeVariants} initial="initial" animate="final" transition={transition}>
                 <Container>
-                    <div className="flex items-center justify-between w-[65%] h-16 px-4">
-                        <div onClick={() => navigator(-1)}>
-                            <img src={backicon} className="h-5 w-[9.5px]" />
-                        </div>
-                        <p className="text-black font-semibold text-lg leading-4 h-5 pt-0.5 text-end">{name}</p>
-                    </div>
-                    <hr className="w-full" />
+                    <Header title={name}/>
                 </Container>
 
                 <Container>
