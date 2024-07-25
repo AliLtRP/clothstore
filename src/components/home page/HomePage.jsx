@@ -24,11 +24,6 @@ const HomePage = () => {
 
   const { data, error, isLoading } = useQuery("banners", fetchData);
 
-
-  useEffect(() => {
-    fetchData();
-  }, []);
-
   if (error) return <div>An error occurred: {error.message}</div>;
 
   return (
