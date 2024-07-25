@@ -52,9 +52,10 @@ const Shop = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    addToCart({ ...data, quantity });
+    // addToCart({ ...data, quantity });
     setIsScaled(true);
     setTimeout(() => setIsScaled(false), 200);
+    navigate('/cart');
   };
 
   const handleIncrementQuantity = () => {
@@ -62,13 +63,21 @@ const Shop = () => {
     addToCart({ ...data, quantity: 1 });
   };
 
-  const handleDecrementQuantity = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-      addToCart({ ...data, quantity: -1 });
-    } else {
-      removeFromCart(data.id);
-    }
+  const handleDecrementQuantity = () => {  
+    const newCart = cart.map((v,i) => {
+      if(v.id == id) {
+        if(v.quantity > 0) {
+          const q = v.quantity - 1;
+          return v.quantity = q;
+        } else {
+          removeFromCart(v.id);
+        }
+      } else {
+        return v;
+      }
+    });
+
+    addToCart(newCart[1]);
   };
 
   const routeVariants = {
@@ -101,6 +110,8 @@ const Shop = () => {
     return 0;
   }, [cart, id]);
   
+
+  console.log(quan);
 
   return (
     <div className="w-full flex flex-col">
@@ -215,7 +226,7 @@ const Shop = () => {
                       </p>
                       <div className="w-[70%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
                         <div
-                          className="h-10 w-auto flex items-center"
+                          className="h-10 w-auto flex items-center hover:cursor-pointer"
                           onClick={handleDecrementQuantity}
                         >
                           <Minus />
@@ -226,7 +237,7 @@ const Shop = () => {
                           }
                         </p>
                         <div
-                          className="h-10 w-auto flex items-center"
+                          className="h-10 w-auto flex items-center hover:cursor-pointer"
                           onClick={handleIncrementQuantity}
                         >
                           <SvgComponent />
