@@ -141,13 +141,19 @@ const Shop = () => {
             )}
 
             <div className="w-full h-8 flex justify-center items-center gap-1">
-              {loading ? <Skeleton height={10} width={10} className=" rounded-full" /> :
-                data.img.map((v, i) => (
+              {loading ?(
+                <div className="flex gap-1">
+               <Skeleton height={10} width={10} className=" rounded-full" /> 
+               <Skeleton height={10} width={10} className=" rounded-full" /> 
+               <Skeleton height={10} width={10} className=" rounded-full" /> 
+              </div>
+              )
+                : (data.img.map((v, i) => (
                   <i
                     className="rounded-full bg-[#F83758] p-[5px]"
                     key={i}
                   />
-                ))}
+                )))}
             </div>
           </div>
         </Container>

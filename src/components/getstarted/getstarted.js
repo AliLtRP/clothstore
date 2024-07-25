@@ -14,7 +14,7 @@ const Getstarted = () => {
 
   return (
     <div className="w-full h-full montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
-      <div className=' w-full h-full bg-[#00000041] absolute inset-0 z-10'>ss</div>
+      <div className=' w-full h-full bg-[#00000041] absolute inset-0 z-10'></div>
       <LazyLoadImage
         src={bg_img}
         className='object-cover absolute inset-0 h-[100vh]'

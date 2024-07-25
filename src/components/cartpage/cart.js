@@ -8,6 +8,8 @@ import Header from "../headerComp";
 import { BsCartX } from "react-icons/bs";
 import ButtonComp from "../btnComp";
 import { toast } from 'react-toastify';
+import Plus from '../shop page/icons/Plus';
+import Minus from '../shop page/icons/Minus';
 
 const Cartpage = () => {
   const {
@@ -169,13 +171,13 @@ const Cartpage = () => {
                   <p className="ml-1 mt-1">{item.description}</p>
                   <div className={cartStyle["size-qty-container"]}>
                     <div className="w-full flex items-center justify-between">
-                      <div className="w-[50%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-8 mt-2">
+                      <div className="w-[40%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-8 mt-2">
                         <button
                           className="text-2xl"
                           onClick={() => handleDecrement(index)}
                           disabled={item.quantity <= 1}
                         >
-                          -
+                          <Minus/>
                         </button>
                         <p className=" text-sm w-6 flex justify-center items-center h-[25px] bg-white rounded-sm font-medium">
                           {item.quantity}
@@ -184,7 +186,7 @@ const Cartpage = () => {
                           className="text-2xl"
                           onClick={() => handleIncrement(index)}
                         >
-                          +
+                          <Plus/>
                         </button>
                       </div>
 
@@ -249,8 +251,8 @@ const Cartpage = () => {
           </div>
 
           <div className="w-full px-4 h-24 flex flex-col justify-center">
-            <ButtonComp title="Checkout" disabled={cart.length === 0 || addressError == true} onClick={handleCheckOutClick} />
-          </div>
+          <ButtonComp title="Checkout" disabled={cart.length === 0 || addressError == true} onClick={handleCheckOutClick} />
+        </div>
         </div>
       </div>
 
