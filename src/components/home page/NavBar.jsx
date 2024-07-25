@@ -5,10 +5,10 @@ import { HumMenu } from "./icons";
 import { Container } from "../trending products";
 import Skeleton from "react-loading-skeleton";
 
-const NavBar = ({ loading }) => {
+const NavBar = ({ isLoading }) => {
   return (
     <Container>
-      {loading ? (
+      {isLoading ? (
         <div className="max-w-sm w-full z-20 top-0 h-16 bg-white fixed flex justify-between items-center px-4 mt-2">
           <Skeleton circle={true} height={40} width={40} />
           <Skeleton height={30} width={100} />

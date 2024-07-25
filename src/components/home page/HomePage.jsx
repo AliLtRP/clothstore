@@ -2,39 +2,41 @@ import Footer from "./Footer";
 import { MicSVG, SearchSVG } from "./icons";
 import { NavBar, Categories, Card, Deal } from "./index";
 import NewArrival from "./NewArrival";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import client from "../../api/axios";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import HomeSkeleton from "./HomeSkeleton";
 import List from "./List";
+import { useQuery } from "react-query";
 
 const HomePage = () => {
-  const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     try {
       const res = await client.get(`/banner/all`);
       const sorted = res.data.data.sort((a, b) => a.priority > b.priority);
-      setData(sorted);
+      return sorted
     } catch (e) {
       console.log(e);
-    } finally {
-      setLoading(false);
     }
   };
+
+  const { data, error, isLoading } = useQuery("banners", fetchData);
+
 
   useEffect(() => {
     fetchData();
   }, []);
 
+  if (error) return <div>An error occurred: {error.message}</div>;
+
   return (
     <div className="w-full h-full montserrat flex flex-col items-center mx-auto bg-[#FDFDFD] mt-2">
       <div className="min-w-[24rem] max-w-sm p- flex flex-col gap-3">
-        <NavBar loading={loading} />
+        <NavBar isLoading={isLoading} />
         <div className="w-full flex justify-center relative px-4 mt-16 mb-2">
-          {loading ? (
+          {isLoading ? (
             <Skeleton width={350} height={35} className="rounded-md" />
           ) : (
             <>
@@ -49,12 +51,12 @@ const HomePage = () => {
           )}
         </div>
 
-        <Categories loading={loading} />
+        <Categories loading={isLoading} />
 
         <div className="h-full w-full flex flex-col justify-between category mb-24">
-          {loading ? (
+          {isLoading ? (
             <HomeSkeleton />
-          ) : 
+          ) :
             <div className="h-full flex flex-col gap-10">
               {
                 data.map((v, i) => {
@@ -82,7 +84,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className="max-w-sm flex justify-center">
-        {loading ? (
+        {isLoading ? (
           <Skeleton height={60} width={350} />
         ) : (
           <Footer path="home" />
