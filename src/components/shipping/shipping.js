@@ -98,7 +98,7 @@ const Shipping = () => {
         <div className={shippingStyle["shipping-screen-body"]}>
           <div className={shippingStyle["shipping-container"]}>
             <Header title="Checkout" />
-            <div className='px-4'>
+            <div>
               <div className={shippingStyle[""]}>
                 <div className={shippingStyle["final-payment-details"]}>
                   <p>Order</p>

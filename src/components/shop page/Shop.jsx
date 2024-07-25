@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import { Container } from "../trending products";
 import Cart from "./icons/Cart";
 import { Rating } from "../home page/icons";
@@ -17,8 +17,8 @@ const Shop = () => {
   const [data, setData] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
-  const { cart, addToCart } = useCartStore();
-  const [quantity, setQuantity] = useState(1);
+  const { cart, addToCart, removeFromCart } = useCartStore();
+  const [quantity, setQuantity] = useState(0);
   const { items } = useRelated();
   const [loading, setLoading] = useState(true);
   const [isScaled, setIsScaled] = useState(false);
@@ -51,10 +51,24 @@ const Shop = () => {
     localStorage.setItem('previousItemId', id);
   }, [id]);
 
-  const handleItem = () => {
+  const handleAddToCart = () => {
     addToCart({ ...data, quantity });
     setIsScaled(true);
     setTimeout(() => setIsScaled(false), 200);
+  };
+
+  const handleIncrementQuantity = () => {
+    setQuantity(quantity + 1);
+    addToCart({ ...data, quantity: 1 });
+  };
+
+  const handleDecrementQuantity = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+      addToCart({ ...data, quantity: -1 });
+    } else {
+      removeFromCart(data.id);
+    }
   };
 
   const routeVariants = {
@@ -71,17 +85,22 @@ const Shop = () => {
     ease: [0.43, 0.3, 0.23, 0.96],
   };
 
-  const handleRemoveQuantity = () => {
-    if (quantity != 0) {
-      setQuantity(quantity - 1);
-    }
-  };
-
   const handleItemClick = (newItemId) => {
     setLoading(true);
     navigate(`/shop/${newItemId}`);
     navigate(0);
   }
+
+  const quan = useMemo(() => {
+    if (Array.isArray(cart) && cart.length !== 0) {
+      const item = cart.find((v) => v.id == id);
+      if (item) {
+        return item.quantity;
+      }
+    }
+    return 0;
+  }, [cart, id]);
+  
 
   return (
     <div className="w-full flex flex-col">
@@ -191,16 +210,18 @@ const Shop = () => {
                       <div className="w-[70%] flex justify-around items-center bg-[#EAEAEA] rounded-[5px] h-10 mt-2">
                         <div
                           className="h-10 w-auto flex items-center"
-                          onClick={() => handleRemoveQuantity()}
+                          onClick={handleDecrementQuantity}
                         >
                           <Minus />
                         </div>
                         <p className=" text-sm px-2 py-1 bg-white rounded-md font-medium">
-                          {quantity}
+                          {
+                            quan || 0
+                          }
                         </p>
                         <div
                           className="h-10 w-auto flex items-center"
-                          onClick={() => setQuantity(quantity + 1)}
+                          onClick={handleIncrementQuantity}
                         >
                           <SvgComponent />
                         </div>
@@ -209,7 +230,7 @@ const Shop = () => {
 
                     <button
                       className=" bg-[#F83758] font-semibold text-white text-lg py-[14px] px-[32px] rounded-lg h-13 w-full active:bg-[#f51e42] hover:cursor-pointer"
-                      onClick={handleItem}
+                      onClick={handleAddToCart}
                     >
                       Add to Cart
                     </button>

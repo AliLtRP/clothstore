@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import blackcart from "../../assets/blackshippingcart.svg";
 import cartStyle from "./cartstyle.module.css";
 import Select from "react-select";
 import useCartStore from "../../provider/zustand";
 import { useNavigate } from "react-router-dom";
 import Header from "../headerComp";
-import { color } from "framer-motion";
 import { BsCartX } from "react-icons/bs";
 import ButtonComp from "../btnComp";
 import { toast } from 'react-toastify';
-
-
 
 const Cartpage = () => {
   const {
@@ -53,7 +50,7 @@ const Cartpage = () => {
   };
 
   const handleDecrement = (index) => {
-    if (quantities[index] > 1) {
+    if (cart[index].quantity > 1) {
       decrementQuantity(index);
     }
   };
@@ -130,13 +127,6 @@ const Cartpage = () => {
       }, 3000);
       return;
     }
-    // if (cart.length === 0) {
-    //   setCartError(true);
-    //   setTimeout(() => {
-    //     setCartError(false);
-    //   }, 3000);
-    //   return;
-    // }
 
     const checkoutData = {
       cart,
@@ -183,12 +173,12 @@ const Cartpage = () => {
                         <button
                           className="text-2xl"
                           onClick={() => handleDecrement(index)}
-                          disabled={quantities[index] <= 0}
+                          disabled={item.quantity <= 1}
                         >
                           -
                         </button>
                         <p className=" text-sm w-6 flex justify-center items-center h-[25px] bg-white rounded-sm font-medium">
-                          {quantities[index]}
+                          {item.quantity}
                         </p>
                         <button
                           className="text-2xl"

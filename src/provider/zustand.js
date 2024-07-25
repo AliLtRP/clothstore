@@ -17,28 +17,36 @@ const useCartStore = create(persist(
       selectedCountry: '',
     },
     addToCart: (item) => set((state) => {
-      const cart = [...state.cart, item];
-      const quantities = cart.map(item => item.quantity || 1);
-      return { cart, quantities };
+      const existingCart = Array.isArray(state.cart) ? state.cart : [];
+      const existingItemIndex = existingCart.findIndex(cartItem => cartItem.id === item.id);
+      if (existingItemIndex !== -1) {
+        const newCart = [...existingCart];
+        newCart[existingItemIndex].quantity += item.quantity;
+        return { cart: newCart };
+      } else {
+        return { cart: [...existingCart, item] };
+      }
     }),
     removeFromCart: (itemId) => set((state) => {
-      const cart = state.cart.filter(item => item.id !== itemId);
-      const quantities = cart.map(item => item.quantity || 1);
-      return { cart, quantities };
+      const existingCart = Array.isArray(state.cart) ? state.cart : [];
+      const newCart = existingCart.filter(item => item.id !== itemId);
+      return { cart: newCart };
     }),
     setAddress: (address) => set(() => ({ address })),
     setCityAndCountry: (city, country) => set(() => ({ selectedCity: city, selectedCountry: country })),
     incrementQuantity: (index) => set((state) => {
-      const newQuantities = [...state.quantities];
-      newQuantities[index] += 1;
-      return { quantities: newQuantities };
+      const existingCart = Array.isArray(state.cart) ? state.cart : []; // Ensure state.cart is an array
+      const newCart = [...existingCart];
+      newCart[index].quantity += 1;
+      return { cart: newCart };
     }),
     decrementQuantity: (index) => set((state) => {
-      const newQuantities = [...state.quantities];
-      if (newQuantities[index] > 0) {
-        newQuantities[index] -= 1;
+      const existingCart = Array.isArray(state.cart) ? state.cart : []; // Ensure state.cart is an array
+      const newCart = [...existingCart];
+      if (newCart[index].quantity > 1) {
+        newCart[index].quantity -= 1;
       }
-      return { quantities: newQuantities };
+      return { cart: newCart };
     }),
     calculateTotalPrice: () => {
       const { cart, quantities } = get();
@@ -54,6 +62,7 @@ const useCartStore = create(persist(
     storage: createJSONStorage(() => localStorage),
   }
 ));
+
 
 export const useRelated = create(
   persist(
