@@ -47,11 +47,14 @@ const SplashScreen = () => {
       setCurrentIndex(currentIndex - 1);
     }
   };
+  // <div className="w-full max-w-sm bg-[aqua montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
+  // <div className="w-full h-full p- flex flex-col justify-start gap-6">
+  //   <div className="w-full h-[75%] flex flex-col justify-end items-center">
 
   return (
-    <div className="w-full max-w-sm h-[100dvh] bg-[aqua montserrat flex flex-col items-center mx-auto bg-[#FDFDFD">
-      <div className="w-full h-full p- flex flex-col justify-start gap-6">
-        <div className="w-full h-[75%] flex flex-col justify-end items-center">
+    <div className="w-full h-screen max-w-sm bg-[#FDFDFD] flex flex-col items-center justify-center mx-auto">
+<div className="w-full h-full p-4 flex flex-col justify-center items-center gap-6">
+<div className="w-full h-auto flex flex-col justify-center items-center">
           <img
             src={splashCollection[currentIndex].img}
             alt={splashCollection[currentIndex].label}
