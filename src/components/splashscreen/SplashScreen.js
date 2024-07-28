@@ -7,7 +7,7 @@ import splashStyle from './splashscreenstyle.module.css';
 
 const splashCollection = [
   {
-    label: 'Choose Products',
+    label: 'Choose Product',
     description: 'Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia consequat duis enim velit mollit.',
     img: splashimg1,
   },
