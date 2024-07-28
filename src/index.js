@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ErrorBoundary } from 'react-error-boundary';
+import Error from './components/error/Error';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -17,7 +18,7 @@ const queryClient = new QueryClient({
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <ErrorBoundary fallback={<div>Error occurs</div>}>
+  <ErrorBoundary fallback={<Error />}>
     <QueryClientProvider client={queryClient}>
       <App />
     </QueryClientProvider>
