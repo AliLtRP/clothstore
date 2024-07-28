@@ -49,8 +49,8 @@ const useCartStore = create(persist(
       return { cart: newCart };
     }),
     calculateTotalPrice: () => {
-      const { cart, quantities } = get();
-      return cart.reduce((acc, item, index) => acc + item.price * (quantities[index] || 1), 0);
+      const { cart } = get();
+      return cart[0].final_price * cart[0].quantity;
     },
     setOrderDetails: (checkoutData) => set(() => ({ orderDetails: checkoutData })),
     setCart: (cart) => set({ cart }),

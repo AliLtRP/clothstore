@@ -202,7 +202,7 @@ const Cartpage = () => {
 
           <div className={cartStyle["payment-details"]}>
             <p className="ml-[-5px]">Order Total</p>
-            <p style={{ fontWeight: "bold" }}>{calculateTotalPrice()}</p>
+            <p style={{ fontWeight: "bold" }}>₹ {calculateTotalPrice()}</p>
           </div>
           <hr className={cartStyle["divider"]} />
           <p className={cartStyle["final-address-details"]}>Address Details</p>

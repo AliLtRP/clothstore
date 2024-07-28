@@ -12,36 +12,30 @@ import Minus from "./icons/Minus";
 import Skeleton from "react-loading-skeleton";
 import backicon from "../../assets/back.svg";
 import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useQuery } from "react-query";
 
 const Shop = () => {
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
   const { cart, addToCart, removeFromCart } = useCartStore();
   const [quantity, setQuantity] = useState(0);
   const { items } = useRelated();
-  const [loading, setLoading] = useState(true);
   const [isScaled, setIsScaled] = useState(false);
 
   const fetchData = async () => {
     try {
       const savedItem = localStorage.getItem(`item_${id}`);
-      if (savedItem) {
-        setData(JSON.parse(savedItem));
-      } else {
-        const response = await client.get(`/product?id=${id}`);
-        setData(response.data.data);
-      }
+      const response = await client.get(`/product?id=${id}`);
+      return response.data.data;
     } catch (e) {
       console.log(e);
-    } finally {
-      setLoading(false);
     }
   };
 
-  useEffect(() => {
-    fetchData();
-  }, [id]);
+  // useEffect(() => {
+  //   fetchData();
+  // }, [id]);
 
   useEffect(() => {
     const previousItemId = localStorage.getItem('previousItemId');
@@ -52,7 +46,6 @@ const Shop = () => {
   }, [id]);
 
   const handleAddToCart = () => {
-    // addToCart({ ...data, quantity });
     setIsScaled(true);
     setTimeout(() => setIsScaled(false), 200);
     navigate('/cart');
@@ -63,10 +56,10 @@ const Shop = () => {
     addToCart({ ...data, quantity: 1 });
   };
 
-  const handleDecrementQuantity = () => {  
-    const newCart = cart.map((v,i) => {
-      if(v.id == id) {
-        if(v.quantity > 0) {
+  const handleDecrementQuantity = () => {
+    const newCart = cart.map((v, i) => {
+      if (v.id == id) {
+        if (v.quantity > 0) {
           const q = v.quantity - 1;
           return v.quantity = q;
         } else {
@@ -95,7 +88,6 @@ const Shop = () => {
   };
 
   const handleItemClick = (newItemId) => {
-    setLoading(true);
     navigate(`/shop/${newItemId}`);
     navigate(0);
   }
@@ -109,9 +101,8 @@ const Shop = () => {
     }
     return 0;
   }, [cart, id]);
-  
 
-  console.log(quan);
+  const { data, isLoading } = useQuery('shop', fetchData);
 
   return (
     <div className="w-full flex flex-col">
@@ -140,7 +131,7 @@ const Shop = () => {
 
         <Container>
           <div className="px-4 pt-1">
-            {loading ? (
+            {isLoading ? (
               <Skeleton height={200} borderRadius={10} />
             ) : (
               <LazyLoadImage
@@ -152,19 +143,23 @@ const Shop = () => {
             )}
 
             <div className="w-full h-8 flex justify-center items-center gap-1">
-              {loading ?(
+              {isLoading ? (
                 <div className="flex gap-1">
-               <Skeleton height={10} width={10} className=" rounded-full" /> 
-               <Skeleton height={10} width={10} className=" rounded-full" /> 
-               <Skeleton height={10} width={10} className=" rounded-full" /> 
-              </div>
+                  <Skeleton height={10} width={10} className=" rounded-full" />
+                  <Skeleton height={10} width={10} className=" rounded-full" />
+                  <Skeleton height={10} width={10} className=" rounded-full" />
+                </div>
               )
-                : (data.img.map((v, i) => (
-                  <i
-                    className="rounded-full bg-[#F83758] p-[5px]"
-                    key={i}
-                  />
-                )))}
+                : (
+
+                  data.img.map((v, i) => (
+                    <i
+                      className="rounded-full bg-[#F83758] p-[5px]"
+                      key={i}
+                    />
+                  )
+                  )
+                )}
             </div>
           </div>
         </Container>
@@ -172,7 +167,7 @@ const Shop = () => {
         <Container>
           <div className="flex flex-col gap-3">
             <div className="px-4">
-              {loading ? (
+              {isLoading ? (
                 <div className="mt[-30px]">
                   <Skeleton height={20} width={150} />
                 </div>
@@ -182,7 +177,7 @@ const Shop = () => {
                 </p>
               )}
 
-              {loading ? (
+              {isLoading ? (
                 <div className="flex-col gap-3">
                   <Skeleton height={15} />
                   <Skeleton height={15} width={150} />
@@ -257,7 +252,7 @@ const Shop = () => {
               )}
             </div>
 
-            {loading ? (
+            {isLoading ? (
               <>
                 <Skeleton height={50} width={352} className="mt-8 ml-4 mb-2" />
                 <div className="w-full flex gap-3 overflow-y-scroll no-scrollbar px-4">
