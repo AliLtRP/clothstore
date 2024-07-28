@@ -142,8 +142,6 @@ const Cartpage = () => {
     navigate("/placeorder");
   };
 
-  console.log(cart);
-
   return (
     <div className="w-full h-auto mb-10 montserrat flex flex-col items-center mx-auto bg-[#FDFDFD]">
       <div className="w-full max-w-sm flex flex-col gap-6">

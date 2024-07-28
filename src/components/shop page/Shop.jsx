@@ -15,7 +15,6 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useQuery } from "react-query";
 
 const Shop = () => {
-  // const [data, setData] = useState([]);
   const navigate = useNavigate();
   const { id } = useParams();
   const { cart, addToCart, removeFromCart } = useCartStore();
@@ -25,17 +24,12 @@ const Shop = () => {
 
   const fetchData = async () => {
     try {
-      const savedItem = localStorage.getItem(`item_${id}`);
       const response = await client.get(`/product?id=${id}`);
       return response.data.data;
     } catch (e) {
       console.log(e);
     }
   };
-
-  // useEffect(() => {
-  //   fetchData();
-  // }, [id]);
 
   useEffect(() => {
     const previousItemId = localStorage.getItem('previousItemId');
@@ -102,9 +96,7 @@ const Shop = () => {
     return 0;
   }, [cart, id]);
 
-  const { data, isLoading } = useQuery('shop', fetchData, {
-    cacheTime: 15 * (60 * 1000)
-  });
+  const { data, isLoading } = useQuery('shop', fetchData);
 
   return (
     <div className="w-full flex flex-col">
