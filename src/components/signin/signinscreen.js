@@ -5,7 +5,7 @@ import eye from "../../assets/eye.svg";
 import eyeoff from "../../assets/eyeoff.svg";
 import client from "../../api/axios";
 import ButtonComp from "../btnComp";
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Signinscreen = () => {
@@ -77,7 +77,7 @@ const Signinscreen = () => {
   }, []);
 
   return (
-    <div className="w-full h-auto min-h-screen montserrat flex flex-col items-center bg-[#FDFDFD] relative">
+    <div className="w-full min-h-[100dvh] h-full montserrat flex flex-col items-center bg-[#FDFDFD] relative">
       <div className="max-w-sm p-4 flex flex-col gap-6">
         <h1 className={signinStyle.welcomtitle}>
           Welcome
@@ -113,7 +113,7 @@ const Signinscreen = () => {
         <div className="absolute bottom-8 left-0 right-0 flex flex-col items-center p-4">
           <div className="mb-10">
             <p className={signinStyle.createacc}>
-              Create an account{" "}
+              Create an account
               <a
                 onClick={handleSignUpClick}
                 className={"hover:cursor-pointer " + signinStyle.signuplink}

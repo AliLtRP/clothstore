@@ -3,44 +3,38 @@ import { useNavigate } from 'react-router-dom';
 import eye from '../../assets/eye.svg';
 import eyeoff from '../../assets/eyeoff.svg';
 import signupStyle from './signupstyle.module.css';
-import client from '../../api/axios';
 import ButtonComp from '../btnComp';
-import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { toast } from 'react-toastify';
+import client from '../../api/axios';
+
 
 const Signupscreen = () => {
-  const [email, setEmail] = useState('');
-  const [username, setUsername] = useState('');
-  const [active, setActive] = useState(true);
-  const [password, setPassword] = useState('');
+  const [register, setRegister] = useState({
+    phone: "",
+    email: "",
+    active: "",
+    username: "",
+    password: "",
+    active: true,
+  });
   const [confirmPassword, setConfirmPassword] = useState('');
-  const [error, setError] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
   const handleSignUpClick = async (event) => {
     event.preventDefault();
-    setLoading(true);
 
-    if (password !== confirmPassword) {
+    if (register.password !== confirmPassword) {
       toast.error('Passwords do not match');
-      setLoading(false);
-      setTimeout(() => setError(null), 3000);
       return;
     }
 
-    const requestBody = {
-      username,
-      email,
-      password,
-      active,
-    };
-
     try {
-      const response = await client.post('register', requestBody);
+      const response = await client.post('register', register);
       console.log(response.data);
       navigate('/signin');
     } catch (error) {
@@ -53,10 +47,44 @@ const Signupscreen = () => {
       } else {
         toast.error('Network Error');
       }
-      setLoading(false);
-      setTimeout(() => setError(null), 3000);
     }
   };
+
+  const handlePhone = (phone) => {
+    setRegister((prev) => ({
+      ...prev,
+      phone
+    }));
+  }
+
+  const handleEmail = (email) => {
+    setRegister((prev) => ({
+      ...prev,
+      email
+    }));
+  }
+
+  const handleEmailOrUserName = (data) => {
+    if (data.includes('@')) {
+      return handleEmail(data);
+    }
+    return handleUserName(data);
+  }
+
+  const handleUserName = (username) => {
+    setRegister((prev) => ({
+      ...prev,
+      username
+    }));
+  }
+
+  const handlePassword = (password) => {
+    setRegister((prev) => ({
+      ...prev,
+      password
+    }));
+  }
+
 
   const togglePasswordVisibility = () => {
     setPasswordVisible(!passwordVisible);
@@ -72,7 +100,7 @@ const Signupscreen = () => {
   };
 
   return (
-    <div className="w-full h-auto min-h-screen montserrat flex flex-col items-center bg-[#FDFDFD] relative">
+    <div className="w-full h-full min-h-[100dvh] montserrat flex flex-col items-center bg-[#FDFDFD] relative">
       <div className="max-w-sm p-6 flex flex-col gap-6 w-full">
         <h1 className={signupStyle['signup-welcome-title']}>
           Create an account
@@ -80,10 +108,18 @@ const Signupscreen = () => {
         <div className={signupStyle['signup-data-input']}>
           <div className=''>
             <input
-              placeholder="Username or Email"
+              placeholder="Username"
               className={signupStyle['signup-user-input']}
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={register.username}
+              onChange={(e) => handleUserName(e.target.value)}
+            />
+          </div>
+          <div className=''>
+            <input
+              placeholder="Email"
+              className={signupStyle['signup-user-input']}
+              value={register.email}
+              onChange={(e) => handleEmail(e.target.value)}
             />
           </div>
           <div className={signupStyle['signup-password-input-container']}>
@@ -91,8 +127,8 @@ const Signupscreen = () => {
               type={passwordVisible ? 'text' : 'password'}
               placeholder="Password"
               className={signupStyle['signup-password-input']}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              value={register.password}
+              onChange={(e) => handlePassword(e.target.value)}
             />
             <img
               src={passwordVisible ? eyeoff : eye}
