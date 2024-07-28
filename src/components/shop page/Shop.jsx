@@ -102,7 +102,9 @@ const Shop = () => {
     return 0;
   }, [cart, id]);
 
-  const { data, isLoading } = useQuery('shop', fetchData);
+  const { data, isLoading } = useQuery('shop', fetchData, {
+    cacheTime: 15 * (60 * 1000)
+  });
 
   return (
     <div className="w-full flex flex-col">
