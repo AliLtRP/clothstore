@@ -21,7 +21,7 @@ const ButtonComp = ({ title, disabled, className, width, loading, onClick, small
 
   return (
     <>
-      <button className={`${className} ${buttonStyle}`} style={{ width }} onClick={onClick}>{loading ? "Loading..." : "Log In"}</button>
+      <button className={`${className} ${buttonStyle}`} style={{ width }} onClick={onClick}>{loading ? "Loading..." : title}</button>
     </>
   );
 };
