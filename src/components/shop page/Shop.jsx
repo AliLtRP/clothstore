@@ -96,8 +96,10 @@ const Shop = () => {
     return 0;
   }, [cart, id]);
 
-  const { data, isLoading } = useQuery('shop', fetchData);
+  const { data, isLoading } = useQuery(['shop', id], fetchData);
 
+  console.log(data);
+  
   return (
     <div className="w-full flex flex-col">
       <motion.div
@@ -130,7 +132,7 @@ const Shop = () => {
             ) : (
               <LazyLoadImage
                 className="w-full h-[213px] rounded-2xl object-cover"
-                src={data.img[0].src}
+                src={data?.img?.[0]?.src}
                 effect="blur"
                 width="100%"
               />
@@ -145,14 +147,12 @@ const Shop = () => {
                 </div>
               )
                 : (
-
-                  data.img.map((v, i) => (
+                  data?.img?.map((v, i) => (
                     <i
                       className="rounded-full bg-[#F83758] p-[5px]"
                       key={i}
                     />
-                  )
-                  )
+                  ))
                 )}
             </div>
           </div>
@@ -167,7 +167,7 @@ const Shop = () => {
                 </div>
               ) : (
                 <p className="font-bold text-base my-1.5">
-                  {Object.keys(data.options[0])} : {data.options[0].color}
+                  {Object.keys(data?.options?.[0] || {})} : {data?.options?.[0]?.color}
                 </p>
               )}
 
@@ -182,22 +182,22 @@ const Shop = () => {
                 </div>
               ) : (
                 <div className="flex flex-col gap-3">
-                  <p className="font-bold text-xl">{data.name}</p>
-                  <p className="font-normal text-sm">{data.description}</p>
+                  <p className="font-bold text-xl">{data?.name}</p>
+                  <p className="font-normal text-sm">{data?.description}</p>
 
                   <div className="w-full flex gap-1.5 items-center">
                     <Rating />
                     <p className="text-[#828282] font-medium text-sm">
-                      {data.rating}
+                      {data?.rating}
                     </p>
                   </div>
 
                   <div className="w-full flex gap-2 text-sm">
                     <p className="line-through text-[#808488] font-normal">
-                      ₹{data.price}
+                      ₹{data?.price}
                     </p>
-                    <p className="font-medium">₹{data.final_price}</p>
-                    {data.discount && (
+                    <p className="font-medium">₹{data?.final_price}</p>
+                    {data?.discount && (
                       <p className="text-[#FA7189] font-semibold">
                         {data.discount.value} Off
                       </p>
@@ -206,7 +206,7 @@ const Shop = () => {
 
                   <p className="text-sm font-medium mb-0.5">Product Details</p>
 
-                  <p className=" text-xs font-normal">{data.description}</p>
+                  <p className=" text-xs font-normal">{data?.description}</p>
 
                   <div className="w-full flex items-end">
                     <div className="w-full">
@@ -242,7 +242,6 @@ const Shop = () => {
                     </button>
                   </div>
                 </div>
-
               )}
             </div>
 
@@ -260,7 +259,7 @@ const Shop = () => {
                 <p className=" text-xl font-semibold mt-8 mb-4 pl-4">Similar To</p>
                 <div className="w-full flex gap-4 overflow-y-scroll no-scrollbar px-4">
                   {items.map((v, i) => (
-                    <div className="hover:cursor-pointer" onClick={() => handleItemClick(v.id)}>
+                    <div className="hover:cursor-pointer" onClick={() => handleItemClick(v.id)} key={v.id}>
                       <div className=" w-40 min-h-[245px] h-auto pb-0.5 rounded-lg mb-3 shadow-md container ">
                         <LazyLoadImage
                           src={v.img[0].src}

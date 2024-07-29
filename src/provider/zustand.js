@@ -50,6 +50,9 @@ const useCartStore = create(persist(
     }),
     calculateTotalPrice: () => {
       const { cart } = get();
+      if(cart.length === 0) {
+        return 0
+      }
       return cart[0].final_price * cart[0].quantity;
     },
     setOrderDetails: (checkoutData) => set(() => ({ orderDetails: checkoutData })),
